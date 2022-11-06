@@ -11,7 +11,7 @@ export default function Navbar() {
   ]
 
   return (
-    <header className="flex top-0 left-0 right-0 items-center bg-red-200 h-32 gap-x-0">
+    <header className="flex top-0 left-0 right-0 items-center bg-red-200 h-24 gap-x-0">
       <div className="flex-shrink-0 px-16">
         <Image 
         src={"/images/dark logo.png"}
@@ -31,8 +31,19 @@ export default function Navbar() {
           </Link>)
         }
       </div>
-      <div className="justify-center text-center px-16">
-        <p className="w-64">ICONS</p>
+      <div className="grid grid-cols-2 gap-x-16 justify-center text-center px-16">
+        <Image 
+        src={"/icons/Instagram.svg"}
+        alt="Instagram icon"
+        width={32}
+        height={32}
+        />
+        <Image 
+        src={"/icons/Facebook.svg"}
+        alt="Facebook icon"
+        width={32}
+        height={32}
+        />
       </div>
     </header>
   )
