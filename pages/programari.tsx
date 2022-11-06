@@ -1,8 +1,8 @@
 export default function Home() {
   return (
     <>
-      <h1 className="text-3xl">
-        Acasa
+      <h1 className="text-4xl font-bold underline">
+      Programari
       </h1>
     </>
   )
