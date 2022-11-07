@@ -8,8 +8,10 @@ export default function Layout({
 }) {
   return (
     <>
-      <Navbar/>
-      {children}
+      <div className={"bg-medium-purple h-screen"}>
+        <Navbar/>
+        {children}
+      </div>
     </>
   )
 }

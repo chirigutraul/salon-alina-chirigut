@@ -8,9 +8,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'light-pink': 'F4EEFF',
-        'medium-purple': 'A6B1E1',
-        'dark-purple': '3A3665'
+        'light-pink': '#F4EEFF',
+        'medium-purple': '#A6B1E1',
+        'dark-purple': '#3A3665'
       },
     },
   },
