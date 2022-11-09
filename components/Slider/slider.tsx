@@ -17,16 +17,17 @@ function Slider() {
 
   return (
   <Swiper
-  spaceBetween={50}
+  spaceBetween={0}
   slidesPerView={1}
+  className="justify-center mx-0 px-0"
   >
     <PreviousButton/>
     <NextButton />
     {
       imagesArray.map((imageLink:string, index:number) => 
-      <SwiperSlide className="justify-center" key={index}>
+      <SwiperSlide key={index}>
         <img
-        className='object-contain h-screen w-screen'
+        className='object-contain h-screen w-screen mx-0'
         src={imageLink}
         alt="Picture of the something nice"
         />

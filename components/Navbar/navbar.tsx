@@ -11,7 +11,7 @@ export default function Navbar() {
   ]
 
   return (
-    <header className="flex fixed z-10 top-0 left-0 right-0 items-center bg-light-pink h-24 gap-x-0">
+    <header className="flex absolute z-10 top-0 left-0 right-0 items-center bg-light-pink h-24 gap-x-0">
       <div className="flex-shrink-0 px-16">
         <Image 
         src={"/images/dark logo.png"}
