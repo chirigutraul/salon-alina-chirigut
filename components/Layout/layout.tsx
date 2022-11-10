@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react'
-import Navbar from '../Navbar/navbar'
+import {Navbar, Footer} from 'components'
 
 export default function Layout({
   children
@@ -11,6 +11,7 @@ export default function Layout({
       <div className={"bg-medium-purple h-screen"}>
         <Navbar/>
         {children}
+        <Footer/>
       </div>
     </>
   )
