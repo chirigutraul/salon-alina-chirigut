@@ -6,7 +6,7 @@ function TopServicesGallery() {
 
   return (
     <div className='h-screen bg-dark-purple grid grid-cols-3 gap-16 text-center px-16'>
-        { servicesArray.map(service => <ServiceComponent service={service}/>) }
+        { servicesArray.map(service => <ServiceComponent key={service.nameOfService} service={service}/>) }
     </div>
   )
 }

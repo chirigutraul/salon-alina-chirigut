@@ -23,11 +23,10 @@ export default function Home() {
     <div className="grid grid-cols-4 p-16 gap-16"> 
         {
           imagesArray.map((image, index:number)=>
-            <div className="w-128 h-64 relative">
+            <div className="w-128 h-64 relative" key={index}>
             <Image
             src={image}
             className={'object-cover drop-shadow-md'}
-            key={index}
             fill={true}
             alt='Manichiura client'
             />
