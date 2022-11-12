@@ -26,9 +26,13 @@ export default function Navbar() {
         navbarOptions.map((option:string) => 
           <Link
           key={option} 
-          href={option.split(" ")[0].toLowerCase()} 
+          href={
+          option==="Acasa" 
+          ? "/" 
+          : option.split(" ")[0].toLowerCase()
+          } 
           className="text-2xl flex-1"
-          as={'other'}>
+          >
             {option}
           </Link>)
         }
