@@ -15,7 +15,7 @@ function Slider() {
     "https://images.unsplash.com/photo-1610992015734-080387c1f66f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1631&q=80",
     "https://images.unsplash.com/photo-1636485830028-1a7663299a1f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
   ]
-  
+
   SwiperCore.use([Autoplay])
 
   return (
@@ -37,7 +37,7 @@ function Slider() {
           alt="Picture of the something nice"
           fill={true}
           className="object-contain"
-          sizes={'(max-width:1920px) 100vw'}
+          sizes={'(max-width:1920px) w-screen h-screen'}
           priority={index === 0}
           />
         </div>
