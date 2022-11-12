@@ -12,12 +12,13 @@ export default function Navbar() {
 
   return (
     <header className="flex absolute z-10 top-0 left-0 right-0 items-center bg-light-pink h-24 gap-x-0">
-      <div className="flex-shrink-0 px-16">
+      <div className="flex-shrink-0 relative h-24 w-64 mx-16">
         <Image 
         src={"/images/dark logo.png"}
         alt="Logo salon"
-        width={256}
-        height={64}
+        fill={true}
+        priority
+        sizes="(max-width:1920px) theme(w-64)"
         />
       </div>
       <div className="flex flex-auto gap-x-1 text-center">
@@ -26,7 +27,8 @@ export default function Navbar() {
           <Link
           key={option} 
           href={option.split(" ")[0].toLowerCase()} 
-          className="text-2xl flex-1">
+          className="text-2xl flex-1"
+          as={'other'}>
             {option}
           </Link>)
         }

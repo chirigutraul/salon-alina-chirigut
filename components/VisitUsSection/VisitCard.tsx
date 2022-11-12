@@ -7,12 +7,13 @@ function VisitCard() {
  
   return (
     <div className='h-screen border-8 border-dark-purple relative'>
-      <div className='h-full w-full'>
+      <div className='h-full w-full relative'>
         <Image
         src={salonImage}
         alt={'Imagine cu salonul'}
         className='object-cover'
         fill={true}
+        sizes="(max-width:1920px) theme(w-full)"
         />
       </div>
       <VisitCardAdressOverlay/>

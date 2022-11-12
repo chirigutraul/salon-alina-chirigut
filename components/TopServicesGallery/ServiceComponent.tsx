@@ -11,6 +11,7 @@ function ServiceComponent({service}:{service:IServicesObject}) {
         fill={true}
         className="object-cover"
         alt={service.nameOfService}
+        sizes='(max-width:1920px) theme(w-full)'
         />
       </div>  
      

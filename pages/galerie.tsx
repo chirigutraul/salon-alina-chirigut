@@ -29,6 +29,7 @@ export default function Home() {
             className={'object-cover drop-shadow-md'}
             fill={true}
             alt='Manichiura client'
+            sizes={'(max-width:1920px) theme(w-128)'}
             />
             </div>
           )
