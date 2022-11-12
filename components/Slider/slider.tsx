@@ -4,7 +4,7 @@ import 'swiper/css';
 import { Swiper, SwiperSlide, useSwiper} from 'swiper/react';
 import PreviousButton from './PreviousButton';
 import NextButton from './NextButton';
-
+import Image from 'next/image';
 
 function Slider() {
   const swiper = useSwiper();
@@ -26,11 +26,15 @@ function Slider() {
     {
       imagesArray.map((imageLink:string, index:number) => 
       <SwiperSlide key={index}>
-        <img
-        className='object-contain h-screen w-screen mx-0'
-        src={imageLink}
-        alt="Picture of the something nice"
-        />
+        <div className='h-screen w-screen relative'>
+          <Image
+          src={imageLink}
+          alt="Picture of the something nice"
+          fill={true}
+          className="object-contain"
+          priority
+          />
+        </div>
       </SwiperSlide>
       )
     }

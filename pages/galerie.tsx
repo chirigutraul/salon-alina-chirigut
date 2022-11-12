@@ -1,3 +1,4 @@
+import Image from "next/image"
 export default function Home() {
   const imagesArray:string[] = [
     "https://images.unsplash.com/photo-1632345031435-8727f6897d53?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
@@ -20,15 +21,19 @@ export default function Home() {
       Galerie Clienti
     </h1>
     <div className="grid grid-cols-4 p-16 gap-16"> 
-      {
-        imagesArray.map((image, index:number)=>
-          <img
-          src={image}
-          className={'h-full object-cover drop-shadow-md'}
-          key={index}
-          />
-        )
-      }
+        {
+          imagesArray.map((image, index:number)=>
+            <div className="w-128 h-64 relative">
+            <Image
+            src={image}
+            className={'object-cover drop-shadow-md'}
+            key={index}
+            fill={true}
+            alt='Manichiura client'
+            />
+            </div>
+          )
+        }
     </div>
     </div>
     </>
