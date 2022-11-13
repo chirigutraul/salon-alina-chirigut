@@ -3,9 +3,9 @@ import { Slider, TopServicesGallery, VisitUsSection } from "components"
 export default function Home() {
   return (
     <>
-    <Slider/>
+    {/* <Slider/>
     <TopServicesGallery/>
-    <VisitUsSection/>
+    <VisitUsSection/> */}
     </>
   )
 }

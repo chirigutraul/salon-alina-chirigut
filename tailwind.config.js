@@ -11,6 +11,7 @@ module.exports = {
     extend: {
       colors: {
         'light-pink': '#F4EEFF',
+        'light-pink-hover':'#E8DCFF',
         'medium-purple': '#A6B1E1',
         'dark-purple': '#3A3665'
       },

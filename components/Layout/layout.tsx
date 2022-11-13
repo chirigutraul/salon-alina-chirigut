@@ -7,12 +7,10 @@ export default function Layout({
   children:ReactElement
 }) {
   return (
-    <>
-      <div className={"bg-medium-purple h-screen"}>
+      <div className={"bg-medium-purple h-screen w-screen"}>
         <Navbar/>
         {children}
-        <Footer/>
+        {/* <Footer/> */}
       </div>
-    </>
   )
 }
