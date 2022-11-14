@@ -1,17 +1,21 @@
+"use client";
 import { useState } from "react";
-import Logo from "./Logo";
-import NavbarLinks from "./NavbarLinks";
-import SocialMediaIcons from "./SocialMediaIcons";
+import Logo from "./NavbarComponents/Logo";
 
 import ChevronDownIcon from "components/Icons/ChevronDownIcon";
 import CheveronUpIcon from "components/Icons/CheveronUpIcon";
 
-export default function Navbar() {
-  const [isNavbarOpenOnMobile,setIsNavbarOpenOnMobile] = useState<boolean>(false);
+import useWindowSize from "utils/hooks/BreakPointsHooks"
+import breakpoints from "utils/TailwindBreakPoints";
+import AnimatedNavbarElements from "./NavbarComponents/AnimatedNavbarElements";
 
-  const toggleNavbar = () => {
-    setIsNavbarOpenOnMobile(currentValue => !currentValue)
-  }
+export default function Navbar() {
+  const { width } = useWindowSize()
+
+  const [isNavbarOpenOnMobile,setIsNavbarOpenOnMobile] = useState<boolean>(false);
+  const toggleNavbar = () => setIsNavbarOpenOnMobile(currentValue => !currentValue)
+
+  const isLarge = width && (width >= breakpoints.lg)
 
   return (
     <header className={`grid top-0 left-0 right-0 bg-light-pink grid-cols-1 ${isNavbarOpenOnMobile ? '' : 'h-40'} 
@@ -32,8 +36,13 @@ export default function Navbar() {
             />
         }
       </div>
-        <NavbarLinks isVisible={isNavbarOpenOnMobile}/>
-        <SocialMediaIcons isVisible={isNavbarOpenOnMobile}/>
+      {
+      !isLarge 
+      ? isNavbarOpenOnMobile 
+        ? <AnimatedNavbarElements/>
+        : null
+      : <AnimatedNavbarElements/>
+      }
     </header>
   )
 }

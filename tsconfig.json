@@ -18,7 +18,8 @@
     "paths": {
       "@components":["/components"],
       "@types":["/types"],
-      "@icons":["/components/Icons"]
+      "@icons":["/components/Icons"],
+      "@utils":["/utils"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
