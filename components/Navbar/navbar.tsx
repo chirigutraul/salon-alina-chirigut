@@ -19,7 +19,7 @@ export default function Navbar() {
 
   return (
     <header className={`grid top-0 left-0 right-0 bg-light-pink grid-cols-1 ${isNavbarOpenOnMobile ? '' : 'h-40'} 
-    w-full absolute ease-in duration-500
+    w-full ease-in duration-500
     lg:grid-cols-[1fr,2fr,0.5fr] lg:h-40 lg:items-center
     xl:px-16`}>
       <Logo/>

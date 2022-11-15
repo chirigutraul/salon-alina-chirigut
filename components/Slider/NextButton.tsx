@@ -9,7 +9,7 @@ const NextButton = () => {
   return <div 
   className={ButtonsStyling + ' right-0'}>
     <button onClick={() => swiper.slideNext()}>
-      <div className='h-8 w-8 relative'>
+      <div className='h-16 w-16 relative'>
       <Image
        src={"/icons/RightArrow.svg"}
        alt="Right arrow icon"

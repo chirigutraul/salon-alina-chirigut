@@ -8,7 +8,7 @@ const PreviousButton = () => {
   const swiper = useSwiper();
   return <div className={ButtonsStyling + ' left-0'}>
     <button onClick={() => swiper.slidePrev()}>
-      <div className='h-8 w-8 relative'>
+      <div className='h-16 w-16 relative'>
       <Image
        src={"/icons/LeftArrow.svg"}
        alt="Left arrow icon"

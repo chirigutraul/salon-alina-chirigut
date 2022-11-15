@@ -22,7 +22,7 @@ function Slider() {
   <Swiper
   spaceBetween={0}
   slidesPerView={1}
-  className="justify-center mx-0 px-0"
+  className="p-0 m-16 h-96 w-screen"
   loop={true}
   autoplay={true}
   >
@@ -31,12 +31,12 @@ function Slider() {
     {
       imagesArray.map((imageLink:string, index:number) => 
       <SwiperSlide key={index}>
-        <div className='h-screen w-screen relative'>
+        <div className='relative w-full h-full'>
           <Image
           src={imageLink}
           alt="Picture of the something nice"
           fill={true}
-          className="object-contain"
+          className="object-cover"
           sizes={'(max-width:1920px) w-screen h-screen'}
           priority={index === 0}
           />
