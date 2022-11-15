@@ -11,22 +11,25 @@ function NavbarLinks() {
     "PROGRAMARI",
     "CONTACT",
   ]
-
+    
   return (
-    <div 
+    <motion.div
+    initial={{opacity:0, y:'-100%'}}
+    animate={{opacity:1, y:'0'}}
+    transition={{duration:0.5}}
     className={`text-center grid grid-cols-1 align-center
     lg:grid-cols-[0.75fr,0.75fr,0.75fr,1fr,0.75fr] lg:grid
     xl:w-2/3 xl:justify-self-center xl:grid`}>
       {
       navbarOptions.map((option:string) => 
       <motion.a 
+      key={option} 
       href="/acasa"
       whileHover={{ scale: 1.2 }}
       className="text-2xl p-4 hover:bg-light-pink-hover
       lg:text-xl lg:p-y-4"
       >
         <Link
-        key={option} 
         href={
         option==="Acasa" 
         ? "/" 
@@ -36,7 +39,7 @@ function NavbarLinks() {
         </Link>
       </motion.a>
       )}
-    </div>
+    </motion.div>
   )
 }
 
