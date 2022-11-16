@@ -9,6 +9,8 @@ import useWindowSize from "utils/hooks/BreakPointsHooks"
 import breakpoints from "utils/TailwindBreakPoints";
 import AnimatedNavbarElements from "./NavbarComponents/AnimatedNavbarElements";
 
+import { AnimatePresence } from "framer-motion";
+
 export default function Navbar() {
   const { width } = useWindowSize()
 
@@ -36,6 +38,7 @@ export default function Navbar() {
             />
         }
       </div>
+      <AnimatePresence mode={"popLayout"}>
       {
       !isLarge 
       ? isNavbarOpenOnMobile 
@@ -43,6 +46,7 @@ export default function Navbar() {
         : null
       : <AnimatedNavbarElements/>
       }
+      </AnimatePresence> 
     </header>
   )
 }
