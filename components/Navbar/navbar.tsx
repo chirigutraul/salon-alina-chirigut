@@ -9,7 +9,7 @@ import useWindowSize from "utils/hooks/BreakPointsHooks"
 import breakpoints from "utils/TailwindBreakPoints";
 import AnimatedNavbarElements from "./NavbarComponents/AnimatedNavbarElements";
 
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useRouter } from "next/router";
 
 export default function Navbar() {
@@ -38,14 +38,13 @@ export default function Navbar() {
           ? <ChevronDownIcon 
             width={16}
             height={16}
-            />
+            />  
           : <CheveronUpIcon
             width={16}
             height={16}
             />
         }
       </div>
-      <AnimatePresence mode={"popLayout"}>
       {
       !isLarge 
       ? isNavbarOpenOnMobile 
@@ -53,7 +52,6 @@ export default function Navbar() {
         : null
       : <AnimatedNavbarElements/>
       }
-      </AnimatePresence> 
     </header>
   )
 }
