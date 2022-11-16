@@ -22,7 +22,7 @@ function Slider() {
   <Swiper
   spaceBetween={0}
   slidesPerView={1}
-  className="p-0 m-16 h-96 w-screen"
+  className="p-0 h-96 w-screen"
   loop={true}
   autoplay={true}
   >

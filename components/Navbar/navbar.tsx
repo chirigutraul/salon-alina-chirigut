@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState} from "react";
 import Logo from "./NavbarComponents/Logo";
 
 import ChevronDownIcon from "components/Icons/ChevronDownIcon";
@@ -10,8 +10,10 @@ import breakpoints from "utils/TailwindBreakPoints";
 import AnimatedNavbarElements from "./NavbarComponents/AnimatedNavbarElements";
 
 import { AnimatePresence } from "framer-motion";
+import { useRouter } from "next/router";
 
 export default function Navbar() {
+  const router = useRouter()
   const { width } = useWindowSize()
 
   const [isNavbarOpenOnMobile,setIsNavbarOpenOnMobile] = useState<boolean>(false);
@@ -19,13 +21,18 @@ export default function Navbar() {
 
   const isLarge = width && (width >= breakpoints.lg)
 
+  useEffect(()=>{
+    if(isNavbarOpenOnMobile)
+      setIsNavbarOpenOnMobile(false)
+  },[router.asPath])
+
   return (
-    <header className={`grid top-0 left-0 right-0 bg-light-pink grid-cols-1 ${isNavbarOpenOnMobile ? '' : 'h-40'} 
+    <header className={`grid top-0 left-0 right-0 bg-light-pink grid-cols-1 ${isNavbarOpenOnMobile ? '' : 'h-40'} mb-16
     w-full ease-in duration-500
-    lg:grid-cols-[1fr,2fr,0.5fr] lg:h-40 lg:items-center
+    lg:grid-cols-[1fr,2fr,0.5fr] lg:h-40 lg:items-center lg:mb-0
     xl:px-16`}>
       <Logo/>
-      <div onClick={toggleNavbar} className="bg-light-pink flex justify-center cursor-pointer
+      <div onClick={toggleNavbar} className="flex justify-center cursor-pointer w-screen bg-light-pink
       lg:hidden">
         { !isNavbarOpenOnMobile 
           ? <ChevronDownIcon 
