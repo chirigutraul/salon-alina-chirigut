@@ -4,8 +4,8 @@ export default function Home() {
   return (
     <>
     <Slider/> 
-    {/* <TopServicesGallery/>
-    <VisitUsSection/> */}
+    <TopServicesGallery/>
+    {/* <VisitUsSection/> */}
     </>
   )
 }

@@ -4,8 +4,8 @@ import Image from 'next/image'
 
 function ServiceComponent({service}:{service:IServicesObject}) {
   return (
-    <div className="bg-red-200 h-1/2 mt-16">
-      <div className='h-full w-full relative'>
+    <div>
+      <div className='relative h-96'>
         <Image
         src={service.pictureOfService}
         fill={true}
@@ -16,10 +16,10 @@ function ServiceComponent({service}:{service:IServicesObject}) {
       </div>  
      
       <div className='text-center'>
-        <p className='text-2xl text-white mt-16'>
+        <p className='text-2xl text-white mt-8'>
           {service.nameOfService}
         </p>
-        <p className='text-1xl text-white mt-8 px-16'>
+        <p className='text-1xl text-white mt-8 px-8'>
           {service.descriptionOfService}
         </p>
       </div>
