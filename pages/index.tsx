@@ -5,7 +5,7 @@ export default function Home() {
     <>
     <Slider/> 
     <TopServicesGallery/>
-    {/* <VisitUsSection/> */}
+    <VisitUsSection/>
     </>
   )
 }
