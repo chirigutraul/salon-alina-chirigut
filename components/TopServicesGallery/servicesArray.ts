@@ -15,7 +15,7 @@ const servicesArray:IServicesObject[] = [
     nameOfService: 'Manichiura Semi-permanent',
     descriptionOfService: 'Constructia unghiilor cu gel rezulta intr-o manichiura de lunga durata.',
     pictureOfService: 'https://images.unsplash.com/photo-1610992015762-45dca7fa3a85?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=664&q=80',
-  }
+  },
 ];
 
-export default servicesArray
+export default servicesArray;

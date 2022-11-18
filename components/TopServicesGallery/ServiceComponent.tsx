@@ -2,9 +2,40 @@ import React from 'react'
 import { IServicesObject } from 'types'
 import Image from 'next/image'
 
-function ServiceComponent({service}:{service:IServicesObject}) {
+import {motion} from 'framer-motion'
+import useWindowSize from 'utils/hooks/BreakPointsHooks'
+import breakpoints from 'utils/TailwindBreakPoints'
+
+const isNumberOdd = (verifiedNumber:number) => verifiedNumber%2===0
+
+function ServiceComponent({
+  service,
+  indexOfItem,
+}:{
+  service:IServicesObject;
+  indexOfItem:number;
+}) {
+  const { width } = useWindowSize()
+
+  const isScreenMedium = (width:number) => {
+      return width >= breakpoints.md
+  }
+
+  const animationForSmallScreen = {x: isNumberOdd(indexOfItem) ? '100%' : '-100%'}
+  const animationForMediumScreen = {y: isNumberOdd(indexOfItem) ? '100%' : '-100%'}
+
+  const whileInViewForSmallScreen = {x: '0'}
+  const whileInViewForMediumScreen = {y: '0', x:'0'}
+  
+  const initialAnimationVariation= (width && isScreenMedium(width))  ? animationForMediumScreen  : animationForSmallScreen
+  const whileInViewVariation = (width && isScreenMedium(width)) ? whileInViewForMediumScreen : whileInViewForSmallScreen
+
   return (
-    <div>
+    <motion.div
+    initial={initialAnimationVariation}
+    whileInView={whileInViewVariation}
+    transition={{duration:1}}
+    >
       <div className='relative h-96'>
         <Image
         src={service.pictureOfService}
@@ -23,7 +54,7 @@ function ServiceComponent({service}:{service:IServicesObject}) {
           {service.descriptionOfService}
         </p>
       </div>
-    </div>
+    </motion.div>
   )
 }
 

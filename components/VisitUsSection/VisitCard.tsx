@@ -11,8 +11,8 @@ function VisitCard() {
     <motion.div
     initial={{x:'-100%'}}
     whileInView={{x:'0'}}
-    transition={{duration:0.5}}
-    className='h-screen border-8 border-dark-purple relative'
+    transition={{duration:1}}
+    className='h-[40rem] border-8 border-dark-purple relative p-8 bg-dark-purple'
     >
       <div className='h-full w-full relative'>
         <Image
