@@ -10,7 +10,7 @@ export default function Layout({
       <div className={"bg-medium-purple h-screen w-screen overflow-x-hidden"}>
         <Navbar/>
         {children}
-        {/* <Footer/> */}
+        <Footer/>
       </div>
   )
 }
