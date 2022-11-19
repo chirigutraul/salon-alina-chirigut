@@ -27,21 +27,25 @@ export default function Navbar() {
   },[router.asPath])
 
   return (
-    <header className={`grid top-0 left-0 right-0 bg-light-pink grid-cols-1 ${isNavbarOpenOnMobile ? '' : 'h-40'} mb-16
+    <header className={`grid top-0 left-0 right-0 bg-light-pink grid-cols-1 ${isNavbarOpenOnMobile ? '' : 'h-40 mb-16'}  
     w-full ease-in duration-500
     lg:grid-cols-[1fr,2fr,0.5fr] lg:h-40 lg:items-center lg:mb-0
     xl:px-16`}>
       <Logo/>
-      <div onClick={toggleNavbar} className="flex justify-center cursor-pointer w-screen bg-light-pink
+      <div
+      onClick={toggleNavbar}
+      className="grid cursor-pointer w-full bg-light-pink
       lg:hidden">
         { !isNavbarOpenOnMobile 
           ? <ChevronDownIcon 
             width={16}
             height={16}
+            className="flex justify-self-center"
             />  
           : <CheveronUpIcon
             width={16}
             height={16}
+            className="flex justify-self-center"
             />
         }
       </div>

@@ -12,7 +12,9 @@ function VisitCard() {
     initial={{x:'-100%'}}
     whileInView={{x:'0'}}
     transition={{duration:1}}
-    className='h-[40rem] border-8 border-dark-purple relative p-8 bg-dark-purple'
+    viewport={{once:true}}
+    className='h-[40rem] border-8 border-dark-purple relative p-8 bg-dark-purple
+    md:h-[48rem]'
     >
       <div className='h-full w-full relative'>
         <Image

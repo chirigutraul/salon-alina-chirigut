@@ -9,7 +9,8 @@ function VisitUsSection() {
   return (
     <AnimatePresence>
     <div
-    className='bg-light-pink grid grid-cols-1 py-2'>
+    className='bg-light-pink grid grid-cols-1 py-2
+    lg:grid-cols-2'>
     <BigHeader/>
     <VisitCard/>
     </div>

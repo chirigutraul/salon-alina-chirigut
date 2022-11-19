@@ -16,15 +16,12 @@ function ServiceComponent({
   indexOfItem:number;
 }) {
   const { width } = useWindowSize()
-
-  const isScreenMedium = (width:number) => {
-      return width >= breakpoints.md
-  }
+  const isScreenMedium = (width:number) => width >= breakpoints.md
 
   const animationForSmallScreen = {x: isNumberOdd(indexOfItem) ? '100%' : '-100%'}
   const animationForMediumScreen = {y: isNumberOdd(indexOfItem) ? '100%' : '-100%'}
 
-  const whileInViewForSmallScreen = {x: '0'}
+  const whileInViewForSmallScreen = {x: '0', y:'0'}
   const whileInViewForMediumScreen = {y: '0', x:'0'}
   
   const initialAnimationVariation= (width && isScreenMedium(width))  ? animationForMediumScreen  : animationForSmallScreen
@@ -32,11 +29,13 @@ function ServiceComponent({
 
   return (
     <motion.div
-    initial={initialAnimationVariation}
+    animate={initialAnimationVariation}
     whileInView={whileInViewVariation}
+    viewport={{once:true}}
     transition={{duration:1}}
     >
-      <div className='relative h-96'>
+      <div className='relative h-96
+      lg:h-[32rem]'>
         <Image
         src={service.pictureOfService}
         fill={true}
@@ -47,7 +46,7 @@ function ServiceComponent({
       </div>  
      
       <div className='text-center'>
-        <p className='text-2xl text-white mt-8'>
+        <p className='text-3xl text-white mt-8'>
           {service.nameOfService}
         </p>
         <p className='text-1xl text-white mt-8 px-8'>

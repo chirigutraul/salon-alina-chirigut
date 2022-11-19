@@ -7,6 +7,7 @@ function BigHeader() {
     initial={{x:'100%'}}
     whileInView={{x:'0'}}
     transition={{duration:1}}
+    viewport={{once:true}}
     className='text-center items-center flex py-32'>
     <h1 className='text-8xl text-dark-purple font-bold'>
       Fa-ne o vizita la locatie!
