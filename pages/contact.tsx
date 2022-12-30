@@ -1,9 +1,8 @@
+
 export default function Home() {
   return (
-    <>
-      <h1 className="text-4xl font-bold underline">
-      Contact
-      </h1>
-    </>
+    <h1>
+      contact
+    </h1>
   )
 }

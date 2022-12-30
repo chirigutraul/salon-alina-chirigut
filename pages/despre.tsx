@@ -24,16 +24,16 @@ return (
     <Image
     src={"https://images.unsplash.com/photo-1566410819696-52c5cdba29c3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1176&q=80"}
     alt={"Imagine de background despre noi."}
-    className={'object-cover blur-md'}
+    className={'object-cover'}
     fill={true}
     />
   </div>
   <div className="absolute top-[50%] left-[50%]
-  translate-x-[-50%] translate-y-[-50%] h-[32rem] w-[32rem]
-  bg-white bg-opacity-60 p-16 text-center
-  rounded-lg drop-shadow-2xl
-  backdrop-blur">
-    <h1 className="text-3xl text-black py-8">Despre noi</h1>
+  translate-x-[-50%] translate-y-[-50%] bg-white bg-opacity-70 p-16 text-center
+  rounded-lg drop-shadow-2xl backdrop-blur
+  w-[90%] h-[50%]
+  md:h-[40rem] md:w-[40rem]">
+    <h1 className="text-4xl text-black py-8">Despre noi</h1>
     <p>
       Noi suntem smecheri si facem unghii faine,
       haide la noi, nu mai fa figuri
