@@ -13,6 +13,7 @@ module.exports = {
         'light-pink': '#F4EEFF',
         'light-pink-hover':'#E8DCFF',
         'medium-purple': '#A6B1E1',
+        'medium-purple-2': '#939dc7',
         'dark-purple': '#3A3665'
       },
     },

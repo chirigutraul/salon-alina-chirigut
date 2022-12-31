@@ -16,47 +16,31 @@ export default function Programari({
   services:IService[];
 }) {
   return (
-    <>
-    {
-      services.map(service => 
-      <h1 className="text-4xl font-bold">
-        {service.name}
-      </h1>)
-    }
-      <br></br>
-      <h1 className="text-4xl font-bold">
-      programarile trebuie sa aiba data, ora, serviciu, status (daca este aprobata sau nu)
-      apoi mai am nevoie de un enum pentru status aprobata, respinsa
-      
-      detalii pentru programari in cazul in care programarea este respinsa
-      pe ce motiv ?
+    <div className="flex justify-center pb-8 pt-8">
+      <form className="bg-blue-400 w-[40rem] grid p-8">
+        <label>First name:</label>
+        <input 
+        type="text"
+        id="firstName"
+        name="firstName"
+        className="p-2 rounded-md drop-shadow-md mb-4"
+        />
 
-      manichiura gel unghie naturala
-      manichiura semipermanenta
-      pedichiura semipermanent
-      stilizare cuticula
-      demontare unghii
-      intretinere gel
-      intretinere semipermanent
-
-      PROGRAMARE SCHEMA 
-      id
-      nume,
-      prenume,
-      numar de telefon,
-      serviciu pe care il doreste,
-      data,
-      ora,
-      alte adaugari // descriere // comentarii/ alte detalii de la clienti
-
-      serviciul 
-      id
-      denumire serviciu
-      pret serviciu
-      descriere serviciu
-      durata serviciu
-
-      </h1>
-    </>
+        <label>Last name:</label>
+        <input 
+        type="text"
+        id="lastName"
+        name="lastName"
+        className="p-2 rounded-md drop-shadow-md mb-4"
+        />
+        
+        <button
+        type="submit"
+        className="bg-medium-purple-2 text-white rounded-md w-32 p-4 drop-shadow-lg"
+        >
+        Submit
+        </button>
+      </form>
+    </div>
   )
 }
