@@ -1,18 +1,8 @@
-import { useState, useEffect } from "react";
 import Image from "next/image";
 import useSWR from 'swr'
 
-interface Iuser{
-  name:string;
-  age:string;
-}
-
-const fetcher = (url:string) => {
-  return fetch(url).then(res=>res.json())
-}
-
 export default function Home() {
-const { data, error } = useSWR('/api/test', fetcher)
+const { data, error } = useSWR('/api/test')
 
 if(!data) return "Loading..."
 
@@ -36,7 +26,8 @@ return (
     <h1 className="text-4xl text-black py-8">Despre noi</h1>
     <p>
       Noi suntem smecheri si facem unghii faine,
-      haide la noi, nu mai fa figuri
+      haide la noi, nu mai fa figuri <br></br>
+      {JSON.stringify(data)}
     </p>
   </div>
   </div>

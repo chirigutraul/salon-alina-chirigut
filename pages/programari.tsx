@@ -1,5 +1,8 @@
 import { PrismaClient } from "@prisma/client"
-import { IService } from "types";
+import AppointmentForm from "components/AppointmentForm/AppointmentForm";
+import React, { useState } from "react";
+import { IClient, IService } from "types";
+import { createAppointment } from "utils/hooks/Requests/Appointments";
 
 export async function getStaticProps() {
   const prisma = new PrismaClient()
@@ -9,38 +12,25 @@ export async function getStaticProps() {
     props : { services }
   }
 }
-
 export default function Programari({
   services
 }:{
   services:IService[];
 }) {
-  return (
-    <div className="flex justify-center pb-8 pt-8">
-      <form className="bg-blue-400 w-[40rem] grid p-8">
-        <label>First name:</label>
-        <input 
-        type="text"
-        id="firstName"
-        name="firstName"
-        className="p-2 rounded-md drop-shadow-md mb-4"
-        />
+  const [data, setData] = useState({})
 
-        <label>Last name:</label>
-        <input 
-        type="text"
-        id="lastName"
-        name="lastName"
-        className="p-2 rounded-md drop-shadow-md mb-4"
-        />
-        
-        <button
-        type="submit"
-        className="bg-medium-purple-2 text-white rounded-md w-32 p-4 drop-shadow-lg"
-        >
-        Submit
-        </button>
-      </form>
+  const handleAppointmentCreating = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    console.log("DATA:", data)
+  }
+
+  const handleInputChange = (e:any) => {
+    setData(current => {return {...current , [e.target.name]:e.target.value}})
+  }
+
+  return (
+    <div className="flex justify-center">
+    <AppointmentForm/>
     </div>
   )
 }
