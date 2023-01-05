@@ -38,7 +38,7 @@ function AppointmentForm() {
     >
       {({ isSubmitting }) => (
         <Form
-        className="w-[40rem] grid p-8 drop-shadow-md"
+        className="w-full grid p-8 drop-shadow-md"
         >
           <label>Numar telefon *todo change inputs:</label>
           <div className="mb-4">
