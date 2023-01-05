@@ -20,7 +20,8 @@
       "@types":["/types"],
       "@icons":["/components/Icons"],
       "@utils":["/utils"]
-    }
+    },
+    "typeRoots": ["/types"]
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]

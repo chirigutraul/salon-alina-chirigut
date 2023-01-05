@@ -4,6 +4,10 @@ import React, { useState } from "react";
 import { IClient, IService } from "types";
 import { createAppointment } from "utils/hooks/Requests/Appointments";
 
+import { useSession } from "next-auth/react"
+import UnAuthorizedUser from "components/AppointmentForm/UnAuthorizedUser";
+import AuthorizedUser from "components/AppointmentForm/AuthorizedUser";
+
 export async function getStaticProps() {
   const prisma = new PrismaClient()
   const services = await prisma.service.findMany();
@@ -17,7 +21,8 @@ export default function Programari({
 }:{
   services:IService[];
 }) {
-  const [data, setData] = useState({})
+  const { data : session } = useSession();
+  const [ data, setData ] = useState({})
 
   const handleAppointmentCreating = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -28,9 +33,11 @@ export default function Programari({
     setData(current => {return {...current , [e.target.name]:e.target.value}})
   }
 
+  if(!session) return <UnAuthorizedUser/>
+
   return (
     <div className="flex justify-center">
-    <AppointmentForm/>
+    <AuthorizedUser/>
     </div>
   )
 }

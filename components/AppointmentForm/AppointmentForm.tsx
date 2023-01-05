@@ -1,10 +1,24 @@
 import React from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { IClient } from 'types';
+import { useSession } from "next-auth/react"
+
 
 function AppointmentForm() {
+  const { data: session } = useSession();
+
+  if(!session) return null;
+
   return (
-    <div>
+    <div className="bg-light-pink mt-2 mb-2">
+    <div className='flex flex-col pt-2'>
+      <div className='flex justify-center'>
+      <p className='text-2xl'>Buna, {session.user.name}</p>
+      </div>
+      <div className='flex justify-center w-50 pt-2'>
+        <p>Te rugam sa completezi urmatorul formular pentru a realiza o programare</p>
+      </div>
+    </div>
     <Formik
       initialValues={{ firstName: '', lastName: '', phone:'' }}
       validate={
@@ -24,9 +38,9 @@ function AppointmentForm() {
     >
       {({ isSubmitting }) => (
         <Form
-        className="bg-light-pink w-[40rem] grid p-8 drop-shadow-md"
+        className="w-[40rem] grid p-8 drop-shadow-md"
         >
-          <label>First name:</label>
+          <label>Numar telefon *todo change inputs:</label>
           <div className="mb-4">
           <Field 
           type="text"
@@ -37,7 +51,7 @@ function AppointmentForm() {
           </div>
 
 
-          <label>Last name:</label>
+          <label>Data:</label>
           <Field 
           type="text" 
           name="lastName"
@@ -45,7 +59,7 @@ function AppointmentForm() {
           />
           <ErrorMessage name="lastName" component="div" />
 
-          <label>Phone:</label>
+          <label>Ora:</label>
           <Field 
           type="text" 
           name="phone"
