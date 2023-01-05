@@ -24,7 +24,7 @@ export default function Navbar() {
   useEffect(()=>{
     if(isNavbarOpenOnMobile)
       setIsNavbarOpenOnMobile(false)
-  },[router.asPath])
+  },[router.asPath, isNavbarOpenOnMobile])
 
   return (
     <header className={`grid top-0 left-0 right-0 bg-light-pink grid-cols-1 ${isNavbarOpenOnMobile ? '' : 'h-40 mb-16'}  
