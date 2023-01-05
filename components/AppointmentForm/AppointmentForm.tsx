@@ -2,7 +2,7 @@ import React from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { IClient } from 'types';
 import { useSession } from "next-auth/react"
-
+import Link from 'next/link'
 
 function AppointmentForm() {
   const { data: session } = useSession();
@@ -74,6 +74,10 @@ function AppointmentForm() {
           >
             Submit
           </button>
+          <Link
+          href="/api/auth/signout">
+            sign out
+          </Link>
         </Form>
 
    
