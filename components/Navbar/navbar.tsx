@@ -22,9 +22,8 @@ export default function Navbar() {
   const isLarge = width && (width >= breakpoints.lg)
 
   useEffect(()=>{
-    if(isNavbarOpenOnMobile)
-      setIsNavbarOpenOnMobile(false)
-  },[router.asPath, isNavbarOpenOnMobile])
+    setIsNavbarOpenOnMobile(false)
+  },[router.asPath])
 
   return (
     <header className={`grid top-0 left-0 right-0 bg-light-pink grid-cols-1 ${isNavbarOpenOnMobile ? '' : 'h-40 mb-16'}  
