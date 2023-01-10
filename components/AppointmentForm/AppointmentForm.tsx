@@ -1,16 +1,19 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { IClient } from 'types';
-import { useSession } from "next-auth/react"
+import { useSession} from "next-auth/react"
 import Link from 'next/link'
+import AppointmentCalendar from './AppointmentCalendar';
+
+
 
 function AppointmentForm() {
-  const { data: session } = useSession();
+  const {data : session}  = useSession();
 
   if(!session) return null;
 
   return (
-    <div className="bg-light-pink mt-2 mb-2">
+    <div className="bg-light-pink mt-2 mb-2"> 
     <div className='flex flex-col pt-2'>
       <div className='flex justify-center'>
       <p className='text-2xl'>Buna, {session.user.name}</p>
@@ -20,11 +23,11 @@ function AppointmentForm() {
       </div>
     </div>
     <Formik
-      initialValues={{ firstName: '', lastName: '', phone:'' }}
+      initialValues={{ phone:'', date:'', time:'' }}
       validate={
         values => {
         const errors = {} as IClient;
-        if (!values.firstName) {
+        if (!values.phone) {
           errors.firstName = 'Required';
         } 
         return errors;
@@ -52,11 +55,7 @@ function AppointmentForm() {
 
 
           <label>Data:</label>
-          <Field 
-          type="text" 
-          name="lastName"
-          className="p-2 rounded-md drop-shadow-md mb-4"
-          />
+          <AppointmentCalendar/>
           <ErrorMessage name="lastName" component="div" />
 
           <label>Ora:</label>

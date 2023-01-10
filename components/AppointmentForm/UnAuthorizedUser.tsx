@@ -9,11 +9,10 @@ function UnAuthorizedUser() {
     signIn(
       "google",
       {},
-      {
-        scope:"https://www.googleapis.com/auth/user.phonenumbers.read"
-      }
+      { scope: "openid https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile" }
     )
   }
+
 
   return (
     <>
