@@ -21,7 +21,7 @@ function Footer() {
     ['Contact', 'Telefon: 0769763966', 'Email: chirigutalina@gmail.com'],
   ]
   return (
-    <div className='grid grid-cols-3 gap-16 items-center bg-dark-purple'>
+    <div className='grid grid-cols-3 gap-16 items-center bg-dark-purple bottom-0 w-[100%]'>
       {
         columnsArray.map((column, index:number) => 
         <div className='flex-column text-2xl text-center' key={index}>

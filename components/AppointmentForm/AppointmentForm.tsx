@@ -1,96 +1,68 @@
-import React, { useEffect, useState } from 'react'
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { IClient } from 'types';
-import { useSession} from "next-auth/react"
-import Link from 'next/link'
-import AppointmentCalendar from './AppointmentCalendar';
-
+import React,{ useState } from 'react'
+import { useSession } from "next-auth/react"
+import AvailableHours from './AvailableHours';
+import "flatpickr/dist/themes/airbnb.css";
+import Flatpickr from "react-flatpickr";
+import confirmDatePlugin from "flatpickr/dist/plugins/confirmDate/confirmDate";
 
 
 function AppointmentForm() {
   const {data : session}  = useSession();
+  const [date, setDate] = useState<Date>();
 
   if(!session) return null;
 
   return (
-    <div className="bg-light-pink mt-2 mb-2"> 
+    <div className="bg-light-pink mt-2 mb-2 p-8"> 
     <div className='flex flex-col pt-2'>
       <div className='flex justify-center'>
-      <p className='text-2xl'>Buna, {session.user.name}</p>
+      <p className='text-2xl'>Buna, {session.user.name} !</p>
       </div>
-      <div className='flex justify-center w-50 pt-2'>
+      <div className='flex justify-center'>
         <p>Te rugam sa completezi urmatorul formular pentru a realiza o programare</p>
       </div>
     </div>
-    <Formik
-      initialValues={{ phone:'', date:'', time:'' }}
-      validate={
-        values => {
-        const errors = {} as IClient;
-        if (!values.phone) {
-          errors.firstName = 'Required';
-        } 
-        return errors;
-      }}
-      onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(false);
-        }, 400);
-      }}
-    >
-      {({ isSubmitting }) => (
-        <Form
-        className="w-full grid p-8 drop-shadow-md"
-        >
-          <label>Numar telefon *todo change inputs:</label>
-          <div className="mb-4">
-          <Field 
-          type="text"
-          name="firstName"
-          className="p-2 rounded-md drop-shadow-md w-full"
-          />
-          <ErrorMessage name="firstName" component="div" />
-          </div>
+    <form className='grid'>
+      <label>Numar de telefon:</label>
+      <input type="text" name="phone"/>
+      <label>Data : </label>
+      Tre sa dau disable la orele la care sunt facute programari deja
+      Disable merge da trebe sa ii arate ca nu ii okay ora {JSON.stringify(date)}
 
-
-          <label>Data:</label>
-          <AppointmentCalendar/>
-          <ErrorMessage name="lastName" component="div" />
-
-          <label>Ora:</label>
-          <Field 
-          type="text" 
-          name="phone"
-          className="p-2 rounded-md drop-shadow-md mb-4"
-          />
-          <ErrorMessage name="lastName" component="div" />
-
-          <button
-          type="submit"
-          disabled={isSubmitting}
-          className="bg-medium-purple-2 text-white rounded-md w-32 p-4 drop-shadow-lg"
-          >
-            Submit
-          </button>
-          <Link
-          href="/api/auth/signout">
-            sign out
-          </Link>
-        </Form>
-
-   
-      )}
-    </Formik>
+      <Flatpickr
+        data-enable-time
+        value={date}
+        onChange={date => setDate(date[0])}
+        options={{
+          enableTime: false, 
+          time_24hr: true,
+          minDate:"today",
+          minTime:"9:00",
+          maxTime:"18:00",
+          disable: [
+          function (date){
+            return date.getDay() === 0
+          },
+          function(date){
+            return date.getHours() === 12
+          }
+          ],
+          onDayCreate: function(dObj, dStr, fp, dayElem){
+            if (Math.random() < 0.5)
+              dayElem.innerHTML += `<span style='position: absolute;  width: 3px; height: 3px; border-radius: 150px; bottom: 3px; left: calc(50% - 1.5px); content: " "; display: block; background: #3d8eb9;'></span>`;
+            else if (Math.random() > 0.5)
+              dayElem.innerHTML += `<span style='position: absolute;  width: 3px; height: 3px; border-radius: 150px; bottom: 3px; left: calc(50% - 1.5px); content: " "; display: block; background: #f64747;'></span>`;
+          }
+        }}
+      />
+      { date &&  <AvailableHours date={date}/> }
+    </form>
+    {/* <Link
+    href="/api/auth/signout">
+      sign out
+    </Link> */}
   </div>
   )
 }
 
 export default AppointmentForm
-
-{/* <button
-type="submit"
-
->
-Submit
-</button> */}
