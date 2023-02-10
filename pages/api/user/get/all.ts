@@ -4,17 +4,11 @@ import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
-type Data = {
-  name: string
-  age:string,
-}
-
-export default function handler(
+export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data>
+  res: NextApiResponse
 ) {
-  res.status(200).json({
-    name:"Raul",
-    age:"18"
-  })
+  const getUserById = await prisma.client.findMany()
+
+  res.status(200).json(getUserById)
 }
