@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useMemo } from 'react'
-import useFormatDate from '@utils/hooks/Date/FormatDate';
+import useFormatDate from 'utils/hooks/Date/FormatDate';
 interface AvailableHoursProps {
   date: any;
 }
@@ -18,8 +18,6 @@ const AvailableHours:FunctionComponent<AvailableHoursProps> = ({date}) => {
   const parsedDate = useMemo(() => {
     return useFormatDate(date);
   },[date])
-
-  if(parsedDate) return <p>{JSON.stringify(parsedDate)}</p>
 
   if(mockUpHours[parsedDate] && mockUpHours[parsedDate].length === 0) {
     return <p>Nu exista ore disponibile in aceasta data!</p>

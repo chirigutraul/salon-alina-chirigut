@@ -31,7 +31,9 @@ model Client {
   id        Int      @id @default(autoincrement())
   firstName String
   lastName  String   
-  phone     String
+  phone     String?
+  picture   String?
+  email     String
 }
 
 model Service {

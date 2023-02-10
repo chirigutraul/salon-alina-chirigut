@@ -3,8 +3,7 @@ import { useSession } from "next-auth/react"
 import AvailableHours from './AvailableHours';
 import "flatpickr/dist/themes/airbnb.css";
 import Flatpickr from "react-flatpickr";
-import confirmDatePlugin from "flatpickr/dist/plugins/confirmDate/confirmDate";
-
+import Link from 'next/link';
 
 function AppointmentForm() {
   const {data : session}  = useSession();
@@ -57,10 +56,10 @@ function AppointmentForm() {
       />
       { date &&  <AvailableHours date={date}/> }
     </form>
-    {/* <Link
+    <Link
     href="/api/auth/signout">
       sign out
-    </Link> */}
+    </Link>
   </div>
   )
 }
