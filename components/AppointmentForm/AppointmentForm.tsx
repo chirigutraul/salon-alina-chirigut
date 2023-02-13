@@ -4,6 +4,7 @@ import AvailableHours from './AvailableHours';
 import "flatpickr/dist/themes/airbnb.css";
 import Flatpickr from "react-flatpickr";
 import Link from 'next/link';
+import { createAppointment } from 'utils/hooks/Requests/Appointments';
 
 function AppointmentForm() {
   const {data : session}  = useSession();
@@ -21,14 +22,12 @@ function AppointmentForm() {
         <p>Te rugam sa completezi urmatorul formular pentru a realiza o programare</p>
       </div>
     </div>
-    <form className='grid'>
+    <form onSubmit={createAppointment} className='grid'>
       <label>Numar de telefon:</label>
       <input type="text" name="phone"/>
       <label>Data : </label>
-      Tre sa dau disable la orele la care sunt facute programari deja
-      Disable merge da trebe sa ii arate ca nu ii okay ora {JSON.stringify(date)}
-
       <Flatpickr
+        name="date"
         data-enable-time
         value={date}
         onChange={date => setDate(date[0])}
@@ -55,6 +54,12 @@ function AppointmentForm() {
         }}
       />
       { date &&  <AvailableHours date={date}/> }
+      <button
+        type="submit"
+        className="bg-medium-purple"
+      >
+        Programeaza!
+      </button>
     </form>
     <Link
     href="/api/auth/signout">

@@ -5,7 +5,7 @@ function AuthorizedUser() {
   return (
     <>
     <div className='flex justify-center'>
-        <AppointmentForm/>
+      <AppointmentForm/>
     </div>
     </>
   )
