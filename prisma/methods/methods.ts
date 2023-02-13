@@ -51,3 +51,40 @@ export async function multipleMethods(
     return res.status(200).json(deleteResult);
   }
 }
+
+export async function singleMethods(
+  req: NextApiRequest,
+  res: NextApiResponse,
+  entity: entity,
+  id: number,
+){
+  const method = req.method;
+
+  if(!method) return res.status(400).json({message: "No method provided"});
+
+  if(method === 'GET'){
+  //@ts-ignore
+    const result = await prisma[entity].findUnique({
+      where: { id }
+    });
+    return res.status(200).json(result);
+  }
+
+  if( method === 'PATCH'){
+    const { data } = req.body;
+  //@ts-ignore
+    const updateResult = await prisma[entity].update({
+      where: { id },
+      data,
+    });
+    return res.status(200).json(updateResult);
+  }
+
+  if(method === 'DELETE'){
+  //@ts-ignore
+    const deleteResult = await prisma[entity].delete({ 
+      where:{ id }
+    });
+    return res.status(200).json(deleteResult);
+  }
+}
