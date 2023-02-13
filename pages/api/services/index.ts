@@ -3,5 +3,5 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { multipleMethods, entity } from 'prisma/methods/methods';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  return multipleMethods(req, res, 'client' as entity)
+  return multipleMethods(req, res, 'service' as entity)
 }
