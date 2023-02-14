@@ -18,7 +18,6 @@ export function createAppointment(event:any): void {
       status,
     }
   } 
-  
 
   fetch('/api/appointments/', {
     method:'post',

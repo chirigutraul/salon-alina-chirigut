@@ -10,7 +10,6 @@ export default NextAuth({
       scope:[
         'https://www.googleapis.com/auth/userinfo.email',
         'https://www.googleapis.com/auth/userinfo.profile',
-        'https://www.googleapis.com/auth/user.phonenumbers.read'
       ],
     })
   ],
@@ -20,7 +19,6 @@ export default NextAuth({
       session.account = token.account;
       session.profile = token.profile;
       session.token = token;
-      session.user2 = user
       return session;
     },
     jwt: async ({ token, user, account, profile }) => {

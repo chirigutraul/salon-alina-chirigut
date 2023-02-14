@@ -2,7 +2,7 @@ import Image from "next/image";
 import useSWR from 'swr'
 
 export default function Home() {
-const { data, error } = useSWR('/api/test')
+const { data, error } = useSWR('/api/clients')
 
 if(!data) return "Loading..."
 
