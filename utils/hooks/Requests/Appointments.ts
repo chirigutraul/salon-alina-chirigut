@@ -6,8 +6,25 @@ export function createAppointment(event:any): void {
   const phone = formDatas.get("phone");
   const date = formDatas.get("date");
   const time = "14:00";
-  // fetch('/api/appointment/create', {
-  //   method:'post',
-  //   body: JSON.stringify(user)
-  // })
+  const dateAndTime = new Date(`${date}T${time}`);
+  const rejectionDetails = "No details";
+  const status = "approved";
+
+  const groupedData = {
+    data:{
+      phone,
+      date: dateAndTime,
+      rejectionDetails,
+      status,
+    }
+  } 
+  
+
+  fetch('/api/appointments/', {
+    method:'post',
+    body: JSON.stringify(groupedData),
+    headers: {
+      'Content-Type': 'application/json'
+    },
+  })
 }

@@ -6,9 +6,9 @@ const prisma = new PrismaClient()
 export enum entity {
   client = 'client',
   //@ts-ignore
-  appointment,
+  appointment = 'appointment',
   //@ts-ignore
-  service
+  service = 'service',
 }
 
 export async function multipleMethods(
@@ -22,15 +22,24 @@ export async function multipleMethods(
 
   if(method === 'GET'){
   //@ts-ignore
-    const result = await prisma[entity].findMany();
+    const result = await prisma[entity].findMany({
+      ...( entity === 'appointment' && {
+        include:{
+          client: true,
+          service: true
+        }
+      })
+    });
     return res.status(200).json(result);
   } 
   
   if(method === 'POST'){
     const { data } = req.body;
+
+    console.log("BODY:", req.body)
   //@ts-ignore
     const createResult = await prisma[entity].create({ data });
-
+    
     return res.status(200).json(createResult);
   } 
   
@@ -65,7 +74,13 @@ export async function singleMethods(
   if(method === 'GET'){
   //@ts-ignore
     const result = await prisma[entity].findUnique({
-      where: { id }
+      where: { id },
+      ...( entity === 'appointment' && {
+        include:{
+          client: true,
+          service: true
+        }
+      })
     });
     return res.status(200).json(result);
   }
