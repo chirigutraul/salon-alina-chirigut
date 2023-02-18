@@ -12,7 +12,6 @@ export function createAppointment(event:any): void {
 
   const groupedData = {
     data:{
-      phone,
       date: dateAndTime,
       rejectionDetails,
       status,

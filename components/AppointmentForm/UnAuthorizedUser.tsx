@@ -1,5 +1,4 @@
 import React from 'react'
-import Link from 'next/link'
 
 import { signIn } from "next-auth/react"
 
@@ -9,7 +8,8 @@ function UnAuthorizedUser() {
     signIn(
       "google",
       {},
-      { scope: "openid https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile" }
+      { scope:
+         "openid https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile" }
     )
 
     // create user !

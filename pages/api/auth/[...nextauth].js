@@ -1,5 +1,8 @@
 import NextAuth from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
+import { PrismaClient } from "@prisma/client"
+
+const prisma = new PrismaClient()
 
 export default NextAuth({
   secret: process.env.JWT_SECRET,
@@ -27,5 +30,28 @@ export default NextAuth({
       profile && (token.profile = profile)
       return token
     },
-  },
+    async signIn (user) {
+      const sessionUser = user.user;
+
+      const loggedClient = await prisma.client.findUnique({
+        where: {
+          id: sessionUser.id
+        }
+      })
+     
+      if(!loggedClient){
+        const newClient = await prisma.client.create({
+          data: {
+            id:sessionUser.id,
+            firstName: sessionUser.name.split(" ")[0],
+            lastName: sessionUser.name.split(" ")[1],
+            email: sessionUser.email,
+            picture: sessionUser.image,
+          }
+        })
+      }
+
+      return true
+    },
+  }
 })
