@@ -16,6 +16,9 @@ module.exports = {
         'medium-purple-2': '#939dc7',
         'dark-purple': '#3A3665'
       },
+      screens:{
+        'xs': '375px',
+      }
     },
   },
   plugins: [],
