@@ -3,16 +3,19 @@ import React, { FunctionComponent } from 'react'
 interface ButtonProps {
   title: string,
   type?: string,
+  onClick(): void
 }
 
-const Button: FunctionComponent <ButtonProps> = ({title, type}) => {
+const Button: FunctionComponent <ButtonProps> = ({title, type, onClick}) => {
   switch (type) {
     case 'dark':
       return (
         <button className={`
         bg-dark-purple text-white
         px-6 py-2 rounded-sm w-48
-        `}>
+        `}
+        onClick={onClick}
+        >
           {title}
         </button>
       )
@@ -21,7 +24,9 @@ const Button: FunctionComponent <ButtonProps> = ({title, type}) => {
         <button className={`
         bg-light-pink text-dark-purple
         px-6 py-2 rounded-sm w-48
-        `}>
+        `}
+        onClick={onClick}
+        >
           {title}
         </button>
       )
@@ -31,7 +36,9 @@ const Button: FunctionComponent <ButtonProps> = ({title, type}) => {
         bg-dark-purple text-white
         px-6 py-2 rounded-sm w-48
         lg:w-40 lg:px-2 
-        `}>
+        `}
+        onClick={onClick}
+        >
           {title}
         </button>
       )

@@ -1,7 +1,5 @@
-import Image from 'next/image'
-import Link from 'next/link'
 import React, { useState } from 'react'
-import { navbarLinks } from './navbarLinks'
+import NavbarLinks  from './navbarLinks'
 import {Button} from 'components'
 
 import useWindowSize from "utils/hooks/BreakPointsHooks"
@@ -9,95 +7,72 @@ import breakpoints from "utils/TailwindBreakPoints";
 
 import { AnimatePresence, motion } from "framer-motion";
 import { useRouter } from "next/router";
+import { useSession } from 'next-auth/react'
+import ProfilePicture from './ProfilePicture'
+import HamburgerMenuButton from './HamburgerMenuButton'
+import Logo from './Logo';
+import MobileNavbar from './MobileNavbar';
 
 
 const Navbar = () => {
   const router = useRouter()
   const { width } = useWindowSize()
+  const {data : session}  = useSession();
 
-  const isLarge = width && (width >= breakpoints.lg)
+  const isMedium = (!!width && !!(width >= breakpoints.md)) ?? false;
   const [navbarOpenOnSmallerScreen, setNavbarOpenOnSmallerScreen] = useState<boolean>(false);
-
-  const shouldLinksBeVisbile = isLarge || navbarOpenOnSmallerScreen
 
   const toggleNavbar = () => setNavbarOpenOnSmallerScreen(currentValue => !currentValue)
 
+  const navigateToSignIn = () => router.push('/sign-in')
 
   return (
-    <div className={`
-    flex flex-col bg-light-pink py-8 px-2
-    lg:flex lg:flex-row lg:justify-between lg:items-center lg:px-8
+    <div 
+    className={`
+    flex flex-col bg-light-pink py-8 px-8
+    md:flex-row md:justify-between md:px-4
+    lg:justify-between lg:items-center lg:px-8
     `}>
       <div className={`
-      flex flex-row justify-between
-      relative w-full basis-32
-      md:justify-center
-      lg:w-[18rem]
+      flex flex-row justify-between items-center
+      relative w-full basis-28
+      md:justify-center md:basis-36 md:w-[8rem]
+      lg:w-[14rem] lg:basis-24
       `}>
-      <div className={`
-        basis-4/5 relative h-full
-        xs:basis-3/5
-        sm:w-[32rem] sm:basis-2/5
-        lg:h-[8rem] lg:basis-full
-      `}>
-        <Image
-          src={`/images/darklogo.png`}
-          alt="Picture of the author"
-          fill
-        />
+      <Logo/>
+
+      <HamburgerMenuButton
+        navbarOpen={navbarOpenOnSmallerScreen}
+        toggleNavbar={toggleNavbar}
+        isMedium={isMedium}
+      />
       </div>
 
-      { !isLarge
-      &&  
-      <div
-      onClick={toggleNavbar}
-      className={`
-      flex justify-center items-center
-      `}
-      >
-        toggle
-      </div>
-      }
-      </div>
+      <NavbarLinks isMedium={isMedium}/> 
+
       {
-        shouldLinksBeVisbile &&
-        <div className={`
-        py-4 flex flex-col items-center
-        lg:flex-row
-        `}
-        >
-        <ul className={`
-        flex flex-col gap-6 items-center mb-10
-        md:flex md:flex-row md:basis-full md:gap-10
-        lg:flex-row lg:gap-4 lg:justify-center lg:mb-0
-        `}
-        >
-          { navbarLinks.map((link, index) => (
-            <li key={index} className={`
-            text-xl text-dark-purple
-            sm:text-2xl
-            lg:text-xl
-            `}
-            >
-              <Link href={link.route}>{link.title}</Link>
-            </li>
-          ))
-          }
-        </ul>
-      </div>
+      isMedium && 
+      ( session
+        ? (session.user.image && session.user.name) 
+          && <ProfilePicture
+              image={session.user.image}
+              name={session.user.name}
+            />
+        : <div className={`flex justify-center`}>
+            <Button
+              onClick={()=>navigateToSignIn()}
+              title={`CONECTEAZA-TE`}
+            />
+          </div>
+      )
       }
-      
-      {
-      shouldLinksBeVisbile &&
-      <div className={`
-      flex justify-center
-      `}
-      >
-        <Button
-          title={`CONECTEAZA-TE`}
+      <AnimatePresence>
+        <MobileNavbar
+          isMedium={isMedium}
+          navbarOpen={navbarOpenOnSmallerScreen}
+          toggleNavbar={toggleNavbar}
         />
-      </div>
-      }
+      </AnimatePresence>
 
     </div>
   )

@@ -6,6 +6,7 @@ import {SessionProvider} from 'next-auth/react'
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
+  <SessionProvider session={pageProps.session}>
   <Layout>
     <SWRConfig 
     value={{
@@ -14,10 +15,9 @@ export default function App({ Component, pageProps }: AppProps) {
       .then(res => res.json())
     }}
     >
-    <SessionProvider session={pageProps.session}>
     <Component {...pageProps} />
-    </SessionProvider>
     </SWRConfig>
   </Layout>
+  </SessionProvider>
   )
 }
