@@ -67,9 +67,13 @@ const MobileNavbar:FunctionComponent<MobileNavbarProps> = ({
       className={`
       h-screen w-[80%] absolute bg-medium-purple top-0 right-0
       flex flex-col pl-8 pt-16
+      sm:pl-16
       `}
     >
-      <div className='flex flex-row items-center pr-8'>
+      <div className={`flex flex-row items-center 
+      pr-8
+      sm:pr-24
+      `}>
         {
           session && session.user.image && session.user.name &&
           <MobileProfilePicture
@@ -83,7 +87,9 @@ const MobileNavbar:FunctionComponent<MobileNavbarProps> = ({
           isMedium={isMedium}
         />
       </div>
-      <ul className='flex flex-col justify-center gap-24 mt-16'>
+      <ul className={`flex flex-col justify-center gap-24 mt-16
+      sm:pl-16
+      `}>
         {
           links.map((link:LinkType, index:number) => (
             <li 
