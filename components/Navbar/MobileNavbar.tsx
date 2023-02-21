@@ -4,6 +4,7 @@ import React, { FunctionComponent } from 'react'
 import HamburgerMenuButton from './HamburgerMenuButton';
 import MobileProfilePicture from './MobileProfilePicture';
 import { motion } from "framer-motion";
+import Button from 'components/Button';
 import NavbarLinks from './navbarLinks';
 import ProfilePicture from './ProfilePicture';
 
@@ -56,7 +57,7 @@ const MobileNavbar:FunctionComponent<MobileNavbarProps> = ({
       animate={{opacity: 1}}
       exit={{opacity: 0}}
       className={`
-      h-screen w-screen absolute bg-[rgba(0,0,0,0.5)] top-0 left-0
+      h-screen w-screen absolute bg-[rgba(0,0,0,0.5)] top-0 left-0 overflow-hidden
       backdrop-blur-sm z-50
       `}
     >
@@ -65,12 +66,13 @@ const MobileNavbar:FunctionComponent<MobileNavbarProps> = ({
       animate={{x: 0}}
       exit={{x: '100%'}}
       className={`
-      h-screen w-[80%] absolute bg-medium-purple top-0 right-0
+      h-screen w-[90%] absolute bg-medium-purple top-0 right-0
       flex flex-col pl-8 pt-16
+      xs:w-[80%]
       sm:pl-16
       `}
     >
-      <div className={`flex flex-row items-center 
+      <div className={`flex flex-row items-center justify-end
       pr-8
       sm:pr-24
       `}>
@@ -83,13 +85,15 @@ const MobileNavbar:FunctionComponent<MobileNavbarProps> = ({
             toggleModal={toggleNavbar}
           />
         }
+
         <HamburgerMenuButton
           navbarOpen={navbarOpen}
           toggleNavbar={toggleNavbar}
           isMedium={isMedium}
         />
       </div>
-      <ul className={`flex flex-col justify-center gap-24 mt-16
+
+      <ul className={`flex flex-col justify-center gap-24 ${!!session && 'mt-16'}
       sm:pl-16
       `}>
         {
@@ -108,6 +112,17 @@ const MobileNavbar:FunctionComponent<MobileNavbarProps> = ({
           ))
         }
       </ul>
+
+      <div className={`mt-16`}>
+        <Link href="/sign-in">
+          <Button
+            title="Conecteaza-te"
+            onClick={toggleNavbar}
+            size='2xl'
+          />
+        </Link>
+      </div>
+
     </motion.div>
     </motion.div>
   )
