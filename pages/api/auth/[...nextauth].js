@@ -19,7 +19,7 @@ export default NextAuth({
   callbacks: {
     session: async ({ session, token, user }) => {
       session.user.id = token.user.id;
-      session.account = token.account;
+      session.user.phone = token.user.phone;
       session.profile = token.profile;
       session.token = token;
       return session;
@@ -50,7 +50,7 @@ export default NextAuth({
           }
         })
       }
-
+      user.user.phone = loggedClient?.phone || null;
       return true
     },
   }

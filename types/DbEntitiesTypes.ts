@@ -1,8 +1,9 @@
 export interface IClient {
   id?: number;
-  firstName: string;
-  lastName: string;
-  phone: string;
+  firstName?: string;
+  lastName?: string;
+  email?:string;
+  phone?: string;
 }
 
 export interface IService {

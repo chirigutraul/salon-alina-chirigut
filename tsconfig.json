@@ -19,7 +19,8 @@
       "@components":["/components"],
       "@types":["/types"],
       "@icons":["/components/Icons"],
-      "@utils":["/utils"]
+      "@utils":["/utils"],
+      "@requests":["/utils/hooks/Requests"]
     },
     "typeRoots": ["/types"]
   },

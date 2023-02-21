@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useMemo } from 'react'
-import useFormatDate from 'utils/hooks/Date/FormatDate';
+import useFormatDate from 'utils/hooks/date/FormatDate';
 interface AvailableHoursProps {
   date: any;
 }

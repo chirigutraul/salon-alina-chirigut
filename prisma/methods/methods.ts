@@ -65,7 +65,7 @@ export async function singleMethods(
   req: NextApiRequest,
   res: NextApiResponse,
   entity: entity,
-  id: number,
+  id: number | string | string[],
 ){
   const method = req.method;
 

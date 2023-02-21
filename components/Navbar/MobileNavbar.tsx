@@ -5,8 +5,6 @@ import HamburgerMenuButton from './HamburgerMenuButton';
 import MobileProfilePicture from './MobileProfilePicture';
 import { motion } from "framer-motion";
 import Button from 'components/Button';
-import NavbarLinks from './navbarLinks';
-import ProfilePicture from './ProfilePicture';
 
 interface LinkType {
   title: string
@@ -113,8 +111,10 @@ const MobileNavbar:FunctionComponent<MobileNavbarProps> = ({
         }
       </ul>
 
+      {
+       !session && 
       <div className={`mt-16`}>
-        <Link href="/sign-in">
+        <Link href="/profile">
           <Button
             title="Conecteaza-te"
             onClick={toggleNavbar}
@@ -122,6 +122,7 @@ const MobileNavbar:FunctionComponent<MobileNavbarProps> = ({
           />
         </Link>
       </div>
+      }
 
     </motion.div>
     </motion.div>

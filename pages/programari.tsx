@@ -2,7 +2,7 @@ import { PrismaClient } from "@prisma/client"
 import AppointmentForm from "components/AppointmentForm/AppointmentForm";
 import React, { useState } from "react";
 import { IClient, IService } from "types";
-import { createAppointment } from "utils/hooks/Requests/Appointments";
+import { createAppointment } from "utils/hooks/requests/appointments/Appointments";
 
 import { useSession } from "next-auth/react"
 import UnAuthorizedUser from "components/AppointmentForm/UnAuthorizedUser";
@@ -16,7 +16,7 @@ export async function getStaticProps() {
     props : { services }
   }
 }
-export default function Programari({
+export default function Programari({ 
   services
 }:{
   services:IService[];

@@ -24,7 +24,7 @@ const Navbar = () => {
 
   const toggleNavbar = () => setNavbarOpenOnSmallerScreen(currentValue => !currentValue)
 
-  const navigateToSignIn = () => router.push('/sign-in')
+  const navigateToSignIn = () => router.push('/profile')
 
   return (
     <div 

@@ -1,2 +1,2 @@
 export * from './HomePageTypes'
-export * from './BackendTypes'
+export * from './DbEntitiesTypes'

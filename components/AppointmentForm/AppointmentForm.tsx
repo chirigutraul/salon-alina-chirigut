@@ -4,7 +4,7 @@ import AvailableHours from './AvailableHours';
 import "flatpickr/dist/themes/airbnb.css";
 import Flatpickr from "react-flatpickr";
 import Link from 'next/link';
-import { createAppointment } from 'utils/hooks/Requests/Appointments';
+import { createAppointment } from 'utils/hooks/requests/appointments/Appointments';
 
 function AppointmentForm() {
   const {data : session}  = useSession();
