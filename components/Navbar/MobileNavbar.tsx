@@ -79,6 +79,8 @@ const MobileNavbar:FunctionComponent<MobileNavbarProps> = ({
           <MobileProfilePicture
             image={session.user.image}
             name={session.user.name}
+            isMedium={isMedium}
+            toggleModal={toggleNavbar}
           />
         }
         <HamburgerMenuButton
@@ -97,6 +99,7 @@ const MobileNavbar:FunctionComponent<MobileNavbarProps> = ({
             className={`
               text-3xl text-white font-sans font-medium
             `}
+            onClick={toggleNavbar}
             >
               <Link href={link.route}>
               {link.title}

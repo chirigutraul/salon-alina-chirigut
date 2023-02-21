@@ -5,14 +5,27 @@ import { useRouter } from "next/router";
 interface ProfilePictureProps {
   image: string;
   name: string;
+  isMedium: boolean;
+  toggleModal():void;
 }
 
-const MobileProfilePicture: FunctionComponent<ProfilePictureProps> = ({image, name}) => {
+const MobileProfilePicture: FunctionComponent<ProfilePictureProps> = ({image, name, isMedium, toggleModal}) => {
   const router = useRouter()
+
+  const desktopFunction = () => router.push('/profile')
+
+  const mobileFunction = () => {
+    toggleModal();
+    router.push('/profile')
+  }
 
   return (
     <div 
-    onClick={()=>router.push('/profile')}
+    onClick={
+      isMedium
+      ? desktopFunction
+      : mobileFunction
+    }
     className={'flex flex-row items-center cursor-pointer w-full'}
     >
       {
