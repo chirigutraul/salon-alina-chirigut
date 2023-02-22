@@ -8,20 +8,26 @@ import { useSession } from "next-auth/react"
 import UnAuthorizedUser from "components/AppointmentForm/UnAuthorizedUser";
 import AuthorizedUser from "components/AppointmentForm/AuthorizedUser";
 
-export async function getStaticProps() {
-  const prisma = new PrismaClient()
-  const services = await prisma.service.findMany();
+import { GetServerSideProps, GetServerSidePropsContext } from 'next';
+import { getSession } from 'next-auth/react';
+import { Session } from 'next-auth';
 
-  return {
-    props : { services }
-  }
+interface Props {
+  session: Session | null;
 }
+
+export const getServerSideProps: GetServerSideProps<Props> = async (context: GetServerSidePropsContext) => {
+  const session = await getSession(context);
+  return {
+    props: { session },
+  };
+};
+
 export default function Programari({ 
-  services
+  session
 }:{
-  services:IService[];
+  session: Session | null
 }) {
-  const { data : session } = useSession();
   const [ data, setData ] = useState({})
 
   const handleAppointmentCreating = async (e: React.FormEvent<HTMLFormElement>) => {

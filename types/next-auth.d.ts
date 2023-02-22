@@ -12,6 +12,10 @@ declare module "next-auth" {
       image?:string,
       phone?:string,
     }
+    token:{
+      id:string
+      phone?:string,
+    }
   }
   export interface Profile {
     id:string,
