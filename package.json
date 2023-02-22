@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@next/font": "^13.1.6",
     "@prisma/client": "^4.6.1",
     "dotenv": "^16.0.3",
     "framer-motion": "^7.6.6",
