@@ -38,7 +38,7 @@ const Profile = ({ session }: Props) => {
 
   if(!session) return <UnauthenticatedUser/>
 
-  if(!session.user.phone) return <AuthenticatedUserWithoutPhone/>
+  if(!session.user.phone) return <AuthenticatedUserWithoutPhone session={session}/>
 
   return (
     <div>Profile</div>

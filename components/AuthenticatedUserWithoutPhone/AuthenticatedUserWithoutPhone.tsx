@@ -1,16 +1,23 @@
 import Button from 'components/Button'
-import { useSession } from 'next-auth/react';
-import React, { useState } from 'react'
+import { Session } from 'next-auth';
+import React, { FunctionComponent, useState } from 'react'
 import { updateClientById } from 'utils/hooks/requests/clients';
 
-const AuthenticatedUserWithoutPhone = () => {
-  const {data :session} = useSession();
+interface Props {
+  session: Session | null;
+}
+
+const AuthenticatedUserWithoutPhone: FunctionComponent<Props> = ({session}) => {
   const [phone, setPhone] = useState<string>();
 
-  const addPhoneNumberToUser = () => {
+  const addPhoneNumberToUser = async () => {
     if(session) {
       if(phone && session.user.id) {
-        updateClientById(session.user.id, {phone});
+        await updateClientById(session.user.id, {phone}).then(res => {
+          if(res){
+            window.location.reload();
+          }
+        })
       }
     }
   }
@@ -37,7 +44,7 @@ const AuthenticatedUserWithoutPhone = () => {
           className='w-full h-12 rounded-sm shadow-sm border border-gray-300 px-4'
         />
         <Button
-          type='button'
+          type='submit'
           title='Confirma'
           size='xl'
           onClick={addPhoneNumberToUser}
