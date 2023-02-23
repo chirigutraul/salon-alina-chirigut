@@ -7,7 +7,9 @@ import { getSession } from 'next-auth/react';
 import { Session } from 'next-auth';
 import {PrismaClient} from '@prisma/client'
 import Image from 'next/image';
-import {fs} from 'utils/fonts';
+import {roboto, montserrat} from 'utils/fonts'
+
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 interface Props {
   session: Session | null;
@@ -44,35 +46,105 @@ const Profile = ({ session }: Props) => {
   if(!session.user.phone) return <AuthenticatedUserWithoutPhone session={session}/>
 
   return (
-    <div
-      className={`
-        bg-light-pink my-8 py-8
-      `}
-    >
-      <div
-        className={`
+  <div>
+    <div className={`
+      my-6 py-6 px-8 bg-light-pink
+    `}>
+      <div className={`
+        flex flex-col 
+      `}>
+        <div className={`
           flex flex-col items-center
-        `}
-      >
-        <Image
-          src={session.user.image ?? ''}
-          alt="Picture of the connected user"
-          width={80}
-          height={80}
-          className={'rounded-full'}
-        />
+        `}>
+          <div className={`
+          rounded-full overflow-hidden relative mb-6
+          w-20 h-20 
+          `}>
+          <Image
+            src={session.user.image ?? ''}
+            alt="Picture of the connected user"
+            fill
+          />
+          </div>
+      
+          <p className={`
+            ${roboto.className}
+            font-medium text-2xl
+            xs:text-3xl
+          `}>
+            {session.user.name}
+          </p>
+        </div>
 
-        <p className={fs.montserrat.xl}>
-          {session.user.name}
-        </p>
-        <p className={fs.roboto.md}>
-          Email: {session.user.email}
-        </p>
-        <p className={fs.roboto.md}>
-          Phone: {session.user.phone}
-        </p>
+        <div className={`
+          my-3
+        `}>
+          <p className={`
+            ${roboto.className}
+            font-medium text-xl
+            xs:text-2xl
+          `}>
+            Email:
+          </p>
+
+          <p className={`
+            ${roboto.className}
+            font-light text-xl
+          `}>
+            {session.user.email}
+          </p>
+        </div>
+
+        <div>
+          <p className={`
+            ${roboto.className}
+            font-medium text-xl
+            xs:text-2xl
+          `}>
+            Telefon:
+          </p>
+
+          <p className={`
+            ${roboto.className}
+            font-light text-xl
+          `}>
+            {session.user.phone}
+          </p>
+        </div>
       </div>
     </div>
+
+    <div className={`
+      bg-light-pink py-8 px-10
+    `}>
+      <p className={`
+        ${roboto.className}
+        font-light text-2xl text-center
+      `}>
+        Increderea incepe cu unghii bine ingrijite!
+      </p>
+
+      <div className={`
+        border-2 border-dark-purple border-solid rounded-md my-8
+        flex flex-col items-center justify-center group
+        hover:bg-dark-purple 
+        h-[16rem] w-[100%]
+      `}>
+        <h1 className={`
+          ${montserrat.className}
+          font-bold text-2xl mt-4 text-dark-purple
+          group-hover:text-light-pink
+        `}>
+          Rezerva Acum!
+        </h1>
+        {/* <FontAwesomeIcon 
+        // icon={faCalendarPlus}
+        size="3x" */}
+        {/* /> */}
+      </div>
+    </div>
+
+  </div>
   )
 }
 
