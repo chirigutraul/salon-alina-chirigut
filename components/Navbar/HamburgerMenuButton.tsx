@@ -20,28 +20,26 @@ const HamburgerMenuButton: FunctionComponent<HamburgerMenuButtonProps> = ({
     <div
     onClick={toggleNavbar}
     className={`
-    flex flex-col gap-1 justify-center items-center content-center
-    h-8 rounded-md p-6 relative
+    flex flex-col gap-1 justify-center items-center content-center relative
+    h-8 rounded-md p-4
+    xs: p6
     `}
     > 
       <span
-      className={
-      navbarOpen
-      ? `w-8 h-1 bg-dark-purple rounded-lg
-      absolute rotate-45 transition-transform ease-out`
-      : `w-8 h-1 bg-dark-purple rounded-lg
-      absolute -translate-y-1 transition-transform ease-in`
-      
-      }
+      className={`
+      bg-dark-purple rounded-lg absolute transition-transform 
+      w-6 h-1
+      xs:w-8 xs:h-1 
+      ${ navbarOpen ? 'rotate-45 ease-out' : '-translate-y-1 ease-in'}
+      `}
       />
       <span
       className={
-      navbarOpen
-      ? `w-8 h-1 bg-dark-purple rounded-lg
-      absolute -rotate-45 transition-transform ease-out`
-      : `w-8 h-1 bg-dark-purple rounded-lg
-      absolute translate-y-1 transition-transform ease-in`
-      }
+      `bg-dark-purple rounded-lg absolute transition-transform 
+      w-6 h-1
+      xs:w-8 xs:h-1
+      ${navbarOpen  ? '-rotate-45  ease-out' : 'translate-y-1 ease-in'}
+      `}
       />
 
     </div>
