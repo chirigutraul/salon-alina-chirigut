@@ -7,7 +7,8 @@ import { getSession } from 'next-auth/react';
 import { Session } from 'next-auth';
 import {PrismaClient} from '@prisma/client'
 import Image from 'next/image';
-import T from 'components/Text'
+import {fs} from 'utils/fonts';
+
 interface Props {
   session: Session | null;
 }
@@ -38,7 +39,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context: Get
 
 const Profile = ({ session }: Props) => { 
 
-  if(!session) return <UnauthenticatedUser/>
+  if(!session || !session.user) return <UnauthenticatedUser/>
 
   if(!session.user.phone) return <AuthenticatedUserWithoutPhone session={session}/>
 
@@ -60,16 +61,16 @@ const Profile = ({ session }: Props) => {
           height={80}
           className={'rounded-full'}
         />
-        <T 
-        type='subtitle'
-        >
-          Chirigut Raul
-        </T>
-        {/* <h1 className={`text-dark-purple text-3xl font-regular`}>
+
+        <p className={fs.montserrat.xl}>
           {session.user.name}
-        </h1> */}
-        {/* <h2>Email: {session.user.email}</h2> */}
-        {/* <h2>Email: {session.user.phone}</h2> */}
+        </p>
+        <p className={fs.roboto.md}>
+          Email: {session.user.email}
+        </p>
+        <p className={fs.roboto.md}>
+          Phone: {session.user.phone}
+        </p>
       </div>
     </div>
   )
