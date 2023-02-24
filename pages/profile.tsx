@@ -9,7 +9,8 @@ import {PrismaClient} from '@prisma/client'
 import Image from 'next/image';
 import {roboto, montserrat} from 'utils/fonts'
 
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCalendarPlus } from '@fortawesome/free-regular-svg-icons'
 
 interface Props {
   session: Session | null;
@@ -137,10 +138,11 @@ const Profile = ({ session }: Props) => {
         `}>
           Rezerva Acum!
         </h1>
-        {/* <FontAwesomeIcon 
-        // icon={faCalendarPlus}
-        size="3x" */}
-        {/* /> */}
+        <FontAwesomeIcon 
+        icon={faCalendarPlus}
+        className={`text-dark-purple group-hover:text-light-pink`}
+        size="10x"
+        />
       </div>
     </div>
 
