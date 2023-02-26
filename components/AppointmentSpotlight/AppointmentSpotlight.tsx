@@ -10,7 +10,10 @@ const AppointmentSpotlight = () => {
     `}>
       <p className={`
       ${roboto.className}
-      font-light text-2xl text-center mb-8
+      text-center mb-8
+      font-medium text-2xl 
+      xs:text-3xl
+      sm:text-3xl
       `}>
         Increderea incepe cu unghii bine ingrijite!
       </p>
@@ -47,24 +50,32 @@ const AppointmentSpotlight = () => {
       `}>
         <div>
           <h1 className={`
-          ${montserrat.className} font-medium text-2xl text-accent
+          ${montserrat.className} font-medium text-accent 
+          text-2xl
+          sm:text-3xl
           `}>
             Te asteptam!
           </h1>
           <h1 className={`
-          ${montserrat.className} font-medium text-2xl text-accent
+          ${montserrat.className} font-medium text-accent
+          text-xl
+          sm:text-2xl
           `}>
             Urmatoarea ta programare:
           </h1>
         </div>
         <h1 className={`
-        ${roboto.className} font-bold text-2xl text-accent
+        ${roboto.className} font-bold text-accent
+        text-2xl
+        sm:text-3xl
         `}>
           Intretinere
         </h1>
         <div>
           <p className={`
-          ${montserrat.className} font-light text-md
+          ${montserrat.className} font-light 
+          text-md
+          sm:text-lg
           `}>
             Data: 25.12.2023
           </p>
@@ -74,11 +85,14 @@ const AppointmentSpotlight = () => {
         `}>
           <p className={`
           ${montserrat.className} font-light text-md
+          sm:text-lg
+
           `}>
             Ora: 12:00
           </p>
           <p className={`
           ${montserrat.className} font-light text-md
+          sm:text-lg
           `}>
             Cost: 80RON
           </p>
@@ -88,6 +102,8 @@ const AppointmentSpotlight = () => {
         `}>
           <p  className={`
           ${montserrat.className} font-light text-md
+          sm:text-lg
+
           `}>
           Status: aprobata
           </p>

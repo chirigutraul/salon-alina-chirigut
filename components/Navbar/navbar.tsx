@@ -30,9 +30,10 @@ const Navbar = () => {
     <div 
     className={`
     flex flex-col bg-primary py-8 px-8
-    xs:px-2
-    md:flex-row md:justify-between md:px-4
-    lg:justify-between lg:items-center lg:px-8
+    xs:px-2 xs:bg-red-200
+  sm:bg-red-300
+    md:flex-row md:justify-between md:px-4 md:bg-red-400
+    lg:justify-between lg:items-center lg:px-8 lg:bg-red-500
     `}>
       <div className={`
       flex flex-row justify-between items-center relative w-full

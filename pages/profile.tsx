@@ -53,14 +53,13 @@ const Profile = ({ session }: Props) => {
 
   return (
   <div className={`
-  grid grid-cols-1 gap-8
+  grid grid-cols-1 gap-8 
   `}>
     <ProfileInfo session={session}/>
 
     <AppointmentSpotlight/>
 
     <AppointmentsHistory/>
-
   </div>
   )
 }

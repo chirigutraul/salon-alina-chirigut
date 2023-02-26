@@ -13,11 +13,13 @@ const AppointmentCard = () => {
     `}>
       <p className={`
       ${roboto.className}
-      font-bold text-lg
+      font-medium text-lg
+      sm:text-xl
       `}>
         Constructie gel
       </p>
       <p className={`
+      ${montserrat.className}
       `}>
         Data: 25.12.2023
       </p>
@@ -25,10 +27,13 @@ const AppointmentCard = () => {
       flex flex-row justify-between
       `}>
         <p className={`
+        ${montserrat.className}
         `}>
           Ora 15:00
         </p>
         <p className={`
+        ${montserrat.className}
+        font-bold
         `}>
           Aprobata
         </p>

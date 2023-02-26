@@ -10,7 +10,7 @@ interface Props {
 const ProfileInfo:FunctionComponent<Props> = ({session}) => {
   return (
     <div className={`
-      py-6 px-8 bg-primary mt-8
+      py-6 px-10 bg-primary mt-8
     `}>
       <div className={`
         flex flex-col 
@@ -33,6 +33,7 @@ const ProfileInfo:FunctionComponent<Props> = ({session}) => {
             ${roboto.className}
             font-medium text-2xl
             xs:text-3xl
+            sm:text-4xl
           `}>
             {session.user.name}
           </p>
@@ -45,6 +46,7 @@ const ProfileInfo:FunctionComponent<Props> = ({session}) => {
             ${roboto.className}
             font-medium text-xl
             xs:text-2xl
+            sm:text-3xl
           `}>
             Email:
           </p>
@@ -52,6 +54,7 @@ const ProfileInfo:FunctionComponent<Props> = ({session}) => {
           <p className={`
             ${roboto.className}
             font-light text-xl
+            xs:text-2xl
           `}>
             {session.user.email}
           </p>
@@ -62,6 +65,7 @@ const ProfileInfo:FunctionComponent<Props> = ({session}) => {
             ${roboto.className}
             font-medium text-xl
             xs:text-2xl
+            sm:text-3xl
           `}>
             Telefon:
           </p>
@@ -69,6 +73,7 @@ const ProfileInfo:FunctionComponent<Props> = ({session}) => {
           <p className={`
             ${roboto.className}
             font-light text-xl
+            xs:text-2xl
           `}>
             {session.user.phone}
           </p>

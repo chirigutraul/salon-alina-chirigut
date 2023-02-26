@@ -9,7 +9,9 @@ const AppointmentsHistory = () => {
     `}>
       <p className={`
       ${roboto.className}
-      font-light text-2xl text-center 
+      font-light text-center 
+      text-2xl
+      sm:text-3xl
       `}>
         Istoricul programarilor tale:
       </p>
