@@ -6,4 +6,5 @@ export {default as Footer} from './Footer'
 export {default as CustomModal} from './CustomModal'
 export {default as Button} from './Button'
 export {default as UnauthenticatedUser} from './UnauthenticatedUser'
+export {default as AppointmentCard} from './AppointmentCard'
 
