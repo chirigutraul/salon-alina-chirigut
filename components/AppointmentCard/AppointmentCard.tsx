@@ -15,6 +15,7 @@ const AppointmentCard = () => {
       ${roboto.className}
       font-medium text-lg
       sm:text-xl
+      md:text-lg
       `}>
         Constructie gel
       </p>
@@ -25,6 +26,7 @@ const AppointmentCard = () => {
       </p>
       <div className={`
       flex flex-row justify-between
+      md:flex-col
       `}>
         <p className={`
         ${montserrat.className}
