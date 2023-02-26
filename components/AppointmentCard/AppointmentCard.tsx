@@ -8,7 +8,7 @@ interface Props {
 const AppointmentCard = () => {
   return (
     <div className={`
-    border-2 border-dark-purple border-solid rounded-md
+    border-2 border-accent border-solid rounded-md
     p-4
     `}>
       <p className={`

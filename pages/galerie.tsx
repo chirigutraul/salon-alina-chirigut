@@ -40,9 +40,9 @@ export default function Home() {
 
   return (
     <>
-    <div className="bg-medium-purple py-16 text-center">
+    <div className="py-16 text-center bg-secondary">
     <div>
-      <h1 className="text-4xl text-white font-bold drop-shadow-lg">
+      <h1 className="text-4xl font-bold text-white drop-shadow-lg">
         Galerie Clienti
       </h1>
     </div>
@@ -50,7 +50,7 @@ export default function Home() {
     isOpen={modalVisibility}
     onRequestClose={closeModal}
     >
-      <div className="relative h-full w-full">
+      <div className="relative w-full h-full">
       <Image
       src={selectedImage}
       alt={'Client al salonului Ally Nails'}
@@ -60,11 +60,8 @@ export default function Home() {
       </div>
     </CustomModal> 
     {/* large styling grid grid-cols-4 p-16 gap-16 */}
-    {/* className="w-128 h-64 relative cursor-pointer hover:shadow-2xl" */}
-    <div className="grid grid-cols-1 gap-8 my-16
-    md:grid-cols-2
-    xl:grid-cols-3
-    2xl:grid-cols-4"> 
+    {/* className="relative h-64 cursor-pointer w-128 hover:shadow-2xl" */}
+    <div className="grid grid-cols-1 gap-8 my-16 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4"> 
         {
           imagesArray.map((image, index:number)=>
             <motion.div

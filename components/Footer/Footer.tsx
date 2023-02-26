@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 function ColumnItemWithLink(columnItem:string){
     return (
-    <p className='text-1xl text-white my-4' key={columnItem}>
+    <p className='my-4 text-white text-1xl' key={columnItem}>
       <Link href={`${columnItem.toLowerCase()}`}>
         {columnItem}
       </Link>
@@ -11,7 +11,7 @@ function ColumnItemWithLink(columnItem:string){
 }
 
 function ColumnItemWithoutLink(columnItem:string){
-  return <p key={columnItem} className='text-1xl text-white my-4'>{columnItem}</p>
+  return <p key={columnItem} className='my-4 text-white text-1xl'>{columnItem}</p>
 }
 
 function Footer() {
@@ -21,10 +21,10 @@ function Footer() {
     ['Contact', 'Telefon: 0769763966', 'Email: chirigutalina@gmail.com'],
   ]
   return (
-    <div className='grid grid-cols-3 gap-16 items-center bg-dark-purple bottom-0 w-[100%]'>
+    <div className='grid grid-cols-3 gap-16 items-center bg-accent bottom-0 w-[100%]'>
       {
         columnsArray.map((column, index:number) => 
-        <div className='flex-column text-2xl text-center' key={index}>
+        <div className='text-2xl text-center flex-column' key={index}>
           {
           column.map(columnItem =>
             index === 1 

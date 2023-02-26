@@ -27,7 +27,7 @@ const HamburgerMenuButton: FunctionComponent<HamburgerMenuButtonProps> = ({
     > 
       <span
       className={`
-      bg-dark-purple rounded-lg absolute transition-transform 
+      bg-accent rounded-lg absolute transition-transform 
       w-6 h-1
       xs:w-8 xs:h-1 
       ${ navbarOpen ? 'rotate-45 ease-out' : '-translate-y-1 ease-in'}
@@ -35,7 +35,7 @@ const HamburgerMenuButton: FunctionComponent<HamburgerMenuButtonProps> = ({
       />
       <span
       className={
-      `bg-dark-purple rounded-lg absolute transition-transform 
+      `bg-accent rounded-lg absolute transition-transform 
       w-6 h-1
       xs:w-8 xs:h-1
       ${navbarOpen  ? '-rotate-45  ease-out' : 'translate-y-1 ease-in'}

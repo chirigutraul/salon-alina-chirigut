@@ -53,7 +53,7 @@ const NavbarLinks = ({isMedium}:{isMedium:boolean}) => {
       links.map((link:LinkType, index:number) => (
         <li key={index} 
           className={`
-          text-xl text-dark-purple font-sans font-medium
+          text-xl text-accent font-sans font-medium
           sm:text-2xl
           md:text-sm
           lg:text-lg

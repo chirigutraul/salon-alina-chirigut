@@ -26,12 +26,12 @@ const AuthenticatedUserWithoutPhone: FunctionComponent<Props> = ({session}) => {
     <div>
       <div 
         className={`
-        bg-light-pink w-full px-8 py-8 my-4 flex flex-col items-center gap-8
+        bg-primary w-full px-8 py-8 my-4 flex flex-col items-center gap-8
         `}
       >
         <p
           className={`
-          text-center text-2xl font-medium text-dark-purple
+          text-center text-2xl font-medium text-accent
           `}
         >
         Pentru a putea face programari, te rugam sa adaugi numarul de telefon.
@@ -41,7 +41,7 @@ const AuthenticatedUserWithoutPhone: FunctionComponent<Props> = ({session}) => {
           name='phone'
           placeholder='Numar de telefon'
           onChange={(e) => setPhone(e.target.value)}
-          className='w-full h-12 rounded-sm shadow-sm border border-gray-300 px-4'
+          className='w-full h-12 px-4 border border-gray-300 rounded-sm shadow-sm'
         />
         <Button
           type='submit'

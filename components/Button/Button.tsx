@@ -16,8 +16,8 @@ const Button: FunctionComponent <ButtonProps> = ({title, variant, onClick, size,
     px-6 py-2 rounded-sm w-48
     ${size === 'xl' && 'px-8 py-3 text-xl w-56'}
     ${size === '2xl' && 'px-10 py-5 text-2xl w-64'}
-    text-white bg-dark-purple
-    ${variant === 'light' && 'bg-light-pink text-dark-purple'}
+    text-white bg-accent
+    ${variant === 'light' && 'bg-primary text-accent'}
     `}
     onClick={onClick}
     >

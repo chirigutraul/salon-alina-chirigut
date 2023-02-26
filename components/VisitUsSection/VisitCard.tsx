@@ -13,10 +13,10 @@ function VisitCard() {
     whileInView={{x:'0'}}
     transition={{duration:1}}
     viewport={{once:true}}
-    className='h-[40rem] border-8 border-dark-purple relative p-8 bg-dark-purple
+    className='h-[40rem] border-8 border-accent relative p-8 bg-accent
     md:h-[48rem]'
     >
-      <div className='h-full w-full relative'>
+      <div className='relative w-full h-full'>
         <Image
         src={salonImage}
         alt={'Imagine cu salonul'}

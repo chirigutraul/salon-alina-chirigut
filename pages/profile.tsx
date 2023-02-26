@@ -48,9 +48,11 @@ const Profile = ({ session }: Props) => {
   if(!session.user.phone) return <AuthenticatedUserWithoutPhone session={session}/>
 
   return (
-  <div>
+  <div className={`
+  grid grid-cols-1 gap-8
+  `}>
     <div className={`
-      my-8 py-6 px-8 bg-light-pink
+      py-6 px-8 bg-primary mt-8
     `}>
       <div className={`
         flex flex-col 
@@ -117,7 +119,7 @@ const Profile = ({ session }: Props) => {
     </div>
 
     <div className={`
-    bg-light-pink px-10 py-8
+    bg-primary px-10 py-8
     `}>
       <p className={`
       ${roboto.className}
@@ -127,16 +129,16 @@ const Profile = ({ session }: Props) => {
       </p>
 
       <div className={`
-      border-2 border-dark-purple border-solid rounded-md
+      border-2 border-accent border-solid rounded-md
       flex flex-col items-center group cursor-pointer mb-8
-      hover:bg-dark-purple 
+      hover:bg-accent 
       h-[16rem] w-[100%]
       `}>
        
         <h1 className={`
         ${montserrat.className}
-        font-bold text-2xl mt-4 text-dark-purple
-        group-hover:text-light-pink
+        font-bold text-2xl mt-4 text-accent
+        group-hover:text-primary
         `}>
           Rezerva Acum!
         </h1>
@@ -145,31 +147,31 @@ const Profile = ({ session }: Props) => {
         `}>
         <FontAwesomeIcon 
         icon={faCalendarPlus}
-        className={`text-dark-purple group-hover:text-light-pink`}
+        className={`text-accent group-hover:text-primary`}
         size="10x"
         />
         </div>
       </div>
    
       <div className={`
-      border-2 border-dark-purple border-solid rounded-md
+      border-2 border-accent border-solid rounded-md
       flex flex-col group p-4 gap-2
       h-[16rem] w-[100%]
       `}>
         <div>
           <h1 className={`
-          ${montserrat.className} font-medium text-2xl text-dark-purple
+          ${montserrat.className} font-medium text-2xl text-accent
           `}>
             Te asteptam!
           </h1>
           <h1 className={`
-          ${montserrat.className} font-medium text-2xl text-dark-purple
+          ${montserrat.className} font-medium text-2xl text-accent
           `}>
             Urmatoarea ta programare:
           </h1>
         </div>
         <h1 className={`
-        ${roboto.className} font-bold text-2xl text-dark-purple
+        ${roboto.className} font-bold text-2xl text-accent
         `}>
           Intretinere
         </h1>
@@ -208,7 +210,7 @@ const Profile = ({ session }: Props) => {
     </div>
 
     <div className={`
-    bg-light-pink px-10 mt-8 flex flex-col gap-6 py-8
+    bg-primary px-10 flex flex-col gap-6 py-8
     `}>
       <p className={`
       ${roboto.className}

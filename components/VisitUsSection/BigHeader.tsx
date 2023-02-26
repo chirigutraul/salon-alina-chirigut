@@ -8,8 +8,8 @@ function BigHeader() {
     whileInView={{x:'0'}}
     transition={{duration:1}}
     viewport={{once:true}}
-    className='text-center items-center flex py-32'>
-    <h1 className='text-8xl text-dark-purple font-bold'>
+    className='flex items-center py-32 text-center'>
+    <h1 className='font-bold text-8xl text-accent'>
       Fa-ne o vizita la locatie!
     </h1>
     </motion.div>

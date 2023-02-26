@@ -7,7 +7,7 @@ export default function Layout({
   children:ReactElement
 }) {
   return (
-      <div className={"bg-medium-purple h-screen w-screen overflow-x-hidden"}>
+      <div className={"bg-secondary h-screen w-screen overflow-x-hidden"}>
         <Navbar/>
         {children}
         <Footer/>

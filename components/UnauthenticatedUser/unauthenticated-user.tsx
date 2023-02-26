@@ -15,7 +15,7 @@ const UnauthenticatedUser = () => {
   }
   return (
     <div className={`
-      bg-light-pink my-2 py-16 px-8 flex flex-col items-center
+      bg-primary my-2 py-16 px-8 flex flex-col items-center
     `}
     >
       <p className={'text-2xl font-sans font-medium text-center'}>

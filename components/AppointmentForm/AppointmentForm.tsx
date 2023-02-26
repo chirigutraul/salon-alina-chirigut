@@ -13,7 +13,7 @@ function AppointmentForm() {
   if(!session) return null;
 
   return (
-    <div className="bg-light-pink mt-2 mb-2 p-8"> 
+    <div className="p-8 mt-2 mb-2 bg-primary"> 
     <div className='flex flex-col pt-2'>
       <div className='flex justify-center'>
       <p className='text-2xl'>Buna, {session.user.name} !</p>
@@ -56,7 +56,7 @@ function AppointmentForm() {
       { date &&  <AvailableHours date={date}/> }
       <button
         type="submit"
-        className="bg-medium-purple"
+        className="bg-secondary"
       >
         Programeaza!
       </button>
