@@ -23,6 +23,7 @@ const AppointmentSpotlight = () => {
       flex flex-col items-center group cursor-pointer mb-8
       hover:bg-accent 
       h-[16rem] w-[100%]
+      sm:h-[18rem] md:gap-4 md:py-2
       `}>
        
         <h1 className={`
@@ -48,6 +49,7 @@ const AppointmentSpotlight = () => {
       border-2 border-accent border-solid rounded-md
       flex flex-col group p-4 gap-2
       h-[16rem] w-[100%]
+      sm:h-[18rem] sm:p-8
       `}>
         <div>
           <h1 className={`
