@@ -21,6 +21,8 @@ const ProfileInfo:FunctionComponent<Props> = ({session}) => {
           <div className={`
           rounded-full overflow-hidden relative mb-6
           w-20 h-20 
+          xs:w-24 xs:h-24
+          sm:w-28 sm:h-28
           `}>
           <Image
             src={session.user.image ?? ''}

@@ -29,6 +29,7 @@ const AppointmentSpotlight = () => {
         ${montserrat.className}
         font-bold text-2xl mt-4 text-accent
         group-hover:text-primary
+        sm:text-3xl
         `}>
           Rezerva Acum!
         </h1>
