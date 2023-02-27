@@ -11,7 +11,7 @@ const AppointmentSpotlight = () => {
     `}>
       <p className={`
       ${roboto.className}
-      text-center mb-8
+      text-center mb-8 text-accent
       font-medium text-2xl 
       xs:text-3xl
       sm:text-3xl
@@ -20,7 +20,7 @@ const AppointmentSpotlight = () => {
       </p>
 
       <div className={`
-      lg:flex lg:flex-row lg:justify-between
+      lg:flex lg:flex-row lg:justify-between lg:gap-8
       `}>
         <div className={`
         border-2 border-accent border-solid rounded-md
