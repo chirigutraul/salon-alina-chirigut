@@ -8,4 +8,4 @@ export {default as Button} from './Button'
 export {default as UnauthenticatedUser} from './UnauthenticatedUser'
 export {default as AppointmentCard} from './AppointmentCard'
 export {default as AppointmentsHistory} from './AppointmentsHistory'
-
+export {default as AppointmentModal} from './AppointmentModal'

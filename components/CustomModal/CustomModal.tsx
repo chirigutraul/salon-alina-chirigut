@@ -9,7 +9,7 @@ function CustomModal({
   width,
   height
 }:{ 
-  children:JSX.Element;
+  children?:JSX.Element;
   isOpen:boolean;
   onRequestClose():void;
   className?:string;

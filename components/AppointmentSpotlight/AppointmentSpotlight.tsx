@@ -1,9 +1,16 @@
 import { faCalendarPlus } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React from 'react'
+import AppointmentModal from 'components/AppointmentModal'
+import React, { useState } from 'react'
 import { montserrat, roboto } from 'utils/fonts'
 
 const AppointmentSpotlight = () => {
+  const [appointmentModal, setAppointmentModal] = useState<Boolean>(false);
+
+  const toggleAppointmentModal = () => {
+    setAppointmentModal(curr => !curr)
+  } 
+
   return (
     <div className={`
     bg-primary px-10 py-8
@@ -29,7 +36,9 @@ const AppointmentSpotlight = () => {
         h-[16rem] w-[100%]
         sm:h-[18rem] md:gap-4 md:py-2
         lg:w-[50%]
-        `}>
+        `}
+        onClick={toggleAppointmentModal}
+        >
         
           <h1 className={`
           ${montserrat.className}
@@ -122,7 +131,10 @@ const AppointmentSpotlight = () => {
           </div>
         </div>
       </div>
-
+      <AppointmentModal 
+      isOpen={appointmentModal}
+      onRequestClose={toggleAppointmentModal}
+      />
     </div>
   )
 }
