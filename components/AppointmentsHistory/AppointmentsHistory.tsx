@@ -6,8 +6,8 @@ const AppointmentsHistory = () => {
   return (
     <div className={`
     bg-primary px-10 flex flex-col gap-6 py-8
-    md:h-[22rem] md:overflow-scroll md:row-start-2
-    md:px-4
+    md:h-[18rem] md:overflow-scroll md:row-start-2
+    md:px-4 md:box-content
     `}>
       <p className={`
       ${roboto.className}

@@ -7,7 +7,7 @@ const AppointmentSpotlight = () => {
   return (
     <div className={`
     bg-primary px-10 py-8
-    md:col-span-2 md:row-span-4
+    md:col-span-2 md:row-span-2
     `}>
       <p className={`
       ${roboto.className}
