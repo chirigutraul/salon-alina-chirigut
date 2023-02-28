@@ -1,11 +1,17 @@
 import { faCalendarPlus } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import AppointmentModal from 'components/AppointmentModal'
+import { Session } from 'next-auth'
 import React, { useState } from 'react'
 import { montserrat, roboto } from 'utils/fonts'
 
-const AppointmentSpotlight = () => {
-  const [appointmentModal, setAppointmentModal] = useState<Boolean>(false);
+
+interface Props {
+  session: Session | null;
+}
+
+const AppointmentSpotlight = ({session}:Props) => {
+  const [appointmentModal, setAppointmentModal] = useState<boolean>(false);
 
   const toggleAppointmentModal = () => {
     setAppointmentModal(curr => !curr)
@@ -133,7 +139,8 @@ const AppointmentSpotlight = () => {
       </div>
       <AppointmentModal 
       isOpen={appointmentModal}
-      onRequestClose={toggleAppointmentModal}
+      toggleModal={toggleAppointmentModal}
+      session={session}
       />
     </div>
   )

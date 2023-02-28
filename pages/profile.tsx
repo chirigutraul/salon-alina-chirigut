@@ -1,16 +1,10 @@
 import AuthenticatedUserWithoutPhone from 'components/AuthenticatedUserWithoutPhone';
-import React from 'react'
+import React, { useState } from 'react'
 
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import { getSession } from 'next-auth/react';
 import { Session } from 'next-auth';
 import {PrismaClient} from '@prisma/client'
-import Image from 'next/image';
-import {roboto, montserrat} from 'utils/fonts'
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCalendarPlus } from '@fortawesome/free-regular-svg-icons'
-import {} from 'components'
 import { 
   AppointmentsHistory,
   UnauthenticatedUser,
@@ -46,6 +40,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context: Get
 
 
 const Profile = ({ session }: Props) => { 
+  const [date, setDate] = useState<Date>(new Date());
 
   if(!session || !session.user) return <UnauthenticatedUser/>
 
@@ -56,9 +51,13 @@ const Profile = ({ session }: Props) => {
   grid grid-cols-1 gap-8 mt-8
   md:grid-cols-3 md:grid-rows-2 md:mb-8 md:grid-flow-row-dense
   `}>
-    <ProfileInfo session={session}/>
+    <ProfileInfo 
+      session={session}
+    />
 
-    <AppointmentSpotlight/>
+    <AppointmentSpotlight
+      session={session}
+    />
 
     <AppointmentsHistory/>
   </div>
