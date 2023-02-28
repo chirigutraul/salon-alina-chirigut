@@ -34,13 +34,18 @@ export async function multipleMethods(
   } 
   
   if(method === 'POST'){
-    const { data } = req.body;
-
-    console.log("BODY:", req.body)
-  //@ts-ignore
-    const createResult = await prisma[entity].create({ data });
-    
-    return res.status(200).json(createResult);
+    const { where } = req.body;
+    //@ts-ignore
+    const result = await prisma[entity].findMany({
+      where,
+      ...( entity === 'appointment' && {
+        include:{
+          client: true,
+          service: true
+        }
+      })
+    });
+    return res.status(200).json(result);
   } 
   
   if( method === 'PATCH'){
