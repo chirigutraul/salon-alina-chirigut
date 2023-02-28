@@ -13,8 +13,11 @@ interface Props {
   session? : Session | null;
 }
 
+
+
 const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
   const [date, setDate] = useState<Date>(new Date());
+
   return (
     <ReactModal
     isOpen={isOpen}

@@ -26,3 +26,7 @@ export function createAppointment(event:any): void {
     },
   })
 }
+
+// export function fetchAvailableHours(date):void {
+
+// }
