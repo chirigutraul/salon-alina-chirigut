@@ -89,6 +89,7 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
         !!date && 
         <AvailableHoursInDate
         appointments={appointments}
+        selectedDate={date}
         />
         }
       </form>
