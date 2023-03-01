@@ -31,13 +31,14 @@ model Service {
 model Appointment {
   id               Int               @id @default(autoincrement())
   date             DateTime
+  endDate          DateTime
   rejectionDetails String?
   status           AppointmentStatus
   createdAt        DateTime          @default(now())
   clientId         String
   client           Client           @relation(fields: [clientId], references: [id])
   service          Service @relation(fields: [serviceId], references: [id])
-  serviceId        Int  @unique 
+  serviceId        Int 
 
   @@index([serviceId])
   @@index([clientId])

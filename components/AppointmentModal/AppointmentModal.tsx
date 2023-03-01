@@ -73,7 +73,8 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
         { !!date && 
         <AvailableHoursInDate
         date={date}
-        />}
+        />
+        }
       </form>
     </ReactModal>
   )
