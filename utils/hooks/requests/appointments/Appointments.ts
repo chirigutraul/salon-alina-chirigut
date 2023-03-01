@@ -1,5 +1,3 @@
-import { IClient } from "types";
-
 export function createAppointment(event:any): void {
   event.preventDefault();
   const formDatas = new FormData(event.target);
@@ -26,7 +24,3 @@ export function createAppointment(event:any): void {
     },
   })
 }
-
-// export function fetchAvailableHours(date):void {
-
-// }

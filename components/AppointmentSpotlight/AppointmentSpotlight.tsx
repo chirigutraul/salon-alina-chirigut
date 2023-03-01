@@ -137,11 +137,12 @@ const AppointmentSpotlight = ({session}:Props) => {
           </div>
         </div>
       </div>
+      { appointmentModal&&
       <AppointmentModal 
       isOpen={appointmentModal}
       toggleModal={toggleAppointmentModal}
       session={session}
-      />
+      />}
     </div>
   )
 }

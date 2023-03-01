@@ -33,9 +33,3 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     });
     return res.status(200).json(result);
 }
-
-// IDEE PENTRU APPOINTMENT
-
-// sa updatez schema-ul si sa am un endhour pe appointment care sa fie setat cand creez appointment-ul
-
-// ca sa pot sa formez mai usor datele pentru calendar

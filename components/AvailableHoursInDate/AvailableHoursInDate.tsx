@@ -1,12 +1,19 @@
+import { Appointment } from '@prisma/client';
 import React, { FunctionComponent } from 'react'
 
 interface Props {
-  date: Date;
+  appointments: Appointment[];
 }
 
-const AvailableHoursInDate: FunctionComponent<Props> = ({date}) => {
+const AvailableHoursInDate: FunctionComponent<Props> = ({appointments}) => {
   return (
-    <div>{JSON.stringify(date)}</div>
+    <div>
+      {appointments.map(appointment => (
+        <div key={appointment.id}>
+          {appointment.id}
+        </div>
+      ))}
+    </div>
   )
 }
 

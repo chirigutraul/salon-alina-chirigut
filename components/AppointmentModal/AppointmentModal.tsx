@@ -1,11 +1,11 @@
-import React, {useState} from 'react'
-import Modal from 'react-modal'
+import React, {useEffect, useState} from 'react'
 import { Session } from 'next-auth';
 import { montserrat, roboto } from 'utils/fonts';
 import Flatpickr from 'react-flatpickr';
 import ReactModal from 'react-modal';
 import "flatpickr/dist/themes/airbnb.css";
 import AvailableHoursInDate from 'components/AvailableHoursInDate';
+import { Appointment } from '@prisma/client';
 
 interface Props {
   isOpen: boolean;
@@ -13,10 +13,25 @@ interface Props {
   session? : Session | null;
 }
 
-
-
 const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
   const [date, setDate] = useState<Date>(new Date());
+  const [appointments, setAppointments] = useState<Appointment[]>([]);
+
+  const fetchAppointments = async () => {
+    const response = await fetch('/api/appointments/get-appointments-from-date', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({date})
+    });
+    const data = await response.json();
+    setAppointments(data);
+  }
+
+  useEffect(()=>{
+    fetchAppointments()
+  },[date])
 
   return (
     <ReactModal
@@ -70,9 +85,10 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
           }
         }}
         />
-        { !!date && 
+        { 
+        !!date && 
         <AvailableHoursInDate
-        date={date}
+        appointments={appointments}
         />
         }
       </form>
