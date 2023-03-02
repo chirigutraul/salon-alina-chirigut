@@ -1,6 +1,7 @@
 import { Appointment } from '@prisma/client';
 import React, { FunctionComponent } from 'react'
 import {getAvailableHours} from 'utils/hooks/date/GetAvailableHoursFromDate'
+import {Moment} from 'moment'
 
 interface Props {
   appointments: Appointment[];
@@ -8,13 +9,14 @@ interface Props {
 }
 
 const AvailableHoursInDate: FunctionComponent<Props> = ({appointments, selectedDate}) => {
-  const availableHours = getAvailableHours(appointments, selectedDate, 120);
+  const availableHours = getAvailableHours(appointments, selectedDate.toLocaleDateString(), 40);
+
   return (
     <div>
       {
       availableHours.map((hour, index) => 
-        <div key={hour+index}>
-          {hour}
+        <div key={index}>
+          {JSON.stringify(hour)}
         </div>
       )}
     </div>

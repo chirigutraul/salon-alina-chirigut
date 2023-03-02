@@ -6,6 +6,7 @@ import ReactModal from 'react-modal';
 import "flatpickr/dist/themes/airbnb.css";
 import AvailableHoursInDate from 'components/AvailableHoursInDate';
 import { Appointment } from '@prisma/client';
+import moment, {Moment} from 'moment';
 
 interface Props {
   isOpen: boolean;
@@ -14,7 +15,7 @@ interface Props {
 }
 
 const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
-  const [date, setDate] = useState<Date>(new Date());
+  const [date, setDate] = useState<Date>();
   const [appointments, setAppointments] = useState<Appointment[]>([]);
 
   const fetchAppointments = async () => {
@@ -23,7 +24,7 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({date})
+      body: JSON.stringify({date: moment(date).format()})
     });
     const data = await response.json();
     setAppointments(data);
@@ -58,7 +59,7 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
           font-light text-center 
           text-2xl
         `}>
-          Te rugam sa selectezi data si ora la care doresti sa faci programarea. {date.toString()}
+          Te rugam sa selectezi data si ora la care doresti sa faci programarea. {date && date.toString()}
         </p>
         <Flatpickr
         name="date"
