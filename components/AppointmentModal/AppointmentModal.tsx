@@ -16,6 +16,7 @@ interface Props {
 
 const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
   const [date, setDate] = useState<Date>();
+  const [hour, setHour] = useState<string>('');
   const [appointments, setAppointments] = useState<Appointment[]>([]);
 
   const fetchAppointments = async () => {
@@ -91,6 +92,8 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
         <AvailableHoursInDate
         appointments={appointments}
         selectedDate={date}
+        setHour={setHour}
+        selectedHour={hour}
         />
         }
       </form>

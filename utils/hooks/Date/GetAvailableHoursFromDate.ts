@@ -3,7 +3,7 @@ import moment, {Moment} from 'moment';
 
 export function getAvailableHours(
   appointments:Appointment[],
-  selectedDate:Date,
+  selectedDate:string,
   duration:Number):string[]
   {
   const availableHours:string[] = [];
@@ -31,19 +31,24 @@ export function getAvailableHours(
     const endTime = new Date(time);
     endTime.setMinutes(endTime.getMinutes() + serviceDuration);
 
+    if(endTime >= endOfDay){
+      availability = false;
+    }
+
     appointments.forEach(appointment => {
       const appointmentStart = new Date(appointment.date);
       const appointmentEnd = new Date(appointment.endDate);
 
-
-      if(time >= appointmentStart && time < appointmentEnd || 
-        endTime >= appointmentStart && endTime < appointmentEnd){
+      if(
+        time >= appointmentStart && time < appointmentEnd || 
+        endTime >= appointmentStart && endTime < appointmentEnd
+        ){
         availability = false;
       }
     })
 
     if(availability){
-      availableHours.push(time.toLocaleDateString('ro-RO', {hour: '2-digit', minute: '2-digit'}))
+      availableHours.push(time.toLocaleTimeString('ro-RO', {hour: '2-digit', minute: '2-digit'}))
     }
   }
   
