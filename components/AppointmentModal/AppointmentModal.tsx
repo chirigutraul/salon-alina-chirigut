@@ -4,8 +4,8 @@ import { montserrat, roboto } from 'utils/fonts';
 import Flatpickr from 'react-flatpickr';
 import ReactModal from 'react-modal';
 import "flatpickr/dist/themes/airbnb.css";
-import AvailableHoursInDate from 'components/AvailableHoursInDate';
-import { Appointment } from '@prisma/client';
+import {AvailableHoursInDate, Dropdown} from 'components';
+import { Appointment, Service } from '@prisma/client';
 import moment from 'moment';
 
 interface Props {
@@ -18,6 +18,8 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
   const [date, setDate] = useState<Date>();
   const [hour, setHour] = useState<string>('');
   const [appointments, setAppointments] = useState<Appointment[]>([]);
+  const [services, setServices] = useState<Service[]>([]);
+  const [selectedService, setSelectedService] = useState<Service>();
 
   const fetchAppointments = async () => {
     const response = await fetch('/api/appointments/get-appointments-from-date', {
@@ -31,8 +33,15 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
     setAppointments(data);
   }
 
+  const fetchServices = async () => {
+    const response = await fetch('/api/services');
+    const data = await response.json();
+    setServices(data);
+  }
+
   useEffect(()=>{
     fetchAppointments()
+    fetchServices();
   },[date])
 
   return (
@@ -42,7 +51,7 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
     className={`
       p-8
       w-[40rem] h-[40rem] absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] 
-    bg-primary rounded-md shadow-md
+    bg-primary rounded-md shadow-md outline-none
     `}
     overlayClassName={`h-screen w-screen absolute top-0 bg-[rgba(0,0,0,0.5)] border-0 backdrop-blur`}
     >
@@ -86,6 +95,10 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
           // }
         }}
         />
+        <Dropdown
+          options={services}
+          onSelect={setSelectedService}
+        />
         { 
         !!date && 
         <AvailableHoursInDate
@@ -95,6 +108,10 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
         selectedHour={hour}
         />
         }
+        {
+          !!services && JSON.stringify(services)
+        }
+        
       </form>
     </ReactModal>
   )
