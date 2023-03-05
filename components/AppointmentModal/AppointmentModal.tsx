@@ -50,7 +50,7 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
     onRequestClose={toggleModal}
     className={`
       p-8
-      w-[40rem] h-[40rem] absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] 
+      w-[40rem] absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] 
     bg-primary rounded-md shadow-md outline-none
     `}
     overlayClassName={`h-screen w-screen absolute top-0 bg-[rgba(0,0,0,0.5)] border-0 backdrop-blur`}
@@ -69,12 +69,18 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
           font-light text-center 
           text-2xl
         `}>
-          Te rugam sa selectezi data si ora la care doresti sa faci programarea. {date && date.toString()}
+          Pentru a realiza o programare, te rugam sa completezi formularul de mai jos.
         </p>
+        <label className={`
+        text-left text-xl ${roboto.className}
+        font-light w-full my-0
+        `}>
+          Selecteaza data :
+        </label>
         <Flatpickr
         name="date"
         value={date}
-        className={'w-30 h-10 rounded-sm shadow-md text-center text-xl'}
+        className={'w-full h-10 rounded-sm shadow-md text-center text-xl'}
         placeholder="Selecteaza data"
         onChange={date => setDate(date[0])}
         options={{
@@ -95,23 +101,32 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
           // }
         }}
         />
+        <label className={`
+        text-left text-xl ${roboto.className}
+        font-light w-full
+        `}>
+          Selecteaza serviciul dorit :
+        </label>
         <Dropdown
           options={services}
           onSelect={setSelectedService}
         />
+        <label className={`
+        text-left text-xl ${roboto.className}
+        font-light w-full
+        `}>
+          Selecteaza una din orele disponibile :
+        </label>
         { 
-        !!date && 
-        <AvailableHoursInDate
-        appointments={appointments}
-        selectedDate={date}
-        setHour={setHour}
-        selectedHour={hour}
-        />
+          !!date && selectedService &&
+          <AvailableHoursInDate
+            appointments={appointments}
+            selectedDate={date}
+            setHour={setHour}
+            selectedHour={hour}
+            selectedServiceDuration={selectedService.duration}
+          />
         }
-        {
-          !!services && JSON.stringify(services)
-        }
-        
       </form>
     </ReactModal>
   )

@@ -4,11 +4,10 @@ import moment, {Moment} from 'moment';
 export function getAvailableHours(
   appointments:Appointment[],
   selectedDate:string,
-  duration:Number):string[]
+  serviceDuration:number):string[]
   {
   const availableHours:string[] = [];
   
-  const serviceDuration = 45;
   const minutesStep = 30;
 
   const parsedSelectedDate = new Date(selectedDate);

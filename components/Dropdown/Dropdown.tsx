@@ -1,6 +1,7 @@
-import { Service } from '@prisma/client';
+import { Service, Servname } from '@prisma/client';
 import { FunctionComponent, useState } from 'react';
 import { montserrat, roboto } from 'utils/fonts';
+import {servicesLabels} from 'utils/constants';
 
 interface DropdownProps {
   options: Service[];
@@ -14,16 +15,16 @@ const Dropdown:FunctionComponent<DropdownProps> = ({ options, onSelect}) => {
   const toggleDropdown = () => setIsOpen(curr => !curr);
 
   return (
-    <div className="relative inline-block text-left">
-      <div className='w-56'>
+    <div className="relative inline-block w-full text-left">
+      <div className='w-full'>
         <button
           type="button"
           className={`
           inline-flex justify-between w-full px-2 py-2 text-gray-700 bg-white rounded-sm shadow-md hover:bg-gray-100 focus:outline-none
-          ${roboto.className} font-regular text-md overflow-hidden text-center
+          ${roboto.className} font-regular text-md overflow-hidden overflow-ellipsis text-center
           `}
           onClick={() => toggleDropdown()}>
-          <span className={'overflow-ellipsis overflow-hidden'}>{(selectedValue && selectedValue.name) ?? 'Select an option'}</span>
+          <span className={'overflow-ellipsis overflow-hidden'}>{(selectedValue && servicesLabels.get(selectedValue.name)) ?? 'Select an option'}</span>
           <svg
             className="w-5 h-5 ml-2 -mr-1"
             xmlns="http://www.w3.org/2000/svg"
@@ -54,7 +55,7 @@ const Dropdown:FunctionComponent<DropdownProps> = ({ options, onSelect}) => {
               }}
               className="block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
               role="menuitem">
-              {option.name}
+              {servicesLabels.get(option.name)}
             </button>
           ))}
         </div>

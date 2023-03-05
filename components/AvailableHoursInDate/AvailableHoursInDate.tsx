@@ -7,10 +7,14 @@ interface Props {
   selectedDate: Date;
   setHour(hour:string):void;
   selectedHour:string;
+  selectedServiceDuration:string | null;
 }
 
-const AvailableHoursInDate: FunctionComponent<Props> = ({appointments, selectedDate, setHour, selectedHour}) => {
-  const availableHours = appointments && selectedDate ? getAvailableHours(appointments, selectedDate.toLocaleDateString(), 40) : null;
+const AvailableHoursInDate: FunctionComponent<Props> = ({appointments, selectedDate, setHour, selectedHour, selectedServiceDuration}) => {
+
+  if(!selectedDate || !selectedServiceDuration) return null;
+
+  const availableHours = getAvailableHours(appointments, selectedDate.toLocaleDateString(), parseInt(selectedServiceDuration));
 
   return (
     <div 
@@ -27,7 +31,7 @@ const AvailableHoursInDate: FunctionComponent<Props> = ({appointments, selectedD
         hover:bg-accent hover:text-white
         ${selectedHour === hour && 'bg-accent text-white'}
         `}>
-          {hour}
+          {hour} 
         </div>
       )}
     </div>
