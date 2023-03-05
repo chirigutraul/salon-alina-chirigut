@@ -6,7 +6,7 @@ import ReactModal from 'react-modal';
 import "flatpickr/dist/themes/airbnb.css";
 import AvailableHoursInDate from 'components/AvailableHoursInDate';
 import { Appointment } from '@prisma/client';
-import moment, {Moment} from 'moment';
+import moment from 'moment';
 
 interface Props {
   isOpen: boolean;
@@ -66,6 +66,7 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
         name="date"
         value={date}
         className={'w-30 h-10 rounded-sm shadow-md text-center text-xl'}
+        placeholder="Selecteaza data"
         onChange={date => setDate(date[0])}
         options={{
           enableTime: false, 
@@ -75,16 +76,14 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
           function (date){
             return date.getDay() === 0
           },
-          function(date){
-            return date.getHours() === 12
-          }
           ],
-          onDayCreate: function(dObj, dStr, fp, dayElem){
-            if (Math.random() < 0.5)
-              dayElem.innerHTML += `<span style='position: absolute;  width: 3px; height: 3px; border-radius: 150px; bottom: 3px; left: calc(50% - 1.5px); content: " "; display: block; background: #3d8eb9;'></span>`;
-            else if (Math.random() > 0.5)
-              dayElem.innerHTML += `<span style='position: absolute;  width: 3px; height: 3px; border-radius: 150px; bottom: 3px; left: calc(50% - 1.5px); content: " "; display: block; background: #f64747;'></span>`;
-          }
+          // onDayCreate: function(dObj, dStr, fp, dayElem){
+            // console.log(dObj, dStr, fp, dayElem)
+            // if (Math.random() < 0.5)
+            //   dayElem.innerHTML += `<span style='position: absolute;  width: 3px; height: 3px; border-radius: 150px; bottom: 3px; left: calc(50% - 1.5px); content: " "; display: block; background: #3d8eb9;'></span>`;
+            // else if (Math.random() > 0.5)
+            //   dayElem.innerHTML += `<span style='position: absolute;  width: 3px; height: 3px; border-radius: 150px; bottom: 3px; left: calc(50% - 1.5px); content: " "; display: block; background: #f64747;'></span>`;
+          // }
         }}
         />
         { 
