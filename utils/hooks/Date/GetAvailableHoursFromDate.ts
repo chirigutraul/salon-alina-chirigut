@@ -36,11 +36,16 @@ export function getAvailableHours(
 
     appointments.forEach(appointment => {
       const appointmentStart = new Date(appointment.date);
+      appointmentStart.setHours(appointmentStart.getHours() - 2);
       const appointmentEnd = new Date(appointment.endDate);
+      appointmentEnd.setHours(appointmentEnd.getHours() - 2);
+
+      console.log('time', time)
+      console.log('endtime', endTime)
 
       if(
         time >= appointmentStart && time < appointmentEnd || 
-        endTime >= appointmentStart && endTime < appointmentEnd
+        (endTime > appointmentStart && endTime < appointmentEnd)
         ){
         availability = false;
       }
