@@ -15,16 +15,16 @@ const Dropdown:FunctionComponent<DropdownProps> = ({ options, onSelect}) => {
   const toggleDropdown = () => setIsOpen(curr => !curr);
 
   return (
-    <div className="relative inline-block w-full text-left">
+    <div className="relative inline-block w-64 text-left">
       <div className='w-full'>
         <button
           type="button"
           className={`
-          inline-flex justify-between w-full px-2 py-2 text-gray-700 bg-white rounded-sm shadow-md hover:bg-gray-100 focus:outline-none
-          ${roboto.className} font-regular text-md overflow-hidden overflow-ellipsis text-center
+          inline-flex justify-between w-full px-4 py-2 text-gray-700 bg-white rounded-sm shadow-md hover:bg-gray-100 focus:outline-none
+          ${roboto.className} font-regular text-md text-center truncate
           `}
           onClick={() => toggleDropdown()}>
-          <span className={'overflow-ellipsis overflow-hidden'}>{(selectedValue && servicesLabels.get(selectedValue.name)) ?? 'Select an option'}</span>
+          <span className={'truncate'}>{(selectedValue && servicesLabels.get(selectedValue.name)) ?? 'Select an option'}</span>
           <svg
             className="w-5 h-5 ml-2 -mr-1"
             xmlns="http://www.w3.org/2000/svg"

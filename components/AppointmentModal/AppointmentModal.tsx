@@ -7,6 +7,8 @@ import "flatpickr/dist/themes/airbnb.css";
 import {AvailableHoursInDate, Dropdown} from 'components';
 import { Appointment, Service } from '@prisma/client';
 import moment from 'moment';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCalendarPlus } from '@fortawesome/free-regular-svg-icons';
 
 interface Props {
   isOpen: boolean;
@@ -56,7 +58,7 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
     overlayClassName={`h-screen w-screen absolute top-0 bg-[rgba(0,0,0,0.5)] border-0 backdrop-blur`}
     >
     <form className={`
-       h-full w-full flex flex-col items-center gap-4
+       h-full w-full flex flex-col items-center gap-6
       `}>
         <h1 className={`
          ${montserrat.className}
@@ -71,62 +73,77 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
         `}>
           Pentru a realiza o programare, te rugam sa completezi formularul de mai jos.
         </p>
-        <label className={`
-        text-left text-xl ${roboto.className}
-        font-light w-full my-0
-        `}>
-          Selecteaza data :
-        </label>
-        <Flatpickr
-        name="date"
-        value={date}
-        className={'w-full h-10 rounded-sm shadow-md text-center text-xl'}
-        placeholder="Selecteaza data"
-        onChange={date => setDate(date[0])}
-        options={{
-          enableTime: false, 
-          time_24hr: true,
-          minDate:"today",
-          disable: [
-          function (date){
-            return date.getDay() === 0
-          },
-          ],
-          // onDayCreate: function(dObj, dStr, fp, dayElem){
-            // console.log(dObj, dStr, fp, dayElem)
-            // if (Math.random() < 0.5)
-            //   dayElem.innerHTML += `<span style='position: absolute;  width: 3px; height: 3px; border-radius: 150px; bottom: 3px; left: calc(50% - 1.5px); content: " "; display: block; background: #3d8eb9;'></span>`;
-            // else if (Math.random() > 0.5)
-            //   dayElem.innerHTML += `<span style='position: absolute;  width: 3px; height: 3px; border-radius: 150px; bottom: 3px; left: calc(50% - 1.5px); content: " "; display: block; background: #f64747;'></span>`;
-          // }
-        }}
-        />
-        <label className={`
-        text-left text-xl ${roboto.className}
-        font-light w-full
-        `}>
-          Selecteaza serviciul dorit :
-        </label>
-        <Dropdown
-          options={services}
-          onSelect={setSelectedService}
-        />
-        <label className={`
-        text-left text-xl ${roboto.className}
-        font-light w-full
-        `}>
-          Selecteaza una din orele disponibile :
-        </label>
-        { 
-          !!date && selectedService &&
-          <AvailableHoursInDate
-            appointments={appointments}
-            selectedDate={date}
-            setHour={setHour}
-            selectedHour={hour}
-            selectedServiceDuration={selectedService.duration}
+        <div className={'flex flex-col gap-2'}>
+          <label className={`
+          text-xl ${roboto.className}
+          font-light my-0
+          `}>
+            Selecteaza data :
+          </label>
+          <div className={'w-64 flex flex-row bg-white items-center px-4 rounded-sm overflow-hidden shadow-md'}>
+            <Flatpickr
+            name="date"
+            value={date}
+            className={'w-full h-10 text-left text-xl focus:border-0 focus:outline-none'}
+            placeholder="Data"
+            onChange={date => setDate(date[0])}
+            options={{
+              enableTime: false, 
+              time_24hr: true,
+              minDate:"today",
+              disable: [
+              function (date){
+                return date.getDay() === 0
+              },
+              ],
+              // onDayCreate: function(dObj, dStr, fp, dayElem){
+                // console.log(dObj, dStr, fp, dayElem)
+                // if (Math.random() < 0.5)
+                //   dayElem.innerHTML += `<span style='position: absolute;  width: 3px; height: 3px; border-radius: 150px; bottom: 3px; left: calc(50% - 1.5px); content: " "; display: block; background: #3d8eb9;'></span>`;
+                // else if (Math.random() > 0.5)
+                //   dayElem.innerHTML += `<span style='position: absolute;  width: 3px; height: 3px; border-radius: 150px; bottom: 3px; left: calc(50% - 1.5px); content: " "; display: block; background: #f64747;'></span>`;
+              // }
+            }}
+            />
+            <FontAwesomeIcon 
+            icon={faCalendarPlus}
+            className={`text-accent group-hover:text-primary`}
+            size="xl"
+            />
+          </div>
+        </div>
+        
+        <div className={'flex flex-col gap-2'}>
+          <label className={`
+          text-xl ${roboto.className}
+          font-light
+          `}>
+            Selecteaza serviciul dorit :
+          </label>
+          <Dropdown
+            options={services}
+            onSelect={setSelectedService}
           />
-        }
+        </div>
+        
+        <div className={'w-full text-center flex flex-col gap-2'}>
+          <label className={`
+          text-xl ${roboto.className}
+          font-light
+          `}>
+            Selecteaza una din orele disponibile :
+          </label>
+          { 
+            !!date && selectedService &&
+            <AvailableHoursInDate
+              appointments={appointments}
+              selectedDate={date}
+              setHour={setHour}
+              selectedHour={hour}
+              selectedServiceDuration={selectedService.duration}
+            />
+          }
+        </div>
       </form>
     </ReactModal>
   )
