@@ -4,16 +4,17 @@ import { montserrat, roboto } from 'utils/fonts';
 import Flatpickr from 'react-flatpickr';
 import ReactModal from 'react-modal';
 import "flatpickr/dist/themes/airbnb.css";
-import {AvailableHoursInDate, Dropdown} from 'components';
+import {AvailableHoursInDate, Dropdown, Button} from 'components';
 import { Appointment, Service } from '@prisma/client';
 import moment from 'moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarPlus } from '@fortawesome/free-regular-svg-icons';
+import { createAppointment } from 'utils/hooks/requests/appointments';
 
 interface Props {
   isOpen: boolean;
   toggleModal: () => void;
-  session? : Session | null;
+  session: Session ;
 }
 
 const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
@@ -144,6 +145,13 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
             />
           }
         </div>
+        {
+        date && selectedService && hour &&
+        <Button
+        title="Programeaza!"
+        onClick={()=>createAppointment(session.user.id, date, hour, selectedService)}
+        />
+        }
       </form>
     </ReactModal>
   )
