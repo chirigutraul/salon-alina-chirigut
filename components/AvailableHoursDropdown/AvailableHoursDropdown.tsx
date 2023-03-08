@@ -1,5 +1,5 @@
 import { FunctionComponent, useState } from 'react';
-import { montserrat, roboto } from 'utils/fonts';
+import { roboto } from 'utils/fonts';
 import { Appointment } from '@prisma/client';
 import { getAvailableHours } from 'utils/hooks/date/GetAvailableHoursFromDate';
 
@@ -16,7 +16,11 @@ const AvailableHoursDropdown: FunctionComponent<DropdownProps> = ({ onSelect, ap
 
   if (!selectedDate || !selectedServiceDuration) return null;
 
-  const availableHours = getAvailableHours(appointments, selectedDate.toLocaleDateString(), parseInt(selectedServiceDuration));
+  const availableHours = getAvailableHours(
+    appointments,
+    selectedDate.toLocaleDateString(),
+    parseInt(selectedServiceDuration)
+  );
 
   const toggleDropdown = () => setIsOpen(curr => !curr);
 

@@ -4,7 +4,12 @@ import { montserrat, roboto } from 'utils/fonts';
 import Flatpickr from 'react-flatpickr';
 import ReactModal from 'react-modal';
 import "flatpickr/dist/themes/airbnb.css";
-import { AvailableHoursInDate, ServicesDropdown, Button, AvailableHoursDropdown } from 'components';
+import {
+  ServicesDropdown,
+  Button,
+  AvailableHoursDropdown,
+  RequestFeedback
+} from 'components';
 import { Appointment, Service } from '@prisma/client';
 import moment from 'moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -23,6 +28,10 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
   const [appointments, setAppointments] = useState<Appointment[]>([]);
   const [services, setServices] = useState<Service[]>([]);
   const [selectedService, setSelectedService] = useState<Service>();
+  const [response, setResponse] = useState<{
+    status: number,
+    message: string,
+  }>()
 
   const fetchAppointments = async () => {
     const response = await fetch('/api/appointments/get-appointments-from-date', {
@@ -42,11 +51,17 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
     setServices(data);
   }
 
-  const handleAppointmentCreation = () => {
+  const handleAppointmentCreation = async () => {
     if (!date || !hour || !selectedService) return;
 
-    createAppointment(session.user.id, date, hour, selectedService);
-    toggleModal();
+    const response = await createAppointment(session.user.id, date, hour, selectedService)
+      .then(async res => {
+        const parsedResponse = await res.json();
+        setResponse(parsedResponse);
+      })
+
+    console.log('response', response)
+    // toggleModal();
   }
 
   useEffect(() => {
@@ -145,9 +160,9 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
             date && selectedService &&
             <div className={'w-full flex flex-col gap-2'}>
               <label className={`
-          text-xl ${roboto.className}
-          font-light
-          `}>
+              text-xl ${roboto.className}
+              font-light
+              `}>
                 Selecteaza una din orele disponibile :
               </label>
               <AvailableHoursDropdown
@@ -158,12 +173,26 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
               />
             </div>
           }
+          {
+            response &&
+            <RequestFeedback
+              message={response.message}
+              status={response.status}
+            />
+          }
         </div>
         {
-          date && selectedService && hour &&
           <Button
-            title="Programeaza!"
-            onClick={handleAppointmentCreation}
+            title={
+              response && response.status === 200
+                ? "Inchide"
+                : "Programeaza!"
+            }
+            onClick={
+              response && response.status === 200
+                ? toggleModal
+                : handleAppointmentCreation
+            }
           />
         }
       </form>

@@ -10,7 +10,7 @@ datasource db {
 }
 
 model Client {
-  id           String           @id
+  id           String        @id
   firstName    String
   lastName     String
   phone        String?
@@ -20,11 +20,11 @@ model Client {
 }
 
 model Service {
-  id          Int      @id @default(autoincrement())
-  name        Servname
-  price       Int?
-  duration    String?
-  description String?
+  id           Int           @id @default(autoincrement())
+  name         Servname
+  price        Int?
+  duration     String?
+  description  String?
   appointments Appointment[]
 }
 
@@ -36,9 +36,9 @@ model Appointment {
   status           AppointmentStatus
   createdAt        DateTime          @default(now())
   clientId         String
-  client           Client           @relation(fields: [clientId], references: [id])
-  service          Service @relation(fields: [serviceId], references: [id])
-  serviceId        Int 
+  client           Client            @relation(fields: [clientId], references: [id])
+  service          Service           @relation(fields: [serviceId], references: [id])
+  serviceId        Int
 
   @@index([serviceId])
   @@index([clientId])
