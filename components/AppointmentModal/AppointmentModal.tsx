@@ -90,6 +90,7 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
             <h1 className={`
          ${montserrat.className}
         text-3xl font-light 
+        sm:text-4xl
         `}>
               Buna, {session?.user.name}
             </h1>
@@ -105,8 +106,9 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
           </div>
           <p className={`
           ${roboto.className}
-          font-light text-center 
+          font-light text-left 
           text-xl
+          sm:text-2xl
         `}>
             Pentru a realiza o programare, te rugam sa completezi formularul de mai jos.
           </p>
@@ -114,6 +116,7 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
             <label className={`
           text-xl ${roboto.className}
           font-light my-0
+          sm:text-2xl
           `}>
               Selecteaza data :
             </label>
@@ -122,7 +125,9 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
               <Flatpickr
                 name="date"
                 value={date}
-                className={'w-full h-10 text-left text-xl focus:border-0 focus:outline-none'}
+                className={`
+                w-full py-2 text-left text-xl focus:border-0 focus:outline-none
+                `}
                 placeholder="Data"
                 onChange={date => setDate(date[0])}
                 options={{
@@ -148,6 +153,7 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
             <label className={`
           text-xl ${roboto.className}
           font-light
+          sm:text-2xl
           `}>
               Selecteaza serviciul dorit :
             </label>
@@ -162,6 +168,7 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
               <label className={`
               text-xl ${roboto.className}
               font-light
+              sm:text-2xl
               `}>
                 Selecteaza una din orele disponibile :
               </label>

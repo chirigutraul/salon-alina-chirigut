@@ -30,8 +30,9 @@ const AvailableHoursDropdown: FunctionComponent<DropdownProps> = ({ onSelect, ap
         <button
           type="button"
           className={`
-          inline-flex justify-between w-full px-4 py-2 text-gray-700 bg-white rounded-sm shadow-md hover:bg-gray-100 focus:outline-none
+          inline-flex justify-between w-full px-4 py-2 bg-white rounded-sm shadow-md hover:bg-gray-100 focus:outline-none
           ${roboto.className} font-regular text-md text-center truncate
+          ${selectedValue ? 'text-accent' : 'text-gray-400'}
           `}
           onClick={() => toggleDropdown()}>
           <span className={'truncate'}>{selectedValue ?? 'Ora'}</span>
