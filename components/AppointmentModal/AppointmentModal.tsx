@@ -17,6 +17,7 @@ import {
   faCalendarPlus,
   faXmarkCircle,
 } from "@fortawesome/free-regular-svg-icons";
+import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { createAppointment } from "utils/hooks/requests/appointments";
 import breakpoints from "utils/TailwindBreakPoints";
 import useWindowSize from "utils/hooks/BreakPointsHooks";
@@ -92,9 +93,9 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
       className={`
       py-8 px-4
       w-full h-screen overflow-scroll absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] 
-      bg-primary rounded-md shadow-md outline-none
+      bg-primary rounded-md shadow-md outline-none max-w-[32rem]
       sm:px-8
-      md:h-[80vh]
+      md:h-[90vh]
       md:bg-red-300
     `}
       overlayClassName={`h-screen w-screen absolute top-0 bg-[rgba(0,0,0,0.5)] border-0 backdrop-blur`}
@@ -117,9 +118,9 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
               Buna, {session?.user.name}
             </h1>
             <div onClick={toggleModal}>
-              {!!isScreenAboveLarge && (
+              {!!true && (
                 <FontAwesomeIcon
-                  icon={faXmarkCircle}
+                  icon={faClose}
                   className={`text-accent group-hover:text-primary 
               text-4xl
               `}
