@@ -1,8 +1,34 @@
+import { Appointment } from "@prisma/client";
 import { AppointmentCard } from "components";
-import React from "react";
+import { GetServerSideProps, GetServerSidePropsContext } from "next";
+import React, { FunctionComponent, useEffect, useState } from "react";
 import { roboto } from "utils/fonts";
+import { getUserAppointments } from "utils/hooks/requests/appointments";
 
-const AppointmentsHistory = () => {
+interface Props {
+  userId: string;
+}
+
+const AppointmentsHistory: FunctionComponent<Props> = ({ userId }) => {
+  const [appointments, setAppointments] = useState<Appointment[] | undefined>();
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const fetchUserAppointments = async (userId: string) => {
+    setLoading(true);
+    const appointments = await getUserAppointments(userId);
+    console.log(appointments);
+    setAppointments(appointments);
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    fetchUserAppointments(userId);
+  }, []);
+
+  if (loading) return <p>Loading...</p>;
+
+  if (!appointments && !loading) return <p>No appointments</p>;
+
   return (
     <div
       className={`
@@ -22,10 +48,9 @@ const AppointmentsHistory = () => {
         Istoricul programarilor tale:
       </p>
 
-      <AppointmentCard />
-      <AppointmentCard />
-      <AppointmentCard />
-      <AppointmentCard />
+      {appointments?.map((appointment) => (
+        <AppointmentCard appointment={appointment} />
+      ))}
     </div>
   );
 };

@@ -1,47 +1,60 @@
-import React from 'react'
-import {roboto, montserrat} from 'utils/fonts'
+import { Appointment } from "@prisma/client";
+import React, { FunctionComponent } from "react";
+import { roboto, montserrat } from "utils/fonts";
 
 interface Props {
-  
+  appointment: Appointment;
 }
 
-const AppointmentCard = () => {
+const AppointmentCard: FunctionComponent<Props> = ({ appointment }) => {
   return (
-    <div className={`
+    <div
+      className={`
     border-2 border-accent border-solid rounded-md
     p-4
-    `}>
-      <p className={`
+    `}
+    >
+      <p
+        className={`
       ${roboto.className}
       font-medium text-lg
       sm:text-xl
       md:text-lg
-      `}>
-        Constructie gel
+      `}
+      >
+        {appointment.id}
       </p>
-      <p className={`
+      <p
+        className={`
       ${montserrat.className}
-      `}>
-        Data: 25.12.2023
+      `}
+      >
+        {appointment.date.toISOString().split("T")[0]}
       </p>
-      <div className={`
+      <div
+        className={`
       flex flex-row justify-between
       md:flex-col
-      `}>
-        <p className={`
+      `}
+      >
+        <p
+          className={`
         ${montserrat.className}
-        `}>
+        `}
+        >
           Ora 15:00
         </p>
-        <p className={`
+        <p
+          className={`
         ${montserrat.className}
         font-bold
-        `}>
+        `}
+        >
           Aprobata
         </p>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default AppointmentCard
+export default AppointmentCard;

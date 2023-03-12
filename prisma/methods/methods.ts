@@ -85,6 +85,11 @@ export async function singleMethods(
           client: true,
           service: true
         }
+      }),
+      ...( entity === 'client' && {
+        include:{
+          appointments: true
+        }
       })
     });
     return res.status(200).json(result);

@@ -55,8 +55,8 @@ export async function getAppointmentsFromCertainDate(date:Date): Promise<Appoint
   return parsedResponse;
 }
 
-export async function getUserAppointments(userId: string): Promise<Response>{
-  const user = await fetch(`/api/users/${userId}`);
+export async function getUserAppointments(userId: string): Promise<Appointment[]>{
+  const user = await fetch(`/api/clients/${userId}`);
   const userJson = await user.json();
   return userJson.appointments;
 }
