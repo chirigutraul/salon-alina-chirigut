@@ -13,10 +13,7 @@ import {
 import { Appointment, Service } from "@prisma/client";
 import moment from "moment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCalendarPlus,
-  faXmarkCircle,
-} from "@fortawesome/free-regular-svg-icons";
+import { faCalendarPlus } from "@fortawesome/free-regular-svg-icons";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { createAppointment } from "utils/hooks/requests/appointments";
 import breakpoints from "utils/TailwindBreakPoints";
@@ -96,7 +93,7 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
       bg-primary rounded-md shadow-md outline-none max-w-[32rem]
       sm:px-8
       md:h-[90vh]
-      lg:h-[80vh]
+      lg:h-[75vh] lg:max-w-[40rem]
     `}
       overlayClassName={`h-screen w-screen absolute top-0 bg-[rgba(0,0,0,0.5)] border-0 backdrop-blur`}
     >
@@ -154,7 +151,7 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
           text-xl ${roboto.className}
           font-light my-0
           sm:text-2xl
-          lg:text-xl
+          lg:text-xl lg:w-96
           `}
             >
               Selecteaza data :

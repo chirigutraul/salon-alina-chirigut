@@ -51,7 +51,7 @@ const Dropdown: FunctionComponent<DropdownProps> = ({ options, onSelect }) => {
       </div>
 
       {isOpen && (
-        <div className="h-[20vh] right-0 z-10 w-full mt-2 overflow-scroll origin-top-right bg-white rounded-sm shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <div className="absolute h-[20vh] right-0 z-10 w-full mt-2 overflow-scroll origin-top-right bg-white rounded-sm shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div
             className="py-1"
             role="menu"
