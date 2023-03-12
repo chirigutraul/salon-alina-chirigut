@@ -92,7 +92,7 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
       onRequestClose={toggleModal}
       className={`
       py-8 px-4
-      w-full h-screen overflow-scroll absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] 
+      w-full h-screen overflow-hidden absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] 
       bg-primary rounded-md shadow-md outline-none max-w-[32rem]
       sm:px-8
       md:h-[90vh]
@@ -105,7 +105,7 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
        h-full w-full flex flex-col items-center justify-between
       `}
       >
-        <div className={"h-full w-full flex flex-col items-center gap-8"}>
+        <div className={"h-full w-full flex flex-col gap-8"}>
           <div className={`flex flex-row justify-between w-full items-center`}>
             <h1
               className={`
@@ -145,14 +145,15 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
           text-xl ${roboto.className}
           font-light my-0
           sm:text-2xl
+          lg:text-xl
           `}
             >
               Selecteaza data :
             </label>
             <div
-              className={
-                "w-full flex flex-row bg-white items-center px-4 rounded-sm overflow-hidden shadow-md"
-              }
+              className={`w-full flex flex-row bg-white items-center px-4 rounded-sm overflow-hidden shadow-md
+              lg:w-64
+              `}
             >
               <Flatpickr
                 name="date"
@@ -160,6 +161,7 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
                 className={`
                 w-full py-2 text-left text-xl focus:border-0 focus:outline-none
                 sm:text-xl
+                lg:text-lg lg:py-1
                 `}
                 placeholder="Data"
                 onChange={(date) => setDate(date[0])}
@@ -176,7 +178,9 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
               />
               <FontAwesomeIcon
                 icon={faCalendarPlus}
-                className={`text-accent group-hover:text-primary text-3xl`}
+                className={`text-accent group-hover:text-primary text-3xl
+                lg:text-2xl
+                `}
               />
             </div>
           </div>
@@ -187,6 +191,7 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
           text-xl ${roboto.className}
           font-light
           sm:text-2xl
+          lg:text-xl
           `}
             >
               Selecteaza serviciul dorit :
@@ -197,12 +202,17 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
             />
           </div>
           {date && selectedService && (
-            <div className={"w-full flex flex-col gap-2"}>
+            <div
+              className={`w-full flex flex-col gap-2
+            lg:w-64 bg-blue-300
+            `}
+            >
               <label
                 className={`
               text-xl ${roboto.className}
               font-light
               sm:text-2xl
+              lg:text-xl
               `}
               >
                 Selecteaza una din orele disponibile :

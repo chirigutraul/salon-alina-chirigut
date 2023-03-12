@@ -23,8 +23,9 @@ const Dropdown: FunctionComponent<DropdownProps> = ({ options, onSelect }) => {
           type="button"
           className={`
           inline-flex justify-between items-center w-full px-4 py-2 bg-white rounded-sm shadow-md hover:bg-gray-100 focus:outline-none
-          ${roboto.className} font-regular text-md text-center truncate 
+          ${roboto.className} font-regular text-md truncate 
           ${selectedValue ? "text-accent" : "text-gray-400"}
+          lg:py-1 lg:px-4 lg:w-64
           `}
           onClick={() => toggleDropdown()}
         >
@@ -32,6 +33,7 @@ const Dropdown: FunctionComponent<DropdownProps> = ({ options, onSelect }) => {
             className={`
           truncate
           sm:text-xl ${roboto.className} font-light
+          lg:text-lg
           `}
           >
             {(selectedValue && servicesLabels.get(selectedValue.name)) ??
@@ -42,6 +44,7 @@ const Dropdown: FunctionComponent<DropdownProps> = ({ options, onSelect }) => {
             className={`
             text-xl text-accent
             sm:text-2xl
+            lg:text-xl
             `}
           />
         </button>
