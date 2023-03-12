@@ -25,7 +25,7 @@ const Dropdown: FunctionComponent<DropdownProps> = ({ options, onSelect }) => {
           inline-flex justify-between items-center w-full px-4 py-2 bg-white rounded-sm shadow-md hover:bg-gray-100 focus:outline-none
           ${roboto.className} font-regular text-md truncate 
           ${selectedValue ? "text-accent" : "text-gray-400"}
-          lg:py-1 lg:px-4 lg:w-64
+          lg:py-1 lg:px-4 lg:w-full
           `}
           onClick={() => toggleDropdown()}
         >
@@ -51,7 +51,7 @@ const Dropdown: FunctionComponent<DropdownProps> = ({ options, onSelect }) => {
       </div>
 
       {isOpen && (
-        <div className="absolute h-[20vh] right-0 z-10 w-full mt-2 overflow-scroll origin-top-right bg-white rounded-sm shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <div className="h-[20vh] right-0 z-10 w-full mt-2 overflow-scroll origin-top-right bg-white rounded-sm shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div
             className="py-1"
             role="menu"

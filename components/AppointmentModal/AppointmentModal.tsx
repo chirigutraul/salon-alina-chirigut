@@ -96,7 +96,7 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
       bg-primary rounded-md shadow-md outline-none max-w-[32rem]
       sm:px-8
       md:h-[90vh]
-      md:bg-red-300
+      lg:h-[80vh]
     `}
       overlayClassName={`h-screen w-screen absolute top-0 bg-[rgba(0,0,0,0.5)] border-0 backdrop-blur`}
     >
@@ -105,7 +105,11 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
        h-full w-full flex flex-col items-center justify-between
       `}
       >
-        <div className={"h-full w-full flex flex-col gap-8"}>
+        <div
+          className={`h-full w-full flex flex-col gap-8
+        lg:items-center
+        `}
+        >
           <div className={`flex flex-row justify-between w-full items-center`}>
             <h1
               className={`
@@ -134,12 +138,17 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
           font-light text-left 
           text-xl
           sm:text-2xl
+          lg:text-center
         `}
           >
             Pentru a realiza o programare, te rugam sa completezi formularul de
             mai jos.
           </p>
-          <div className={"flex flex-col gap-2 w-full"}>
+          <div
+            className={`flex flex-col gap-2 w-full
+          lg:items-center
+          `}
+          >
             <label
               className={`
           text-xl ${roboto.className}
@@ -152,7 +161,7 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
             </label>
             <div
               className={`w-full flex flex-row bg-white items-center px-4 rounded-sm overflow-hidden shadow-md
-              lg:w-64
+              lg:w-96
               `}
             >
               <Flatpickr
@@ -185,7 +194,11 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
             </div>
           </div>
 
-          <div className={"flex flex-col gap-2 w-full"}>
+          <div
+            className={`flex flex-col gap-2 w-full
+          lg:w-96
+          `}
+          >
             <label
               className={`
           text-xl ${roboto.className}
@@ -204,7 +217,7 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
           {date && selectedService && (
             <div
               className={`w-full flex flex-col gap-2
-            lg:w-64 bg-blue-300
+            lg:w-96
             `}
             >
               <label
