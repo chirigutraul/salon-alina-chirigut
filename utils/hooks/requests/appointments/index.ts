@@ -1,4 +1,5 @@
 import { Appointment, Service } from "@prisma/client"
+import moment from "moment";
 
 export async function createAppointment(clientId: string, date: Date, time: String, service: Service): Promise<Response> {
   if (!service || !service.duration) {
@@ -36,4 +37,26 @@ export async function createAppointment(clientId: string, date: Date, time: Stri
   })
 
   return createdAppointment;
+}
+
+export async function getAppointmentsFromCertainDate(date:Date): Promise<Appointment[]>{
+  const response = await fetch(
+    "/api/appointments/get-appointments-from-date",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ date: moment(date).format() }),
+    }
+  );
+
+  const parsedResponse = await response.json();
+  return parsedResponse;
+}
+
+export async function getUserAppointments(userId: string): Promise<Response>{
+  const user = await fetch(`/api/users/${userId}`);
+  const userJson = await user.json();
+  return userJson.appointments;
 }

@@ -11,13 +11,16 @@ import {
   RequestFeedback,
 } from "components";
 import { Appointment, Service } from "@prisma/client";
-import moment from "moment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarPlus } from "@fortawesome/free-regular-svg-icons";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
-import { createAppointment } from "utils/hooks/requests/appointments";
+import {
+  createAppointment,
+  getAppointmentsFromCertainDate,
+} from "utils/hooks/requests/appointments";
 import breakpoints from "utils/TailwindBreakPoints";
 import useWindowSize from "utils/hooks/BreakPointsHooks";
+import { getServices } from "utils/hooks/requests/services";
 
 interface Props {
   isOpen: boolean;
@@ -38,27 +41,15 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
 
   const { width } = useWindowSize();
   const isScreenAboveMedium = width && width >= breakpoints.md;
-  const isScreenAboveLarge = width && width >= breakpoints.lg;
 
-  const fetchAppointments = async () => {
-    const response = await fetch(
-      "/api/appointments/get-appointments-from-date",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ date: moment(date).format() }),
-      }
-    );
-    const data = await response.json();
-    setAppointments(data);
+  const fetchAppointments = async (date: Date) => {
+    const appointments = await getAppointmentsFromCertainDate(date);
+    setAppointments(appointments);
   };
 
-  const fetchServices = async () => {
-    const response = await fetch("/api/services");
-    const data = await response.json();
-    setServices(data);
+  const fetchAndSetServices = async () => {
+    const services = await getServices();
+    setServices(services);
   };
 
   const handleAppointmentCreation = async () => {
@@ -75,12 +66,11 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
     });
 
     console.log("response", response);
-    // toggleModal();
   };
 
   useEffect(() => {
-    fetchAppointments();
-    fetchServices();
+    if (date) fetchAppointments(date);
+    fetchAndSetServices();
   }, [date]);
 
   return (
