@@ -88,7 +88,11 @@ export async function singleMethods(
       }),
       ...( entity === 'client' && {
         include:{
-          appointments: true
+          appointments: {
+            include:{
+              service: true
+            }
+          }
         }
       })
     });

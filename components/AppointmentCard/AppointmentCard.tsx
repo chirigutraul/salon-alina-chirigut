@@ -1,12 +1,16 @@
 import { Appointment } from "@prisma/client";
 import React, { FunctionComponent } from "react";
 import { roboto, montserrat } from "utils/fonts";
+import { appointmentStatuses } from "utils/constants";
 
 interface Props {
   appointment: Appointment;
 }
 
 const AppointmentCard: FunctionComponent<Props> = ({ appointment }) => {
+  const dateAndTime = appointment.date.toString().split("T");
+
+  const [date, time] = dateAndTime;
   return (
     <div
       className={`
@@ -29,7 +33,7 @@ const AppointmentCard: FunctionComponent<Props> = ({ appointment }) => {
       ${montserrat.className}
       `}
       >
-        {appointment.date.toISOString().split("T")[0]}
+        {date}
       </p>
       <div
         className={`
@@ -42,7 +46,7 @@ const AppointmentCard: FunctionComponent<Props> = ({ appointment }) => {
         ${montserrat.className}
         `}
         >
-          Ora 15:00
+          Ora {time.substring(0, 5)}
         </p>
         <p
           className={`
@@ -50,7 +54,7 @@ const AppointmentCard: FunctionComponent<Props> = ({ appointment }) => {
         font-bold
         `}
         >
-          Aprobata
+          {appointmentStatuses.get(appointment.status)}
         </p>
       </div>
     </div>

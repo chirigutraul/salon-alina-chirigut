@@ -1,5 +1,6 @@
 import { Appointment, Service } from "@prisma/client"
 import moment from "moment";
+import App from "next/app";
 
 export async function createAppointment(clientId: string, date: Date, time: String, service: Service): Promise<Response> {
   if (!service || !service.duration) {
@@ -55,8 +56,34 @@ export async function getAppointmentsFromCertainDate(date:Date): Promise<Appoint
   return parsedResponse;
 }
 
-export async function getUserAppointments(userId: string): Promise<Appointment[]>{
+interface userProfileAppointments {
+  appointments: Appointment[];
+  closestAppointment: Appointment | boolean;
+}
+
+export async function getUserAppointments(userId: string): Promise<userProfileAppointments>{
   const user = await fetch(`/api/clients/${userId}`);
   const userJson = await user.json();
-  return userJson.appointments;
+
+  const sortedAppointments:Appointment[] = userJson.appointments.sort((a: Appointment, b: Appointment) => {
+   return new Date(a.date).getTime() -  new Date(b.date).getTime()
+  })
+
+  const dateToday = new Date();
+
+  let closestAppointment:Appointment | boolean = false;
+
+  for(const appointment of sortedAppointments){
+    if(new Date(appointment.date).getTime() > dateToday.getTime()){
+      closestAppointment = appointment;
+      break;
+    } else closestAppointment = false;
+  }
+
+  const appointmentsAndSpotlight: userProfileAppointments = {
+    appointments: sortedAppointments,
+    closestAppointment: closestAppointment
+  }
+
+  return appointmentsAndSpotlight;
 }

@@ -1,13 +1,14 @@
 import AuthenticatedUserWithoutPhone from "components/AuthenticatedUserWithoutPhone";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { getSession } from "next-auth/react";
 import { Session } from "next-auth";
-import { PrismaClient } from "@prisma/client";
+import { Appointment, PrismaClient } from "@prisma/client";
 import { AppointmentsHistory, UnauthenticatedUser } from "components";
 import AppointmentSpotlight from "components/AppointmentSpotlight/AppointmentSpotlight";
 import ProfileInfo from "components/ProfileInfo/ProfileInfo";
+import { getUserAppointments } from "utils/hooks/requests/appointments";
 
 interface Props {
   session: Session | null;
@@ -38,12 +39,30 @@ export const getServerSideProps: GetServerSideProps<Props> = async (
 };
 
 const Profile = ({ session }: Props) => {
-  const [date, setDate] = useState<Date>(new Date());
+  const [loading, setLoading] = useState(false);
+  const [appointments, setAppointments] = useState<Appointment[]>([]);
+  const [closestAppointment, setClosestAppointment] = useState<
+    Appointment | boolean
+  >(false);
 
   if (!session || !session.user) return <UnauthenticatedUser />;
 
   if (!session.user.phone)
     return <AuthenticatedUserWithoutPhone session={session} />;
+
+  const fetchUserAppointments = async () => {
+    setLoading(true);
+    const { appointments, closestAppointment } = await getUserAppointments(
+      session.user.id
+    );
+    setAppointments(appointments);
+    setClosestAppointment(closestAppointment);
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    fetchUserAppointments();
+  }, []);
 
   return (
     <div
@@ -54,9 +73,12 @@ const Profile = ({ session }: Props) => {
     >
       <ProfileInfo session={session} />
 
-      <AppointmentSpotlight session={session} />
+      <AppointmentSpotlight
+        session={session}
+        closestAppointment={closestAppointment}
+      />
 
-      <AppointmentsHistory userId={session.user.id} />
+      <AppointmentsHistory appointments={appointments} />
     </div>
   );
 };

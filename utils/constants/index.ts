@@ -8,3 +8,9 @@ export const servicesLabels = new Map<string, string>([
   ["intretinere_gel", "Intretinere gel"],
   ["intretinere_semipermanent", "Intretinere semipermanent"],
 ]);
+
+export const appointmentStatuses = new Map<string, string>([
+  ["pending", "In asteptare"],
+  ["approved", "Confirmata"],
+  ["canceled", "Anulata"],
+]);

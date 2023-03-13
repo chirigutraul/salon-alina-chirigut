@@ -1,33 +1,14 @@
 import { Appointment } from "@prisma/client";
 import { AppointmentCard } from "components";
-import { GetServerSideProps, GetServerSidePropsContext } from "next";
-import React, { FunctionComponent, useEffect, useState } from "react";
+import React, { FunctionComponent } from "react";
 import { roboto } from "utils/fonts";
-import { getUserAppointments } from "utils/hooks/requests/appointments";
 
 interface Props {
-  userId: string;
+  appointments: Appointment[];
 }
 
-const AppointmentsHistory: FunctionComponent<Props> = ({ userId }) => {
-  const [appointments, setAppointments] = useState<Appointment[] | undefined>();
-  const [loading, setLoading] = useState<boolean>(false);
-
-  const fetchUserAppointments = async (userId: string) => {
-    setLoading(true);
-    const appointments = await getUserAppointments(userId);
-    console.log(appointments);
-    setAppointments(appointments);
-    setLoading(false);
-  };
-
-  useEffect(() => {
-    fetchUserAppointments(userId);
-  }, []);
-
-  if (loading) return <p>Loading...</p>;
-
-  if (!appointments && !loading) return <p>No appointments</p>;
+const AppointmentsHistory: FunctionComponent<Props> = ({ appointments }) => {
+  if (!appointments) return <p>No appointments</p>;
 
   return (
     <div
