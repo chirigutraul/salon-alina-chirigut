@@ -30,7 +30,7 @@ const Navbar = () => {
   return (
     <div
       className={`
-    flex flex-col bg-accent py-8 px-8
+    flex flex-col bg-accent py-4 px-8
     xs:px-2 
     md:flex-row md:justify-between md:px-4 
     lg:justify-between lg:items-center lg:px-8
