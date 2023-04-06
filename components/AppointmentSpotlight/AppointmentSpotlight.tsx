@@ -10,7 +10,7 @@ import { montserrat, roboto } from "utils/fonts";
 
 interface Props {
   session: Session | null;
-  closestAppointment: Appointment | boolean;
+  closestAppointment: Appointment;
 }
 
 const AppointmentSpotlight: FunctionComponent<Props> = ({

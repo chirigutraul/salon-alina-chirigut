@@ -1,35 +1,40 @@
 import Image from "next/image";
-import useSWR from 'swr'
+import useSWR from "swr";
 
 export default function Home() {
-const { data, error } = useSWR('/api/clients')
+  const { data, error } = useSWR("/api/clients");
 
-if(!data) return "Loading..."
+  if (!data) return "Loading...";
 
-if(error) return "Something went wrong"
+  if (error) return "Something went wrong";
 
-return (
-  <div className="relative">
-  <div className="relative h-screen w-screen">
-    <Image
-    src={"https://images.unsplash.com/photo-1566410819696-52c5cdba29c3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1176&q=80"}
-    alt={"Imagine de background despre noi."}
-    className={'object-cover'}
-    fill={true}
-    />
-  </div>
-  <div className="absolute top-[50%] left-[50%]
+  return (
+    <div className="relative">
+      <div className="relative w-screen h-screen">
+        <Image
+          src={
+            "https://images.unsplash.com/photo-1566410819696-52c5cdba29c3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1176&q=80"
+          }
+          alt={"Imagine de background despre noi."}
+          className={"object-cover"}
+          fill={true}
+        />
+      </div>
+      <div
+        className="absolute top-[50%] left-[50%]
   translate-x-[-50%] translate-y-[-50%] bg-white bg-opacity-70 p-16 text-center
   rounded-lg drop-shadow-2xl backdrop-blur
   w-[90%] h-[50%]
-  md:h-[40rem] md:w-[40rem]">
-    <h1 className="text-4xl text-black py-8">Despre noi</h1>
-    <p>
-      Noi suntem smecheri si facem unghii faine,
-      haide la noi, nu mai fa figuri <br></br>
-      {JSON.stringify(data)}
-    </p>
-  </div>
-  </div>
-  )
+  md:h-[40rem] md:w-[40rem]"
+      >
+        <h1 className="py-8 text-4xl text-black">Despre noi</h1>
+        <p>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis nulla
+          qui consequatur reiciendis blanditiis aut nostrum sint fugiat
+          distinctio, ex dolorum repellat cupiditate dignissimos illum
+          provident. Ab accusantium accusamus maxime!
+        </p>
+      </div>
+    </div>
+  );
 }
