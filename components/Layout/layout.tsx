@@ -3,7 +3,9 @@ import { Navbar, Footer } from "components";
 
 export default function Layout({ children }: { children: ReactElement }) {
   return (
-    <div className={"bg-primary h-screen w-screen overflow-x-hidden"}>
+    <div
+      className={"bg-diamond bg-primary h-screen w-screen overflow-x-hidden"}
+    >
       <Navbar />
       {children}
       <Footer />
