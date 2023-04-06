@@ -9,32 +9,27 @@ export default function Home() {
   if (error) return "Something went wrong";
 
   return (
-    <div className="relative">
-      <div className="relative w-screen h-screen">
-        <Image
-          src={
-            "https://images.unsplash.com/photo-1566410819696-52c5cdba29c3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1176&q=80"
-          }
-          alt={"Imagine de background despre noi."}
-          className={"object-cover"}
-          fill={true}
-        />
-      </div>
-      <div
-        className="absolute top-[50%] left-[50%]
-  translate-x-[-50%] translate-y-[-50%] bg-white bg-opacity-70 p-16 text-center
-  rounded-lg drop-shadow-2xl backdrop-blur
-  w-[90%] h-[50%]
-  md:h-[40rem] md:w-[40rem]"
-      >
-        <h1 className="py-8 text-4xl text-black">Despre noi</h1>
-        <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis nulla
-          qui consequatur reiciendis blanditiis aut nostrum sint fugiat
-          distinctio, ex dolorum repellat cupiditate dignissimos illum
-          provident. Ab accusantium accusamus maxime!
-        </p>
-      </div>
+    <div className={"text-white text-2xl p-4 bg-secondary bg-diamond"}>
+      <p className="drop-shadow-md">
+        Bun venit la Ally Nails, un salon de unghii modern și primitor, care
+        și-a deschis porțile în 2022. Manichiurista noastră pricepută, Chirigut
+        Alina, are peste 10 ani de experiență în domeniu, oferind servicii de
+        îngrijire a unghiilor de cea mai înaltă calitate și atenție
+        personalizată fiecărui client.
+      </p>
+      <p className={"mt-4 drop-shadow-md"}>
+        La Ally Nails, ne mândrim cu faptul că oferim o atmosferă caldă și
+        primitoare, în care vă puteți relaxa și sa lăsați experta noastră
+        manichiuristă să vă ajute să obțineți cea mai bună manichiură sau
+        pedichiură. Folosim numai produse și tehnici de cea mai înaltă calitate,
+        asigurându-ne că unghiile dvs. arată și se simt absolut minunat.
+      </p>
+      <p className={"mt-4 drop-shadow-md"}>
+        Indiferent dacă căutați o reîmprospătare rapidă sau un set complet de
+        unghii acrilice, Ally Nails este locul perfect pentru a vă răsfăța
+        puțin. Vizitați-ne astăzi și experimentați cea mai bună îngrijire a
+        unghiilor!
+      </p>
     </div>
   );
 }
