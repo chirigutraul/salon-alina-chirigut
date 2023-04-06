@@ -63,7 +63,7 @@ export default function Home() {
               transition={{ duration: 0.2 }}
               className="flex w-screen h-96 relative cursor-pointer hover:shadow-2xl justify-self-center
             md:w-96 md:h-72
-            lg:w-[30rem] md:h-96
+            lg:w-[30rem] lg:h-96
             xl:w-96
             2xl:w-128"
               key={index}
