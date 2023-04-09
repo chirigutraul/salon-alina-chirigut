@@ -11,9 +11,6 @@ module.exports = {
     extend: {
       colors: {
         'primary': '#E5B8F4',
-        // 'primary-hover':'rgba(232, 220, 255, 1.0)',
-        // 'secondary': '#c4b5fd',
-        // 'secondary-2': 'rgba(147, 157, 199, 1.0)',
         'accent': '#2D033B'
       },
       screens:{
