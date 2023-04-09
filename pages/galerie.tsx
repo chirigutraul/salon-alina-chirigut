@@ -1,8 +1,8 @@
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
-
 import { CustomModal } from "components";
+import { roboto } from "utils/fonts";
 
 const imagesArray: string[] = [
   "https://images.unsplash.com/photo-1632345031435-8727f6897d53?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
@@ -30,15 +30,15 @@ export default function Home() {
   const openImageModal = (imageUrl: string) => {
     setModalVisibility(true);
     setSelectedImage(imageUrl);
-    // set image url to selected Image
-    //set modal visibility true
   };
 
   return (
     <>
-      <div className="py-16 text-center">
+      <div className="px-32 py-16 text-center">
         <div>
-          <h1 className="text-4xl font-bold text-white drop-shadow-lg">
+          <h1
+            className={`text-4xl font-bold text-white drop-shadow-lg ${roboto.className}`}
+          >
             Galerie Clienti
           </h1>
         </div>
@@ -52,8 +52,6 @@ export default function Home() {
             />
           </div>
         </CustomModal>
-        {/* large styling grid grid-cols-4 p-16 gap-16 */}
-        {/* className="relative h-64 cursor-pointer w-128 hover:shadow-2xl" */}
         <div className="grid grid-cols-1 gap-8 my-16 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
           {imagesArray.map((image, index: number) => (
             <motion.div

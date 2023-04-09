@@ -69,6 +69,7 @@ const Profile = ({ session }: Props) => {
       className={`
   grid grid-cols-1 gap-8 mt-8
   md:grid-cols-3 md:grid-rows-2 md:mb-8 md:grid-flow-row-dense
+  md:px-8
   `}
     >
       <ProfileInfo session={session} />

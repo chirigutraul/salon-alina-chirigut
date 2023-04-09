@@ -28,8 +28,9 @@ const AppointmentSpotlight: FunctionComponent<Props> = ({
   return (
     <div
       className={`
-    bg-primary px-10 py-8
-    md:col-span-2 md:row-span-2
+    bg-primary px-10
+    md:col-span-2 md:row-span-1
+    md:px-0
     `}
     >
       <p
