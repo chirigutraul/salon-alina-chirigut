@@ -39,21 +39,17 @@ export const getServerSideProps: GetServerSideProps<Props> = async (
 };
 
 const Profile = ({ session }: Props) => {
-  const [loading, setLoading] = useState(false);
   const [appointments, setAppointments] = useState<Appointment[]>([]);
-  const [closestAppointment, setClosestAppointment] = useState<
-    Appointment | boolean
-  >(false);
+  const [closestAppointment, setClosestAppointment] =
+    useState<Appointment | null>(null);
 
   const fetchUserAppointments = async () => {
     if (!!session) {
-      setLoading(true);
       const { appointments, closestAppointment } = await getUserAppointments(
         session.user.id
       );
       setAppointments(appointments);
       setClosestAppointment(closestAppointment);
-      setLoading(false);
     } else {
       return "Session not found";
     }

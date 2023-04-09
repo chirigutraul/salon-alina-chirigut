@@ -5,12 +5,11 @@ import AppointmentModal from "components/AppointmentModal";
 import UnauthenticatedUser from "components/UnauthenticatedUser";
 import { Session } from "next-auth";
 import React, { FunctionComponent, useState } from "react";
-import { isBoolean } from "util";
 import { montserrat, roboto } from "utils/fonts";
 
 interface Props {
   session: Session | null;
-  closestAppointment: Appointment;
+  closestAppointment: Appointment | null;
 }
 
 const AppointmentSpotlight: FunctionComponent<Props> = ({

@@ -1,6 +1,5 @@
 import { Appointment, Service } from "@prisma/client"
 import moment from "moment";
-import App from "next/app";
 
 export async function createAppointment(clientId: string, date: Date, time: String, service: Service): Promise<Response> {
   if (!service || !service.duration) {
@@ -58,7 +57,7 @@ export async function getAppointmentsFromCertainDate(date:Date): Promise<Appoint
 
 interface userProfileAppointments {
   appointments: Appointment[];
-  closestAppointment: Appointment | boolean;
+  closestAppointment: Appointment | null;
 }
 
 export async function getUserAppointments(userId: string): Promise<userProfileAppointments>{
@@ -71,13 +70,13 @@ export async function getUserAppointments(userId: string): Promise<userProfileAp
 
   const dateToday = new Date();
 
-  let closestAppointment:Appointment | boolean = false;
+  let closestAppointment:Appointment | null = null;
 
   for(const appointment of sortedAppointments){
     if(new Date(appointment.date).getTime() > dateToday.getTime()){
       closestAppointment = appointment;
       break;
-    } else closestAppointment = false;
+    } 
   }
 
   const appointmentsAndSpotlight: userProfileAppointments = {
