@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React, { FunctionComponent } from "react";
 import { useRouter } from "next/router";
+import { roboto } from "utils/fonts";
 
 interface ProfilePictureProps {
   image: string;
@@ -31,10 +32,10 @@ const ProfilePicture: FunctionComponent<ProfilePictureProps> = ({
       )}
       <p
         className={`
-    text-xl text-white
-    md:text-base
-    xl:text-xl
-    `}
+        text-xl text-white ${roboto.className}
+        md:text-base
+        xl:text-xl
+        `}
       >
         {name.toUpperCase()}
       </p>
