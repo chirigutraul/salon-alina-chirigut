@@ -30,7 +30,7 @@ const AppointmentsHistory: FunctionComponent<Props> = ({ appointments }) => {
       </p>
 
       {appointments?.map((appointment) => (
-        <AppointmentCard appointment={appointment} />
+        <AppointmentCard appointment={appointment} key={appointment.id} />
       ))}
     </div>
   );

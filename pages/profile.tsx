@@ -47,9 +47,6 @@ const Profile = ({ session }: Props) => {
 
   if (!session || !session.user) return <UnauthenticatedUser />;
 
-  if (!session.user.phone)
-    return <AuthenticatedUserWithoutPhone session={session} />;
-
   const fetchUserAppointments = async () => {
     setLoading(true);
     const { appointments, closestAppointment } = await getUserAppointments(
@@ -63,6 +60,9 @@ const Profile = ({ session }: Props) => {
   useEffect(() => {
     fetchUserAppointments();
   }, []);
+
+  if (!session.user.phone)
+    return <AuthenticatedUserWithoutPhone session={session} />;
 
   return (
     <div
