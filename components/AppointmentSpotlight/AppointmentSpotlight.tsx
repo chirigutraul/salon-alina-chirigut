@@ -6,6 +6,7 @@ import UnauthenticatedUser from "components/UnauthenticatedUser";
 import { Session } from "next-auth";
 import React, { FunctionComponent, useState } from "react";
 import { montserrat, roboto } from "utils/fonts";
+import Spotlight from "./Spotlight";
 
 interface Props {
   session: Session | null;
@@ -23,13 +24,6 @@ const AppointmentSpotlight: FunctionComponent<Props> = ({
   const toggleAppointmentModal = () => {
     setAppointmentModal((curr) => !curr);
   };
-
-  if (!closestAppointment)
-    return (
-      <div>
-        <p>No appointments</p>
-      </div>
-    );
 
   return (
     <div
@@ -89,97 +83,7 @@ const AppointmentSpotlight: FunctionComponent<Props> = ({
           </div>
         </div>
 
-        <div
-          className={`
-        border-2 border-accent border-solid rounded-md
-        flex flex-col group p-4 gap-2
-        h-[16rem] w-[100%]
-        sm:h-[18rem] sm:p-8
-        lg:w-[50%] lg:p-4
-        `}
-        >
-          <div>
-            <h1
-              className={`
-            ${montserrat.className} font-medium text-accent 
-            text-2xl
-            sm:text-3xl
-            lg:text-2xl
-            `}
-            >
-              Te asteptam!
-            </h1>
-            <h1
-              className={`
-            ${montserrat.className} font-medium text-accent
-            text-xl
-            sm:text-2xl
-            lg:text-xl
-            `}
-            >
-              Urmatoarea ta programare:
-            </h1>
-          </div>
-          <h1
-            className={`
-          ${roboto.className} font-bold text-accent
-          text-2xl
-          sm:text-3xl
-          lg:text-2xl
-          `}
-          >
-            {closestAppointment.service.name}
-          </h1>
-          <div>
-            <p
-              className={`
-            ${montserrat.className} font-light 
-            text-md
-            sm:text-lg
-            `}
-            >
-              Data: 25.12.2023
-            </p>
-          </div>
-          <div
-            className={`
-          flex flex-row justify-between
-          `}
-          >
-            <p
-              className={`
-            ${montserrat.className} font-light text-md
-            sm:text-lg
-
-            `}
-            >
-              Ora: 12:00
-            </p>
-            <p
-              className={`
-            ${montserrat.className} font-light text-md
-            sm:text-lg
-            `}
-            >
-              Cost: 80RON
-            </p>
-          </div>
-          <div
-            className={`
-            flex flex-row justify-end
-          `}
-          >
-            <p
-              className={`
-            ${montserrat.className} font-light text-md
-            sm:text-lg
-
-            `}
-            >
-              Status: aprobata
-            </p>
-          </div>
-        </div>
+        <Spotlight closestAppointment={closestAppointment} />
       </div>
       {appointmentModal && (
         <AppointmentModal
