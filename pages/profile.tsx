@@ -45,21 +45,25 @@ const Profile = ({ session }: Props) => {
     Appointment | boolean
   >(false);
 
+  const fetchUserAppointments = async () => {
+    if (!!session) {
+      setLoading(true);
+      const { appointments, closestAppointment } = await getUserAppointments(
+        session.user.id
+      );
+      setAppointments(appointments);
+      setClosestAppointment(closestAppointment);
+      setLoading(false);
+    } else {
+      return "Session not found";
+    }
+  };
+
   useEffect(() => {
     fetchUserAppointments();
   }, []);
 
   if (!session || !session.user) return <UnauthenticatedUser />;
-
-  const fetchUserAppointments = async () => {
-    setLoading(true);
-    const { appointments, closestAppointment } = await getUserAppointments(
-      session.user.id
-    );
-    setAppointments(appointments);
-    setClosestAppointment(closestAppointment);
-    setLoading(false);
-  };
 
   if (!session.user.phone)
     return <AuthenticatedUserWithoutPhone session={session} />;
