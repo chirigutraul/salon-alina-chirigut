@@ -30,7 +30,7 @@ const links: LinkType[] = [
   },
   {
     title: "CONTACT",
-    route: "/contact",
+    route: "#contact",
   },
 ];
 

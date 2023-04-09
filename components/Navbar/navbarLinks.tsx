@@ -25,7 +25,7 @@ const links: LinkType[] = [
   },
   {
     title: "CONTACT",
-    route: "/contact",
+    route: "#contact",
   },
 ];
 
@@ -58,7 +58,7 @@ const NavbarLinks = ({ isMedium }: { isMedium: boolean }) => {
           xl:text-xl
           `}
           >
-            <a href={link.route}>{link.title}</a>
+            <Link href={link.route}>{link.title}</Link>
           </li>
         ))}
       </ul>

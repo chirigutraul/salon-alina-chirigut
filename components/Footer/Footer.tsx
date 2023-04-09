@@ -12,7 +12,7 @@ import { IconProp } from "@fortawesome/fontawesome-svg-core";
 function Footer() {
   return (
     <div
-      id="#contact"
+      id="contact"
       className={`bg-accent grid p-4 text-white gap-8
       lg:grid-cols-2 lg:p-8
     `}
