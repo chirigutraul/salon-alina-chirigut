@@ -1,11 +1,11 @@
 import React, { ReactElement } from "react";
 import { Navbar, Footer } from "components";
-import { roboto } from "utils/fonts";
+import { montserrat } from "utils/fonts";
 
 export default function Layout({ children }: { children: ReactElement }) {
   return (
     <div
-      className={`bg-diamond bg-primary h-screen w-screen overflow-x-hidden ${roboto.className}`}
+      className={`bg-diamond bg-primary h-screen w-screen overflow-x-hidden ${montserrat.className} font-regular`}
     >
       <Navbar />
       {children}

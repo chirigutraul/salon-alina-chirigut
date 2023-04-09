@@ -58,7 +58,7 @@ const NavbarLinks = ({ isMedium }: { isMedium: boolean }) => {
           xl:text-xl
           `}
           >
-            <Link href={link.route}>{link.title}</Link>
+            <a href={link.route}>{link.title}</a>
           </li>
         ))}
       </ul>
