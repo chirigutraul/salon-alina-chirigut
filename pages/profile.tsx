@@ -1,13 +1,17 @@
 import AuthenticatedUserWithoutPhone from "components/AuthenticatedUserWithoutPhone";
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { getSession } from "next-auth/react";
 import { Session } from "next-auth";
 import { Appointment, PrismaClient } from "@prisma/client";
-import { AppointmentsHistory, UnauthenticatedUser } from "components";
-import AppointmentSpotlight from "components/AppointmentSpotlight/AppointmentSpotlight";
-import ProfileInfo from "components/ProfileInfo/ProfileInfo";
+import {
+  AppointmentsHistory,
+  AppointmentSpotlight,
+  MakeAppointmentButton,
+  UnauthenticatedUser,
+  UserInfo,
+} from "components";
 import { getUserAppointments } from "utils/hooks/requests/appointments";
 
 interface Props {
@@ -54,19 +58,14 @@ const Profile = ({ session, appointments, closestAppointment }: Props) => {
 
   return (
     <div
-      className={`
-  grid grid-cols-1 gap-8 mt-8
-  md:grid-cols-3 md:grid-rows-2 md:mb-8 md:grid-flow-row-dense
-  md:px-8
-  `}
+      className={`px-4 grid grid-cols-1
+    md:grid-cols-2 md:gap-x-4
+    lg:grid-cols-3
+    `}
     >
-      <ProfileInfo session={session} />
-
-      <AppointmentSpotlight
-        session={session}
-        closestAppointment={closestAppointment}
-      />
-
+      <UserInfo client={session.user} />
+      <MakeAppointmentButton session={session} />
+      <AppointmentSpotlight closestAppointment={closestAppointment} />
       <AppointmentsHistory appointments={appointments} />
     </div>
   );

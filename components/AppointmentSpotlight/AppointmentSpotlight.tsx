@@ -1,98 +1,73 @@
-import { faCalendarPlus } from "@fortawesome/free-regular-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Appointment } from "@prisma/client";
-import AppointmentModal from "components/AppointmentModal";
-import UnauthenticatedUser from "components/UnauthenticatedUser";
-import { Session } from "next-auth";
-import React, { FunctionComponent, useState } from "react";
-import { montserrat, roboto } from "utils/fonts";
-import Spotlight from "./Spotlight";
+import React, { FunctionComponent } from "react";
+import { roboto } from "utils/fonts";
+import { servicesLabels, appointmentStatuses } from "utils/constants";
 
 interface Props {
-  session: Session | null;
   closestAppointment: Appointment | null;
 }
 
 const AppointmentSpotlight: FunctionComponent<Props> = ({
-  session,
   closestAppointment,
 }) => {
-  const [appointmentModal, setAppointmentModal] = useState<boolean>(false);
-
-  if (!session) return <UnauthenticatedUser />;
-
-  const toggleAppointmentModal = () => {
-    setAppointmentModal((curr) => !curr);
-  };
+  if (!closestAppointment)
+    return (
+      <div
+        className={`
+        h-64 border-2 border-accent rounded-md mt-8 p-4
+        flex flex-col justify-between py-8 text-center
+        lg:h-72
+      `}
+      >
+        <h1 className={`${roboto.className} text-3xl font-light`}>
+          Nu ai nicio programare in viitorul apropiat.
+        </h1>
+        <h2 className={`${roboto.className} text-3xl font-light`}>
+          Te asteptam cu drag!
+        </h2>
+      </div>
+    );
 
   return (
     <div
       className={`
-    bg-primary px-10
-    md:col-span-2 md:row-span-1
-    md:px-0
-    `}
+      h-64 border-2 border-accent rounded-md mt-8 p-4
+      flex flex-col justify-between
+      lg:h-72
+  `}
     >
-      <p
-        className={`
-      ${roboto.className}
-      text-center mb-8 text-accent
-      font-medium text-2xl 
-      xs:text-3xl
-      sm:text-3xl
-      `}
-      >
-        Increderea incepe cu unghii bine ingrijite!
-      </p>
-
-      <div
-        className={`
-      lg:flex lg:flex-row lg:justify-between lg:gap-8
-      `}
-      >
-        <div
-          className={`
-        border-2 border-accent border-solid rounded-md
-        flex flex-col items-center group cursor-pointer mb-8
-        hover:bg-accent 
-        h-[16rem] w-[100%]
-        sm:h-[18rem] md:gap-4 md:py-2
-        lg:w-[50%]
-        `}
-          onClick={toggleAppointmentModal}
-        >
-          <h1
-            className={`
-          ${montserrat.className}
-          font-bold text-2xl mt-4 text-accent
-          group-hover:text-primary
-          sm:text-3xl
-          `}
-          >
-            Rezerva Acum!
-          </h1>
-          <div
-            className={`
-          mt-4
-          `}
-          >
-            <FontAwesomeIcon
-              icon={faCalendarPlus}
-              className={`text-accent group-hover:text-primary`}
-              size="10x"
-            />
-          </div>
+      <span>
+        <h1 className={`${roboto.className} text-3xl font-light`}>
+          Te asteptam!
+        </h1>
+        <h1 className={`text-xl`}>Urmatoarea ta programare:</h1>
+      </span>
+      <span>
+        <h1 className={`${roboto.className} font-bold text-3xl`}>
+          {servicesLabels.get(closestAppointment.service.name)}
+        </h1>
+      </span>
+      <div>
+        <span>
+          <h3 className={`text-xl`}>
+            Data: {closestAppointment.date.toString().split("T")[0]}
+          </h3>
+        </span>
+        <div className={`flex justify-between`}>
+          <h3 className={`text-xl`}>
+            Ora:{" "}
+            {closestAppointment.date.toString().split("T")[1].substring(0, 5)}
+          </h3>
+          <h3 className={`text-xl`}>
+            Cost: {closestAppointment.service.price}RON
+          </h3>
         </div>
-
-        <Spotlight closestAppointment={closestAppointment} />
+        <div className={`flex justify-end`}>
+          <h3 className={`text-xl`}>
+            Status: {appointmentStatuses.get(closestAppointment.status)}
+          </h3>
+        </div>
       </div>
-      {appointmentModal && (
-        <AppointmentModal
-          isOpen={appointmentModal}
-          toggleModal={toggleAppointmentModal}
-          session={session}
-        />
-      )}
     </div>
   );
 };
