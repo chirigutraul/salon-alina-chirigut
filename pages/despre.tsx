@@ -14,8 +14,10 @@ export default function Despre() {
       lg:py-16 lg:px-32
       `}
       >
-        <h1 className={`${roboto.className} text-3xl`}>Despre noi</h1>
-        <h3 className={` text-xl w-[60%] mt-2`}>
+        <h1 className={`${roboto.className} text-3xl absolute z-10`}>
+          Despre noi
+        </h1>
+        <h3 className={` text-xl w-[60%] mt-12 absolute z-10`}>
           Manichiura & pedichiura realizate cu drag
         </h3>
         <Image
