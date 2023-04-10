@@ -7,7 +7,7 @@ import breakpoints from "utils/TailwindBreakPoints";
 import useWindowSize from "utils/hooks/BreakPointsHooks";
 
 interface Props {
-  appointments: Appointment[];
+  appointments: Appointment[] | null;
 }
 
 const DesktopAppointmentsHistory: FunctionComponent<Props> = ({
@@ -38,7 +38,12 @@ const AppointmentsHistory: FunctionComponent<Props> = ({ appointments }) => {
   const { width } = useWindowSize();
   const mobile = width && width < breakpoints.md;
 
-  if (!appointments) return <p>No appointments</p>;
+  if (!appointments)
+    return (
+      <div>
+        <h1>Nu ai nicio programare in istoric</h1>
+      </div>
+    );
 
   return (
     <div

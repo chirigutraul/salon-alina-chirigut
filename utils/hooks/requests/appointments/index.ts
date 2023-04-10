@@ -61,7 +61,7 @@ interface userProfileAppointments {
 }
 
 export async function getUserAppointments(userId: string): Promise<userProfileAppointments>{
-  const user = await fetch(`/api/clients/${userId}`);
+  const user = await fetch(`${process.env.API_URI}/api/clients/${userId}`);
   const userJson = await user.json();
 
   const sortedAppointments:Appointment[] = userJson.appointments.sort((a: Appointment, b: Appointment) => {

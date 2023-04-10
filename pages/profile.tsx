@@ -12,6 +12,8 @@ import { getUserAppointments } from "utils/hooks/requests/appointments";
 
 interface Props {
   session: Session | null;
+  appointments: Appointment[] | null;
+  closestAppointment: Appointment | null;
 }
 
 export const getServerSideProps: GetServerSideProps<Props> = async (
@@ -31,34 +33,20 @@ export const getServerSideProps: GetServerSideProps<Props> = async (
     if (user && user.phone) {
       session.user.phone = user.phone;
     }
+
+    const { appointments, closestAppointment } = await getUserAppointments(
+      session.user.id
+    );
+
+    return {
+      props: { session, appointments, closestAppointment },
+    };
   }
 
-  return {
-    props: { session },
-  };
+  return {};
 };
 
-const Profile = ({ session }: Props) => {
-  const [appointments, setAppointments] = useState<Appointment[]>([]);
-  const [closestAppointment, setClosestAppointment] =
-    useState<Appointment | null>(null);
-
-  const fetchUserAppointments = async () => {
-    if (!!session) {
-      const { appointments, closestAppointment } = await getUserAppointments(
-        session.user.id
-      );
-      setAppointments(appointments);
-      setClosestAppointment(closestAppointment);
-    } else {
-      return "Session not found";
-    }
-  };
-
-  useEffect(() => {
-    fetchUserAppointments();
-  }, [fetchUserAppointments]);
-
+const Profile = ({ session, appointments, closestAppointment }: Props) => {
   if (!session || !session.user) return <UnauthenticatedUser />;
 
   if (!session.user.phone)
