@@ -57,7 +57,7 @@ const Profile = ({ session }: Props) => {
 
   useEffect(() => {
     fetchUserAppointments();
-  }, []);
+  }, [fetchUserAppointments]);
 
   if (!session || !session.user) return <UnauthenticatedUser />;
 
