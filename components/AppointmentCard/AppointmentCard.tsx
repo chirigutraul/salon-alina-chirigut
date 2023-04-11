@@ -1,7 +1,7 @@
 import { Appointment } from "@prisma/client";
 import React, { FunctionComponent } from "react";
 import { roboto, montserrat } from "utils/fonts";
-import { appointmentStatuses } from "utils/constants";
+import { appointmentStatuses, servicesLabels } from "utils/constants";
 
 interface Props {
   appointment: Appointment;
@@ -26,7 +26,7 @@ const AppointmentCard: FunctionComponent<Props> = ({ appointment }) => {
       md:text-lg
       `}
       >
-        {appointment.id}
+        {servicesLabels.get(appointment.service.name)}
       </p>
       <p
         className={`
