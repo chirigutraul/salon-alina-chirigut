@@ -1,7 +1,6 @@
-import { Appointment, Service } from '@prisma/client';
-import moment, {Moment} from 'moment';
+import { Appointment } from '@prisma/client';
 
-export function getAvailableHours(
+export function GetAvailableHours(
   appointments:Appointment[],
   selectedDate:string,
   serviceDuration:number):string[]
