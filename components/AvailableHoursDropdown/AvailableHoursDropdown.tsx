@@ -19,13 +19,16 @@ const AvailableHoursDropdown: FunctionComponent<DropdownProps> = ({
   const [selectedValue, setSelectedValue] = useState<string>();
   const [isOpen, setIsOpen] = useState(false);
 
-  if (!selectedDate || !selectedServiceDuration) return null;
+  const availableHours =
+    selectedDate && selectedServiceDuration
+      ? useGetAvailableHours(
+          appointments,
+          selectedDate.toLocaleDateString(),
+          parseInt(selectedServiceDuration)
+        )
+      : [];
 
-  const availableHours = useGetAvailableHours(
-    appointments,
-    selectedDate.toLocaleDateString(),
-    parseInt(selectedServiceDuration)
-  );
+  if (!selectedDate || !selectedServiceDuration) return null;
 
   const toggleDropdown = () => setIsOpen((curr) => !curr);
 
