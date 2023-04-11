@@ -30,7 +30,7 @@ const DesktopAppointmentsHistory: FunctionComponent<Props> = ({
           </thead>
           <tbody>
             {appointments?.map((appointment) => (
-              <tr>
+              <tr key={"row" + appointment.id}>
                 <td className={"text-lg font-bold"}>
                   {servicesLabels.get(appointment.service.name)}
                 </td>
@@ -72,7 +72,7 @@ const AppointmentsHistory: FunctionComponent<Props> = ({ appointments }) => {
       <p
         className={`
       ${roboto.className}
-      font-light text-center 
+      font-light text-center  
       text-2xl
       sm:text-3xl
       `}
