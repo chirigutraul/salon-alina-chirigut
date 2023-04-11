@@ -20,7 +20,7 @@
       "@types":["/types"],
       "@icons":["/components/Icons"],
       "@utils":["/utils"],
-      "@requests":["/utils/hooks/Requests"]
+      "@requests":["/utils/hooks/requests"]
     },
     "typeRoots": ["/types"]
   },

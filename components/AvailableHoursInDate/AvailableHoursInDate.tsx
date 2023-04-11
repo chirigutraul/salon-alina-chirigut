@@ -1,6 +1,6 @@
 import { Appointment } from "@prisma/client";
 import React, { FunctionComponent } from "react";
-import { useGetAvailableHours } from "utils/hooks/date/GetAvailableHoursFromDate";
+import useGetAvailableHours from "utils/hooks/date/GetAvailableHoursFromDate";
 
 interface Props {
   appointments: Appointment[];
