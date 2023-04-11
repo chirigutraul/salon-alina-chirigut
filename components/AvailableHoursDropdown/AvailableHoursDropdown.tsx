@@ -19,14 +19,11 @@ const AvailableHoursDropdown: FunctionComponent<DropdownProps> = ({
   const [selectedValue, setSelectedValue] = useState<string>();
   const [isOpen, setIsOpen] = useState(false);
 
-  const availableHours =
-    selectedDate && selectedServiceDuration
-      ? useGetAvailableHours(
-          appointments,
-          selectedDate.toLocaleDateString(),
-          parseInt(selectedServiceDuration)
-        )
-      : [];
+  const availableHours = useGetAvailableHours(
+    appointments,
+    selectedDate,
+    selectedServiceDuration
+  );
 
   if (!selectedDate || !selectedServiceDuration) return null;
 

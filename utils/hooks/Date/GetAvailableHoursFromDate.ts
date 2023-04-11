@@ -2,14 +2,18 @@ import { Appointment } from '@prisma/client';
 
 export function useGetAvailableHours(
   appointments:Appointment[],
-  selectedDate:string,
-  serviceDuration:number):string[]
-  {
+  selectedDate: Date | undefined,
+  serviceDuration: string | undefined | null
+  ):string[] {
+  
+  if(!selectedDate || !serviceDuration) return [];
+
+  const parsedServiceDuration : number | undefined = parseInt(serviceDuration)
   const availableHours:string[] = [];
   
   const minutesStep = 30;
 
-  const parsedSelectedDate = new Date(selectedDate);
+  const parsedSelectedDate:Date = new Date(selectedDate.toLocaleDateString());
 
   const startOfDay = new Date( 
   parsedSelectedDate.getFullYear(),
@@ -27,7 +31,7 @@ export function useGetAvailableHours(
     var availability = true;
 
     const endTime = new Date(time);
-    endTime.setMinutes(endTime.getMinutes() + serviceDuration);
+    endTime.setMinutes(endTime.getMinutes() + parsedServiceDuration);
 
     if(endTime >= endOfDay){
       availability = false;
@@ -35,9 +39,9 @@ export function useGetAvailableHours(
 
     appointments.forEach(appointment => {
       const appointmentStart = new Date(appointment.date);
-      appointmentStart.setHours(appointmentStart.getHours() - 2);
+      appointmentStart.setHours(appointmentStart.getHours() - 3);
       const appointmentEnd = new Date(appointment.endDate);
-      appointmentEnd.setHours(appointmentEnd.getHours() - 2);
+      appointmentEnd.setHours(appointmentEnd.getHours() - 3);
 
       if(
         time >= appointmentStart && time < appointmentEnd || 
