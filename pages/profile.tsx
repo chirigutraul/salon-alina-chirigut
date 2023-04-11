@@ -1,10 +1,14 @@
 import AuthenticatedUserWithoutPhone from "components/AuthenticatedUserWithoutPhone";
 import React from "react";
 
-import { GetServerSideProps, GetServerSidePropsContext } from "next";
+import {
+  GetServerSideProps,
+  GetServerSidePropsContext,
+  PreviewData,
+} from "next";
 import { getSession } from "next-auth/react";
 import { Session } from "next-auth";
-import { Appointment, PrismaClient } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
 import {
   AppointmentsHistory,
   AppointmentSpotlight,
@@ -13,14 +17,16 @@ import {
   UserInfo,
 } from "components";
 import { getUserAppointments } from "utils/hooks/requests/appointments";
+import { ParsedUrlQuery } from "querystring";
+import { extendedAppointment } from "types";
 
 interface Props {
   session: Session | null;
-  appointments: Appointment[] | null;
-  closestAppointment: Appointment | null;
+  appointments: extendedAppointment[] | null;
+  closestAppointment: extendedAppointment | null;
 }
 
-export const getServerSideProps: GetServerSideProps<Props> = async (
+export const getServerSideProps: any = async (
   context: GetServerSidePropsContext
 ) => {
   const session = await getSession(context);
