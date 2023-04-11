@@ -1,6 +1,6 @@
 import { Appointment } from '@prisma/client';
 
-export function GetAvailableHours(
+export function useGetAvailableHours(
   appointments:Appointment[],
   selectedDate:string,
   serviceDuration:number):string[]
