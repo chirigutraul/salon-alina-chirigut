@@ -1,3 +1,5 @@
+import { AppointmentStatus, Service } from "@prisma/client";
+
 export interface IClient {
   id?: number;
   firstName?: string;
@@ -12,4 +14,16 @@ export interface IService {
   price: number;
   duration:string;
   description:string;
+}
+
+export interface extendedAppointment {
+  id: number;
+  date: Date;
+  rejectionDetails: string | null;
+  status: AppointmentStatus;
+  createdAt: Date;
+  clientId: string;
+  serviceId: number;
+  endDate: Date;
+  service: Service;
 }

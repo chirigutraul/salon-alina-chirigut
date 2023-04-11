@@ -1,13 +1,14 @@
-import { Appointment } from "@prisma/client";
+import { Appointment, AppointmentStatus, Service } from "@prisma/client";
 import { AppointmentCard } from "components";
 import React, { FunctionComponent } from "react";
 import { roboto } from "utils/fonts";
 import { servicesLabels, appointmentStatuses } from "utils/constants";
 import breakpoints from "utils/TailwindBreakPoints";
 import useWindowSize from "utils/hooks/BreakPointsHooks";
+import { extendedAppointment } from "types/DbEntitiesTypes";
 
 interface Props {
-  appointments: Appointment[] | null;
+  appointments: extendedAppointment[] | null;
 }
 
 const DesktopAppointmentsHistory: FunctionComponent<Props> = ({

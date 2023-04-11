@@ -2,9 +2,10 @@ import { Appointment } from "@prisma/client";
 import React, { FunctionComponent } from "react";
 import { roboto, montserrat } from "utils/fonts";
 import { appointmentStatuses, servicesLabels } from "utils/constants";
+import { extendedAppointment } from "types/DbEntitiesTypes";
 
 interface Props {
-  appointment: Appointment;
+  appointment: extendedAppointment;
 }
 
 const AppointmentCard: FunctionComponent<Props> = ({ appointment }) => {
