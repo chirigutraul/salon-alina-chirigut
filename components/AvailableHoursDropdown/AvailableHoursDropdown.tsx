@@ -1,7 +1,7 @@
 import { FunctionComponent, useState } from "react";
 import { roboto } from "utils/fonts";
 import { Appointment } from "@prisma/client";
-import useGetAvailableHours from "utils/hooks/date/GetAvailableHoursFromDate";
+import useGetAvailableHours from "utils/hooks/date/temp";
 
 interface DropdownProps {
   onSelect: (selectedHour: string) => void;
