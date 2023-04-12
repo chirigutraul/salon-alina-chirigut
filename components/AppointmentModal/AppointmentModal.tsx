@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Session } from "next-auth";
-import { montserrat, roboto } from "utils/fonts";
+import { roboto } from "utils/fonts";
 import Flatpickr from "react-flatpickr";
 import ReactModal from "react-modal";
 import "flatpickr/dist/themes/airbnb.css";
@@ -79,12 +79,12 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
       isOpen={isOpen}
       onRequestClose={toggleModal}
       className={`
-      py-8 px-4
-      w-screen h-screen overflow-hidden absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] 
+      py-8 px-4 ${roboto.className} 
+      w-full h-screen max-h-screen overflow-scroll overflow-x-hidden absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] 
       bg-primary shadow-md outline-none max-w-[32rem]
       sm:px-8
       md:h-[90vh] md:rounded-md
-      lg:h-[75vh] lg:max-w-[40rem]
+      lg:h-[75vh] lg:max-w-[40rem] 
     `}
       overlayClassName={`h-screen w-screen absolute top-0 bg-[rgba(0,0,0,0.5)] border-0 backdrop-blur`}
     >
@@ -101,7 +101,6 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
           <div className={`flex flex-row justify-between w-full items-center`}>
             <h1
               className={`
-              ${roboto.className}
               text-4xl font-medium 
               md:text-3xl md:text-center
               `}
@@ -121,7 +120,6 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
           </div>
           <p
             className={`
-          ${roboto.className}
           font-light text-left 
           text-xl
           sm:text-2xl
@@ -133,12 +131,12 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
           </p>
           <div
             className={`flex flex-col gap-2 w-full
-          lg:items-center
+          lg:items-center 
           `}
           >
             <label
               className={`
-          text-xl ${roboto.className}
+          text-xl
           font-light my-0
           lg:text-xl lg:w-96
           `}
@@ -146,8 +144,8 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
               Selecteaza data :
             </label>
             <div
-              className={`w-full flex flex-row bg-white items-center px-4 rounded-sm overflow-hidden shadow-md
-              lg:w-96
+              className={`w-full flex flex-row bg-white items-center px-4 rounded-sm overflow-hidden shadow-md relative
+              lg:w-96 
               `}
               onClick={() => {
                 if (!fp?.current?.flatpickr.isOpen)
@@ -160,6 +158,7 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
                 name="date"
                 value={date}
                 className={`
+                font-light
                 w-full py-2 text-left text-xl focus:border-0 focus:outline-none
                 sm:text-xl
                 lg:text-lg lg:py-1
@@ -187,13 +186,13 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
           </div>
 
           <div
-            className={`flex flex-col gap-2 w-full
+            className={`flex flex-col gap-2 w-full text-xl
           lg:w-96
           `}
           >
             <label
               className={`
-          text-xl ${roboto.className} font-light
+          text-xl font-light
           lg:text-xl
           `}
             >
@@ -212,8 +211,7 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
             >
               <label
                 className={`
-              text-xl ${roboto.className}
-              font-light
+              text-xl font-light
               sm:text-2xl
               lg:text-xl
               `}
@@ -228,14 +226,14 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
               />
             </div>
           )}
-          {response && (
-            <RequestFeedback
-              message={response.message}
-              status={response.status}
-            />
-          )}
         </div>
-        {
+        {response && (
+          <RequestFeedback
+            message={response.message}
+            status={response.status}
+          />
+        )}
+        <div className={"my-8"}>
           <Button
             title={
               response && response.status === 200 ? "Inchide" : "Programeaza!"
@@ -246,8 +244,9 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
                 : handleAppointmentCreation
             }
             size={isScreenAboveMedium ? "xl" : "lg"}
+            disabled={!(date && hour && selectedService)}
           />
-        }
+        </div>
       </form>
     </ReactModal>
   );
