@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Session } from "next-auth";
 import { montserrat, roboto } from "utils/fonts";
 import Flatpickr from "react-flatpickr";
@@ -38,6 +38,7 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
     status: number;
     message: string;
   }>();
+  const fp = useRef<any>(null);
 
   const { width } = useWindowSize();
   const isScreenAboveMedium = width && width >= breakpoints.md;
@@ -79,17 +80,17 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
       onRequestClose={toggleModal}
       className={`
       py-8 px-4
-      w-full h-screen overflow-hidden absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] 
-      bg-primary rounded-md shadow-md outline-none max-w-[32rem]
+      w-screen h-screen overflow-hidden absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] 
+      bg-primary shadow-md outline-none max-w-[32rem]
       sm:px-8
-      md:h-[90vh]
+      md:h-[90vh] md:rounded-md
       lg:h-[75vh] lg:max-w-[40rem]
     `}
       overlayClassName={`h-screen w-screen absolute top-0 bg-[rgba(0,0,0,0.5)] border-0 backdrop-blur`}
     >
       <form
         className={`
-       h-full w-full flex flex-col items-center justify-between
+       h-full w-full flex flex-col items-center justify-between text-accent
       `}
       >
         <div
@@ -100,15 +101,14 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
           <div className={`flex flex-row justify-between w-full items-center`}>
             <h1
               className={`
-              ${montserrat.className}
-              text-3xl font-light 
-              sm:text-4xl
+              ${roboto.className}
+              text-4xl font-medium 
               md:text-3xl md:text-center
               `}
             >
-              Buna, {session?.user.name}
+              Buna, {session?.user.name}!
             </h1>
-            <div onClick={toggleModal}>
+            <div onClick={toggleModal} className={"cursor-pointer"}>
               {!!true && (
                 <FontAwesomeIcon
                   icon={faClose}
@@ -140,7 +140,6 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
               className={`
           text-xl ${roboto.className}
           font-light my-0
-          sm:text-2xl
           lg:text-xl lg:w-96
           `}
             >
@@ -150,8 +149,14 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
               className={`w-full flex flex-row bg-white items-center px-4 rounded-sm overflow-hidden shadow-md
               lg:w-96
               `}
+              onClick={() => {
+                if (!fp?.current?.flatpickr.isOpen)
+                  fp.current.flatpickr.close();
+                fp.current.flatpickr.open();
+              }}
             >
               <Flatpickr
+                ref={fp}
                 name="date"
                 value={date}
                 className={`
@@ -174,8 +179,8 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
               />
               <FontAwesomeIcon
                 icon={faCalendarPlus}
-                className={`text-accent group-hover:text-primary text-3xl
-                lg:text-2xl
+                className={`text-accent text-3xl cursor-pointer
+                lg:text-2xl 
                 `}
               />
             </div>
@@ -188,9 +193,7 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
           >
             <label
               className={`
-          text-xl ${roboto.className}
-          font-light
-          sm:text-2xl
+          text-xl ${roboto.className} font-light
           lg:text-xl
           `}
             >
