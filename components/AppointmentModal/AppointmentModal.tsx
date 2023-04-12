@@ -80,11 +80,11 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
       onRequestClose={toggleModal}
       className={`
       py-8 px-4 ${roboto.className} 
-      w-full h-screen max-h-screen overflow-scroll overflow-x-hidden absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] 
+      w-full h-screen max-h-screen overflow-auto absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] 
       bg-primary shadow-md outline-none max-w-[32rem]
       sm:px-8
-      md:h-[90vh] md:rounded-md
-      lg:h-[75vh] lg:max-w-[40rem] 
+      md:h-[90vh] md:rounded-md md:py-8 
+      lg:h-[90vh] lg:max-w-[40rem] 
     `}
       overlayClassName={`h-screen w-screen absolute top-0 bg-[rgba(0,0,0,0.5)] border-0 backdrop-blur`}
     >

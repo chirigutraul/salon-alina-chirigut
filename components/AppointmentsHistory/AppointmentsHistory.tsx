@@ -15,39 +15,41 @@ const DesktopAppointmentsHistory: FunctionComponent<Props> = ({
   appointments,
 }) => {
   return (
-    <>
-      <div className={"flex justify-center"}>
-        <table className={"w-[90%] text-left"}>
-          <thead>
-            <tr>
-              <th className={`${roboto.className} text-2xl`}>Serviciu</th>
-              <th className={`${roboto.className} text-2xl text-right`}>
-                Data si ora
-              </th>
-              <th className={`${roboto.className} text-2xl text-right`}>
-                Status
-              </th>
+    <div
+      className={
+        "flex justify-center rounded-scrollbar-thumb rounded-scrollbar"
+      }
+    >
+      <table className={"w-[90%] text-left"}>
+        <thead>
+          <tr>
+            <th className={`${roboto.className} text-2xl`}>Serviciu</th>
+            <th className={`${roboto.className} text-2xl text-right`}>
+              Data si ora
+            </th>
+            <th className={`${roboto.className} text-2xl text-right`}>
+              Status
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {appointments?.map((appointment) => (
+            <tr key={"row" + appointment.id} className={"h-12"}>
+              <td className={"text-lg font-bold"}>
+                {servicesLabels.get(appointment.service.name)}
+              </td>
+              <td className={"text-lg text-right font-bold"}>
+                {appointment?.date.toString().split("T")[0]}{" "}
+                {appointment?.date.toString().split("T")[1].substring(0, 5)}
+              </td>
+              <td className={"text-lg text-right font-bold"}>
+                {appointmentStatuses.get(appointment.status)}
+              </td>
             </tr>
-          </thead>
-          <tbody>
-            {appointments?.map((appointment) => (
-              <tr key={"row" + appointment.id} className={"h-12"}>
-                <td className={"text-lg font-bold"}>
-                  {servicesLabels.get(appointment.service.name)}
-                </td>
-                <td className={"text-lg text-right font-bold"}>
-                  {appointment?.date.toString().split("T")[0]}{" "}
-                  {appointment?.date.toString().split("T")[1].substring(0, 5)}
-                </td>
-                <td className={"text-lg text-right font-bold"}>
-                  {appointmentStatuses.get(appointment.status)}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 };
 
