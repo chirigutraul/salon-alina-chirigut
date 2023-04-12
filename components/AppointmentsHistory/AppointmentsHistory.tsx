@@ -16,8 +16,8 @@ const DesktopAppointmentsHistory: FunctionComponent<Props> = ({
 }) => {
   return (
     <>
-      <div>
-        <table className={"w-full text-left"}>
+      <div className={"flex justify-center"}>
+        <table className={"w-[90%] text-left"}>
           <thead>
             <tr>
               <th className={`${roboto.className} text-2xl`}>Serviciu</th>
@@ -31,7 +31,7 @@ const DesktopAppointmentsHistory: FunctionComponent<Props> = ({
           </thead>
           <tbody>
             {appointments?.map((appointment) => (
-              <tr key={"row" + appointment.id}>
+              <tr key={"row" + appointment.id} className={"h-12"}>
                 <td className={"text-lg font-bold"}>
                   {servicesLabels.get(appointment.service.name)}
                 </td>
@@ -67,7 +67,7 @@ const AppointmentsHistory: FunctionComponent<Props> = ({ appointments }) => {
       className={`
     bg-primary flex flex-col gap-6 my-8
     md:h-[24rem] md:overflow-scroll md:overflow-x-hidden md:box-content md:col-span-2
-    lg:border-2 lg:border-accent lg:rounded-md
+    lg:border-2 lg:border-accent lg:rounded-md lg: py-8
     `}
     >
       <p
