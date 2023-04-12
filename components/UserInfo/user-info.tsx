@@ -19,20 +19,30 @@ const UserInfo: FunctionComponent<Props> = ({ client }) => {
     <div
       className={` text-accent
       md:col-span-2
-      lg:col-span-1 lg:row-span-2
+      lg:col-span-1 lg:row-span-2 
     `}
     >
-      <div className={"flex flex-col items-center py-4"}>
-        <Image
-          src={client.image}
-          alt="Profile picture of the user"
-          width={128}
-          height={128}
-          className={`rounded-full`}
-        />
+      <div
+        className={`flex flex-col items-center py-4
+      `}
+      >
+        <div
+          className={`relative h-32 w-32
+        xl:h-36 xl:w-36
+        `}
+        >
+          <Image
+            src={client.image}
+            alt="Profile picture of the user"
+            fill={true}
+            className={`rounded-full`}
+          />
+        </div>
         <h1
           className={`
         ${roboto.className} text-2xl font-bold
+        md:text-3xl
+        xl:text-4xl
         `}
         >
           {client.name}
@@ -40,18 +50,35 @@ const UserInfo: FunctionComponent<Props> = ({ client }) => {
       </div>
       <div className={"flex flex-col gap-4"}>
         <span>
-          <h2 className={`text-xl font-bold ${roboto.className}`}>Email:</h2>
+          <h2
+            className={`text-xl font-bold ${roboto.className}
+          md:text-2xl 
+          xl:text-3xl
+          `}
+          >
+            Email:
+          </h2>
           <span className={"flex items-center gap-2"}>
-            <FontAwesomeIcon icon={faEnvelope} className={`text-xl`} />
-            <p className={`text-xl`}>{client.email}</p>
+            <FontAwesomeIcon
+              icon={faEnvelope}
+              className={`text-xl xl:text-2xl`}
+            />
+            <p className={`text-xl xl:text-2xl`}>{client.email}</p>
           </span>
         </span>
 
         <span>
-          <h2 className={`text-xl font-bold ${roboto.className}`}>Telefon:</h2>
+          <h2
+            className={`text-xl font-bold ${roboto.className}
+          md:text-2xl 
+          xl:text-3xl
+          `}
+          >
+            Telefon:
+          </h2>
           <span className={"flex items-center gap-2"}>
-            <FontAwesomeIcon icon={faPhone} className={`text-xl`} />
-            <p className={`text-xl`}>{client.phone}</p>
+            <FontAwesomeIcon icon={faPhone} className={`text-xl xl:text-2xl`} />
+            <p className={`text-xl xl:text-2xl`}>{client.phone}</p>
           </span>
         </span>
       </div>
