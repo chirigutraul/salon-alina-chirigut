@@ -18,7 +18,7 @@ const HamburgerMenuButton: FunctionComponent<HamburgerMenuButtonProps> = ({
       onClick={toggleNavbar}
       className={`
     flex flex-col gap-1 justify-center items-center content-center relative
-    h-8 rounded-md p-4
+    h-8 rounded-md p-4 cursor-pointer
     xs:p-6
     `}
     >
