@@ -95,7 +95,7 @@ const MobileNavbar: FunctionComponent<MobileNavbarProps> = ({
         </div>
 
         <ul
-          className={`flex flex-col justify-center gap-24 ${
+          className={`ml-4 flex flex-col justify-center gap-12 ${
             !!session && "mt-16"
           }
       sm:pl-16
