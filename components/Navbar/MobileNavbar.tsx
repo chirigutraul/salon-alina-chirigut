@@ -5,6 +5,11 @@ import HamburgerMenuButton from "./HamburgerMenuButton";
 import MobileProfilePicture from "./MobileProfilePicture";
 import { motion } from "framer-motion";
 import Button from "components/Button";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSignOut } from "@fortawesome/free-solid-svg-icons";
+import { roboto } from "utils/fonts";
+import { signOut } from "next-auth/react";
+import { useRouter } from "next/router";
 
 interface LinkType {
   title: string;
@@ -46,6 +51,12 @@ const MobileNavbar: FunctionComponent<MobileNavbarProps> = ({
   toggleNavbar,
 }) => {
   const { data: session } = useSession();
+  const router = useRouter();
+
+  const handleSignOut = () => {
+    router.push("/");
+    signOut();
+  };
 
   if (isMedium || !navbarOpen) return null;
 
@@ -114,7 +125,22 @@ const MobileNavbar: FunctionComponent<MobileNavbarProps> = ({
           ))}
         </ul>
 
-        {!session && (
+        {!!session ? (
+          <span
+            className={`mt-16 text-white ${roboto.className}
+          flex flex-row ml-4 text-2xl underline cursor-pointer
+          `}
+            onClick={handleSignOut}
+          >
+            <FontAwesomeIcon
+              icon={faSignOut}
+              className={`
+            mr-4 text-3xl
+            `}
+            />
+            <p>Deconectare</p>
+          </span>
+        ) : (
           <div className={`mt-16`}>
             <Link href="/profile">
               <Button title="Conecteaza-te" onClick={toggleNavbar} size="2xl" />

@@ -53,7 +53,11 @@ export const getServerSideProps: any = async (
     };
   }
 
-  return {};
+  return {
+    props: {
+      session: null,
+    },
+  };
 };
 
 const Profile = ({ session, appointments, closestAppointment }: Props) => {
