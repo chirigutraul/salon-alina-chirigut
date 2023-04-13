@@ -33,50 +33,48 @@ export default function Home() {
   };
 
   return (
-    <>
-      <div className="px-32 py-16 text-center">
-        <div>
-          <h1
-            className={`text-4xl font-bold text-white drop-shadow-lg ${roboto.className}`}
-          >
-            Galerie Clienti
-          </h1>
-        </div>
-        <CustomModal isOpen={modalVisibility} onRequestClose={closeModal}>
-          <div className="relative w-full h-full">
-            <Image
-              src={selectedImage}
-              alt={"Client al salonului Ally Nails"}
-              fill={true}
-              className={"object-cover"}
-            />
-          </div>
-        </CustomModal>
-        <div className="grid grid-cols-1 gap-8 my-16 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
-          {imagesArray.map((image, index: number) => (
-            <motion.div
-              onClick={() => openImageModal(image)}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 1.1 }}
-              transition={{ duration: 0.2 }}
-              className="flex w-screen h-96 relative cursor-pointer hover:shadow-2xl justify-self-center
-            md:w-96 md:h-72
-            lg:w-[30rem] lg:h-96
-            xl:w-96
-            2xl:w-128"
-              key={index}
-            >
-              <Image
-                src={image}
-                className="object-cover drop-shadow-md"
-                fill={true}
-                alt="Manichiura client"
-                sizes={"(max-width:1920px) theme(w-128)"}
-              />
-            </motion.div>
-          ))}
-        </div>
+    <div className="py-8 text-center sm:px-8">
+      <div>
+        <h1 className={`text-4xl font-bold text-accent ${roboto.className}`}>
+          Galerie Clienti
+        </h1>
       </div>
-    </>
+      <CustomModal isOpen={modalVisibility} onRequestClose={closeModal}>
+        <div className="relative w-full h-full">
+          <Image
+            src={selectedImage}
+            alt={"Client al salonului Ally Nails"}
+            fill={true}
+            className={"object-cover"}
+          />
+        </div>
+      </CustomModal>
+      <div
+        className={`mt-8 grid grid-cols-1 gap-8
+      sm:grid-cols-2
+      md:grid-cols-3
+      lg:grid-cols-4
+      `}
+      >
+        {imagesArray.map((image, index: number) => (
+          <motion.div
+            onClick={() => openImageModal(image)}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 1.1 }}
+            transition={{ duration: 0.2 }}
+            className="relative w-full cursor-pointer aspect-square"
+            key={index}
+          >
+            <Image
+              src={image}
+              className="object-cover drop-shadow-md"
+              fill={true}
+              alt="Manichiura client"
+              sizes={"(max-width:1920px) theme(w-128)"}
+            />
+          </motion.div>
+        ))}
+      </div>
+    </div>
   );
 }
