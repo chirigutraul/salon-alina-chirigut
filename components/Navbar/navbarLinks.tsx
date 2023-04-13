@@ -52,6 +52,7 @@ const NavbarLinks = ({ isMedium }: { isMedium: boolean }) => {
             key={index}
             className={`
           text-xl text-white font-sans font-medium
+          hover:text-primary
           sm:text-2xl
           md:text-sm
           lg:text-lg

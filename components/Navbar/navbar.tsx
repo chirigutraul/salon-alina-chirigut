@@ -12,6 +12,7 @@ import ProfilePicture from "./ProfilePicture";
 import HamburgerMenuButton from "./HamburgerMenuButton";
 import Logo from "./Logo";
 import MobileNavbar from "./MobileNavbar";
+import { roboto } from "utils/fonts";
 
 const Navbar = () => {
   const router = useRouter();
@@ -65,11 +66,10 @@ const Navbar = () => {
             />
           )
         ) : (
-          <div className={`flex justify-center`}>
-            <Button
-              onClick={() => navigateToSignIn()}
-              title={`CONECTEAZA-TE`}
-            />
+          <div
+            className={`flex justify-center ${roboto.className} font-medium text-white text-xl hover:text-primary`}
+          >
+            <button onClick={() => navigateToSignIn()}>CONECTEAZA-TE</button>
           </div>
         ))}
       <AnimatePresence>
