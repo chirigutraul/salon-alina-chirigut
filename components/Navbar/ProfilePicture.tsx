@@ -46,7 +46,7 @@ const ProfilePicture: FunctionComponent<ProfilePictureProps> = ({
       </p>
       <div
         className={`
-      hidden absolute top-[99%] right-0 w-[80%] bg-pink-100 group overflow-hidden z-50
+      hidden absolute top-[99%] right-0 w-44 bg-pink-100 group overflow-hidden z-50
       rounded-md shadow-lg
       group-hover:block
       `}
