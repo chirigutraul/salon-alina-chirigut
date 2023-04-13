@@ -9,11 +9,7 @@ export default NextAuth({
   providers:[
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret:process.env.GOOGLE_CLIENT_SECRET,
-      scope:[
-        'https://www.googleapis.com/auth/userinfo.email',
-        'https://www.googleapis.com/auth/userinfo.profile',
-      ],
+      clientSecret:process.env.GOOGLE_CLIENT_SECRET
     })
   ],
   callbacks: {
@@ -38,6 +34,7 @@ export default NextAuth({
           id: sessionUser.id
         }
       })
+
      
       if(!loggedClient){
         const newClient = await prisma.client.create({
@@ -50,6 +47,7 @@ export default NextAuth({
           }
         })
       }
+
       user.user.phone = loggedClient?.phone || null;
       return true
     },

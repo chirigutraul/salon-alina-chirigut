@@ -31,7 +31,7 @@ export const getServerSideProps: any = async (
 ) => {
   const session = await getSession(context);
 
-  if (session) {
+  if (session && session.user && session.user.id) {
     const prisma = new PrismaClient();
 
     const user = await prisma.client.findUnique({
