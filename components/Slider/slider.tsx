@@ -28,12 +28,12 @@ function Slider() {
       {/* <NextButton /> */}
       {imagesArray.map((imageLink: string, index: number) => (
         <SwiperSlide key={index}>
-          <div className="relative w-full h-full">
+          <div className={`relative w-full h-full`}>
             <Image
               src={imageLink}
               alt="Picture of the something nice"
               fill={true}
-              className="object-cover lg:object-contain"
+              className="object-cover"
               sizes={"(max-width:1920px) w-screen h-screen"}
               priority={index === 0}
             />
