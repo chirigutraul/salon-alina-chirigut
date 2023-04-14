@@ -75,6 +75,8 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
       onRequestClose={toggleModal}
       className={` bg-primary
       absolute top-0 left-0 bottom-0 right-0 text-accent min-h-[530px] min-w-[170px]
+      md:max-w-[630px] md:min-h-[630px] md:rounded-md md:shadow-md
+      md:top-1/2 md:left-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2
       `}
       overlayClassName={`h-screen w-screen absolute top-0 bg-[rgba(0,0,0,0.5)] border-0 backdrop-blur`}
     >

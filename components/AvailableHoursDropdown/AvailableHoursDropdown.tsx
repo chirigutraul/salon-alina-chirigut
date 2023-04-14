@@ -54,6 +54,7 @@ const AvailableHoursDropdown: FunctionComponent<DropdownProps> = ({
         <ul
           className={`absolute py-1 overflow-y-scroll bg-white rounded-md shadow-md h-48
           top-10 w-full z-50 text-accent
+          md:h-28
           `}
         >
           {availableHours.map((option, index) => (
