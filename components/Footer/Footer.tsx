@@ -67,15 +67,20 @@ function Footer() {
           </li>
         </ul>
       </div>
-      <div>
-        <h2 className={`text-2xl ${roboto.className} mb-2`}>Ne gasesti aici</h2>
-        <iframe
-          width="100%"
-          height="428"
-          frameBorder="0"
-          scrolling="no"
-          src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=Strada%20Nicolae%20Grigorescu%209+(Ally%20Nails)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
-        ></iframe>
+      <div className={"overflow-hidden h-[500px] w-full"}>
+        <div id="my-map-canvas" className="w-full h-full max-w-full">
+          <iframe
+            className={"h-full w-full border-0"}
+            src="https://www.google.com/maps/embed/v1/place?q=Strada+Nicolae+Grigorescu+9,+Sânnicolau+Mare,+Romania&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"
+          ></iframe>
+        </div>
+        <a
+          className="googlemaps-made"
+          href="https://www.bootstrapskins.com/themes"
+          id="grab-map-info"
+        >
+          premium bootstrap themes
+        </a>
       </div>
     </div>
   );
