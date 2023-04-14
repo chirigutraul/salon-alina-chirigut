@@ -71,7 +71,7 @@ function Footer() {
         <div id="my-map-canvas" className="w-full h-full max-w-full">
           <iframe
             className={"h-full w-full border-0"}
-            src={`https://www.google.com/maps/embed/v1/place?q=Strada+Nicolae+Grigorescu+9,+Sânnicolau+Mare,+Romania&key=${process.env.GOOGLE_API_KEY}`}
+            src={`https://www.google.com/maps/embed/v1/place?q=Strada+Nicolae+Grigorescu+9,+Sânnicolau+Mare,+Romania&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8`}
           ></iframe>
         </div>
         <a
