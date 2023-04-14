@@ -21,6 +21,7 @@ import {
 import breakpoints from "utils/TailwindBreakPoints";
 import useWindowSize from "utils/hooks/BreakPointsHooks";
 import { getServices } from "utils/hooks/requests/services";
+import { useMinutesToString } from "utils/hooks/date/format-hour";
 
 interface Props {
   isOpen: boolean;
@@ -146,6 +147,11 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
             <div className={"mt-2"}>
               <ServicesDropdown onSelect={setSelectedService} />
             </div>
+            {selectedService && selectedService.duration ? (
+              <p className={"xs:text-lg"}>
+                Durata: {useMinutesToString(parseInt(selectedService.duration))}
+              </p>
+            ) : null}
           </div>
           {date && selectedService && (
             <div>
