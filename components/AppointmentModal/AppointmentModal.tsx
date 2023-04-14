@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Session } from "next-auth";
 import { roboto } from "utils/fonts";
 import Flatpickr from "react-flatpickr";
@@ -32,7 +32,6 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
   const [date, setDate] = useState<Date>();
   const [hour, setHour] = useState<string>("");
   const [appointments, setAppointments] = useState<Appointment[]>([]);
-  const [services, setServices] = useState<Service[]>([]);
   const [selectedService, setSelectedService] = useState<Service>();
   const [response, setResponse] = useState<{
     status: number;
@@ -41,16 +40,14 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
   const fp = useRef<any>(null);
 
   const { width } = useWindowSize();
-  const isScreenAboveMedium = width && width >= breakpoints.md;
+
+  const canUserMakeAppointment = useMemo(() => {
+    return date && hour && selectedService;
+  }, [date, hour, selectedService]);
 
   const fetchAppointments = async (date: Date) => {
     const appointments = await getAppointmentsFromCertainDate(date);
     setAppointments(appointments);
-  };
-
-  const fetchAndSetServices = async () => {
-    const services = await getServices();
-    setServices(services);
   };
 
   const handleAppointmentCreation = async () => {
@@ -64,105 +61,60 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
     ).then(async (res) => {
       const parsedResponse = await res.json();
       setResponse(parsedResponse);
+      toggleModal();
     });
-
-    console.log("response", response);
   };
 
   useEffect(() => {
     if (date) fetchAppointments(date);
-    fetchAndSetServices();
   }, [date]);
 
   return (
     <ReactModal
       isOpen={isOpen}
       onRequestClose={toggleModal}
-      className={`
-      py-8 px-4 ${roboto.className} 
-      w-full max-h-screen overflow-auto absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] 
-      bg-primary shadow-md outline-none max-w-[32rem]
-      sm:px-8
-      md:rounded-md md:py-8 
-      lg:max-w-[40rem] 
-    `}
+      className={` bg-primary
+      absolute top-0 left-0 bottom-0 right-0 text-accent min-h-[530px] min-w-[170px]
+      `}
       overlayClassName={`h-screen w-screen absolute top-0 bg-[rgba(0,0,0,0.5)] border-0 backdrop-blur`}
     >
-      <form
-        className={`
-       h-full w-full flex flex-col items-center justify-between text-accent
-      `}
-      >
-        <div
-          className={`h-full w-full flex flex-col gap-8
-        lg:items-center
-        `}
-        >
-          <div className={`flex flex-row justify-between w-full items-center`}>
-            <h1
-              className={`
-              text-4xl font-medium 
-              md:text-3xl md:text-center
-              `}
-            >
-              Buna, {session?.user.name}!
-            </h1>
-            <div onClick={toggleModal} className={"cursor-pointer"}>
-              {!!true && (
-                <FontAwesomeIcon
-                  icon={faClose}
-                  className={`text-accent group-hover:text-primary 
-              text-4xl
-              `}
-                />
-              )}
-            </div>
-          </div>
-          <p
-            className={`
-          font-light text-left 
-          text-xl
-          sm:text-2xl
-          lg:text-center
-        `}
-          >
-            Pentru a realiza o programare, te rugam sa completezi formularul de
-            mai jos.
-          </p>
+      <div className={"flex flex-col justify-between h-full w-full p-4"}>
+        <form className={"flex flex-col gap-4"}>
           <div
-            className={`flex flex-col gap-2 w-full
-          lg:items-center 
-          `}
+            className={`flex items-center justify-between ${roboto.className} xs:text-3xl`}
           >
-            <label
+            <p>Buna, {session.user.name}!</p>
+            <FontAwesomeIcon
+              onClick={toggleModal}
+              icon={faClose}
               className={`
-          text-xl
-          font-light my-0
-          lg:text-xl lg:w-96
-          `}
-            >
-              Selecteaza data :
+              cursor-pointer
+              xs:text-4xl
+              `}
+            />
+          </div>
+
+          <h3 className={"xs:text-2xl"}>
+            Pentru a face o programare, te rugam sa completezi formularul de mai
+            jos:
+          </h3>
+
+          <div>
+            <label>
+              <p className={"xs:text-2xl"}>Selecteaza data:</p>
             </label>
             <div
-              className={`w-full flex flex-row bg-white items-center px-4 rounded-sm overflow-hidden shadow-md relative
-              lg:w-96 
-              `}
-              onClick={() => {
-                if (!fp?.current?.flatpickr.isOpen)
-                  fp.current.flatpickr.close();
-                fp.current.flatpickr.open();
-              }}
+              onClick={() => fp.current.flatpickr.open()}
+              className={`flex bg-white px-4 h-12 items-center mt-2 rounded-md border-[1px] border-accent`}
             >
               <Flatpickr
                 ref={fp}
                 name="date"
                 value={date}
                 className={`
-                font-light
-                w-full py-2 text-left text-xl focus:border-0 focus:outline-none
-                sm:text-xl
-                lg:text-lg lg:py-1
-                `}
+                  min-w-[90%]
+                  xs:min-w-8
+                  flex-grow xs:text-2xl focus:outline-none font-light text-gray-400`}
                 placeholder="Data"
                 onChange={(date) => setDate(date[0])}
                 options={{
@@ -178,76 +130,54 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
               />
               <FontAwesomeIcon
                 icon={faCalendarPlus}
-                className={`text-accent text-3xl cursor-pointer
-                lg:text-2xl 
-                `}
+                className={`
+                  text-xl
+                  xs:text-3xl
+                  `}
               />
             </div>
           </div>
-
-          <div
-            className={`flex flex-col gap-2 w-full text-xl
-          lg:w-96
-          `}
-          >
-            <label
-              className={`
-          text-xl font-light
-          lg:text-xl
-          `}
-            >
-              Selecteaza serviciul dorit :
+          <div>
+            <label>
+              <p className={"xs:text-2xl"}>Selecteaza serviciul:</p>
             </label>
-            <ServicesDropdown
-              options={services}
-              onSelect={setSelectedService}
-            />
+            <div className={"mt-2"}>
+              <ServicesDropdown onSelect={setSelectedService} />
+            </div>
           </div>
           {date && selectedService && (
-            <div
-              className={`w-full flex flex-col gap-2
-            lg:w-96
-            `}
-            >
-              <label
-                className={`
-              text-xl font-light
-              sm:text-2xl
-              lg:text-xl
-              `}
-              >
-                Selecteaza una din orele disponibile :
+            <div>
+              <label>
+                <p className={"xs:text-2xl"}>
+                  Selecteaza una din orele disponibile:
+                </p>
               </label>
-              <AvailableHoursDropdown
-                appointments={appointments}
-                selectedDate={date}
-                selectedServiceDuration={selectedService?.duration}
-                onSelect={setHour}
-              />
+              <div className={"mt-2"}>
+                <AvailableHoursDropdown
+                  selectedDate={date}
+                  appointments={appointments}
+                  onSelect={setHour}
+                  selectedServiceDuration={selectedService?.duration}
+                />
+              </div>
             </div>
           )}
+        </form>
+        <div className={"mt-4"}>
+          <button
+            className={` ${
+              roboto.className
+            } w-full text-white bg-accent py-2 rounded-md
+            xs:text-2xl font-medium
+            ${!canUserMakeAppointment && "bg-gray-400"}
+            `}
+            disabled={!canUserMakeAppointment}
+            onClick={handleAppointmentCreation}
+          >
+            Programeaza
+          </button>
         </div>
-        {response && (
-          <RequestFeedback
-            message={response.message}
-            status={response.status}
-          />
-        )}
-        <div className={"my-8"}>
-          <Button
-            title={
-              response && response.status === 200 ? "Inchide" : "Programeaza!"
-            }
-            onClick={
-              response && response.status === 200
-                ? toggleModal
-                : handleAppointmentCreation
-            }
-            size={isScreenAboveMedium ? "xl" : "lg"}
-            disabled={!(date && hour && selectedService)}
-          />
-        </div>
-      </form>
+      </div>
     </ReactModal>
   );
 };

@@ -1,83 +1,75 @@
-import { Service, Servname } from "@prisma/client";
-import { FunctionComponent, useState } from "react";
-import { montserrat, roboto } from "utils/fonts";
+import { Service } from "@prisma/client";
+import { FunctionComponent, useEffect, useState } from "react";
+import { roboto } from "utils/fonts";
 import { servicesLabels } from "utils/constants";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { getServices } from "utils/hooks/requests/services";
 
 interface DropdownProps {
-  options: Service[];
   onSelect: (selectedService: Service) => void;
 }
 
-const Dropdown: FunctionComponent<DropdownProps> = ({ options, onSelect }) => {
+const Dropdown: FunctionComponent<DropdownProps> = ({ onSelect }) => {
   const [selectedValue, setSelectedValue] = useState<Service>();
   const [isOpen, setIsOpen] = useState(false);
 
+  const [services, setServices] = useState<Service[]>([]);
+
   const toggleDropdown = () => setIsOpen((curr) => !curr);
 
+  const fetchAndSetServices = async () => {
+    const services = await getServices();
+    setServices(services);
+  };
+
+  useEffect(() => {
+    fetchAndSetServices();
+  }, []);
+
   return (
-    <div className="relative inline-block w-full text-left">
-      <div className="w-full">
-        <button
-          type="button"
-          className={`
-          inline-flex justify-between items-center w-full px-4 py-2 bg-white rounded-sm shadow-md hover:bg-gray-100 focus:outline-none
-          ${roboto.className} font-regular text-md truncate 
-          ${selectedValue ? "text-accent" : "text-gray-400"}
-          lg:py-1 lg:px-4 lg:w-full
-          `}
-          onClick={() => toggleDropdown()}
-        >
-          <span
-            className={`
-          truncate
-          sm:text-xl ${roboto.className} font-light
-          lg:text-lg
-          `}
-          >
-            {(selectedValue && servicesLabels.get(selectedValue.name)) ??
-              "Serviciul"}
-          </span>
-          <FontAwesomeIcon
-            icon={faChevronDown}
-            className={`
-            text-xl text-accent
-            sm:text-2xl
-            lg:text-xl
-            `}
-          />
-        </button>
+    <div
+      className={` bg-white ${roboto.className} rounded-md font-light
+    border-[1px] border-accent h-12 cursor-pointer relative w-full
+    `}
+    >
+      <div
+        className={`p-4 flex justify-between items-center h-full`}
+        onClick={() => toggleDropdown()}
+      >
+        <p className={`xs:text-2xl text-gray-400`}>
+          {(selectedValue && servicesLabels.get(selectedValue.name)) ??
+            "Serviciul"}
+        </p>
+        <FontAwesomeIcon
+          icon={faChevronDown}
+          className={`xs:text-3xl text-accent`}
+        />
       </div>
 
       {isOpen && (
-        <div className="absolute h-[20vh] right-0 z-10 w-full mt-2 overflow-scroll origin-top-right bg-white rounded-sm shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-          <div
-            className="py-1"
-            role="menu"
-            aria-orientation="vertical"
-            aria-labelledby="options-menu"
-          >
-            {options.map((option) => (
-              <button
-                type={"button"}
+        <div
+          className={`bg-white mt-4 rounded-md shadow-md overflow-x-hidden absolute w-full z-50
+           top-6 h-48 overflow-y-scroll
+          `}
+        >
+          <ul>
+            {services.map((option) => (
+              <li
                 key={option.id}
+                className={`pl-4 py-2 hover:bg-primary hover:bg-opacity-30 text-accent
+                xs:text-xl
+                `}
                 onClick={() => {
                   setSelectedValue(option);
                   onSelect(option);
                   toggleDropdown();
                 }}
-                className={`
-                block w-full px-4 py-2 text-sm hover:bg-gray-100 hover:text-gray-900
-                ${roboto.className} font-light text-accent 
-                sm:text-lg sm:py-2
-                `}
-                role="menuitem"
               >
                 {servicesLabels.get(option.name)}
-              </button>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       )}
     </div>
