@@ -74,7 +74,7 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
     <ReactModal
       isOpen={isOpen}
       onRequestClose={toggleModal}
-      className={` bg-primary
+      className={` bg-primary focus:outline-none
       absolute top-0 left-0 bottom-0 right-0 text-accent min-h-[530px] min-w-[170px]
       md:max-w-[630px] md:min-h-[630px] md:rounded-md md:shadow-md
       md:top-1/2 md:left-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2
