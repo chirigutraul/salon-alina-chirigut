@@ -23,7 +23,7 @@ model Service {
   id           Int           @id @default(autoincrement())
   name         Servname
   price        Int?
-  duration     String?
+  duration     String
   description  String?
   appointments Appointment[]
 }
