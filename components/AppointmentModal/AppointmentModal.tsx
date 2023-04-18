@@ -4,12 +4,7 @@ import { roboto } from "utils/fonts";
 import Flatpickr from "react-flatpickr";
 import ReactModal from "react-modal";
 import "flatpickr/dist/themes/airbnb.css";
-import {
-  ServicesDropdown,
-  Button,
-  AvailableHoursDropdown,
-  RequestFeedback,
-} from "components";
+import { ServicesDropdown, AvailableHoursDropdown } from "components";
 import { Appointment, Service } from "@prisma/client";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarPlus } from "@fortawesome/free-regular-svg-icons";
@@ -18,9 +13,6 @@ import {
   createAppointment,
   getAppointmentsFromCertainDate,
 } from "utils/hooks/requests/appointments";
-import breakpoints from "utils/TailwindBreakPoints";
-import useWindowSize from "utils/hooks/BreakPointsHooks";
-import { getServices } from "utils/hooks/requests/services";
 import { useMinutesToString } from "utils/hooks/date/format-hour";
 
 interface Props {
@@ -39,8 +31,7 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
     message: string;
   }>();
   const fp = useRef<any>(null);
-
-  const { width } = useWindowSize();
+  const serviceDuration = useMinutesToString(selectedService);
 
   const canUserMakeAppointment = useMemo(() => {
     return date && hour && selectedService;
@@ -54,16 +45,13 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
   const handleAppointmentCreation = async () => {
     if (!date || !hour || !selectedService) return;
 
-    const response = await createAppointment(
-      session.user.id,
-      date,
-      hour,
-      selectedService
-    ).then(async (res) => {
-      const parsedResponse = await res.json();
-      setResponse(parsedResponse);
-      toggleModal();
-    });
+    await createAppointment(session.user.id, date, hour, selectedService).then(
+      async (res) => {
+        const parsedResponse = await res.json();
+        setResponse(parsedResponse);
+        toggleModal();
+      }
+    );
   };
 
   useEffect(() => {
@@ -148,9 +136,7 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
               <ServicesDropdown onSelect={setSelectedService} />
             </div>
             {selectedService && selectedService.duration ? (
-              <p className={"xs:text-lg"}>
-                Durata: {useMinutesToString(parseInt(selectedService.duration))}
-              </p>
+              <p className={"xs:text-lg"}>Durata: {serviceDuration}</p>
             ) : null}
           </div>
           {date && selectedService && (

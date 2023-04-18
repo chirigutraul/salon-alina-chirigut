@@ -1,7 +1,7 @@
 import React from "react";
 import "swiper/css";
 
-import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Autoplay } from "swiper";
 import Image from "next/image";
 
@@ -24,8 +24,6 @@ function Slider() {
       loop={true}
       autoplay={true}
     >
-      {/* <PreviousButton/> */}
-      {/* <NextButton /> */}
       {imagesArray.map((imageLink: string, index: number) => (
         <SwiperSlide key={index}>
           <div className={`relative w-full h-full`}>
