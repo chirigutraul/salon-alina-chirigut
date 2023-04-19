@@ -1,4 +1,6 @@
-import { Slider, TopServicesGallery, VisitUsSection } from "components";
+import Slider from "components/Slider";
+import TopServicesGallery from "components/TopServicesGallery";
+import VisitUsSection from "components/VisitUsSection";
 
 export default function Home() {
   return (

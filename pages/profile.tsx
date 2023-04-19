@@ -5,13 +5,11 @@ import { GetServerSidePropsContext } from "next";
 import { getSession } from "next-auth/react";
 import { Session } from "next-auth";
 import { PrismaClient } from "@prisma/client";
-import {
-  AppointmentsHistory,
-  AppointmentSpotlight,
-  MakeAppointmentButton,
-  UnauthenticatedUser,
-  UserInfo,
-} from "components";
+import AppointmentsHistory from "components/AppointmentsHistory";
+import AppointmentSpotlight from "components/AppointmentSpotlight";
+import MakeAppointmentButton from "components/MakeAppointmentButton";
+import UnauthenticatedUser from "components/UnauthenticatedUser";
+import UserInfo from "components/UserInfo";
 import { getUserAppointments } from "utils/hooks/requests/appointments";
 import { extendedAppointment } from "types";
 

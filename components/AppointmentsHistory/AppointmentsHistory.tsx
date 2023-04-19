@@ -1,5 +1,4 @@
-import { Appointment, AppointmentStatus, Service } from "@prisma/client";
-import { AppointmentCard } from "components";
+import AppointmentCard from "components/AppointmentCard";
 import React, { FunctionComponent } from "react";
 import { roboto } from "utils/fonts";
 import { servicesLabels, appointmentStatuses } from "utils/constants";

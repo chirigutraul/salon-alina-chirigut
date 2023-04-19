@@ -1,4 +1,3 @@
-import { Button } from "components";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { roboto } from "utils/fonts";

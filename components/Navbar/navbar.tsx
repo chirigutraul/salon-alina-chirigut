@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import NavbarLinks from "./navbarLinks";
-import { Button } from "components";
 
 import useWindowSize from "utils/hooks/BreakPointsHooks";
 import breakpoints from "utils/TailwindBreakPoints";
 
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import ProfilePicture from "./ProfilePicture";

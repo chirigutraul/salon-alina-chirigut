@@ -1,5 +1,6 @@
 import React, { ReactElement } from "react";
-import { Navbar, Footer } from "components";
+import Navbar from "components/Navbar";
+import Footer from "components/Footer";
 import { montserrat } from "utils/fonts";
 
 export default function Layout({ children }: { children: ReactElement }) {

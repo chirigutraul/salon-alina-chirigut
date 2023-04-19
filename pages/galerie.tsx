@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { CustomModal } from "components";
+import CustomModal from "components/CustomModal";
 import { roboto } from "utils/fonts";
 
 const imagesArray: string[] = [

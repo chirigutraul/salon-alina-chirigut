@@ -24,14 +24,3 @@ html{
 .main-margin::-webkit-scrollbar-track-piece:end {
   margin-bottom: 532px; 
 }
-
-
-/* div.rm-s-m-t::-webkit-scrollbar-track-piece:start {
-  margin-top: 0px;
-}
-div.rm-s-m-b::-webkit-scrollbar-track-piece:end {
-  margin-bottom: 0px;
-}
-div.rm-s-m-t::-webkit-scrollbar-thumb, div.rm-s-m-b::-webkit-scrollbar-thumb {
-  background: rgba(255,255,255, 0.5)
-} */
