@@ -4,7 +4,6 @@ import React from "react";
 import { GetServerSidePropsContext } from "next";
 import { getSession } from "next-auth/react";
 import { Session } from "next-auth";
-import { PrismaClient } from "@prisma/client";
 import AppointmentsHistory from "components/AppointmentsHistory";
 import AppointmentSpotlight from "components/AppointmentSpotlight";
 import MakeAppointmentButton from "components/MakeAppointmentButton";
@@ -12,7 +11,7 @@ import UnauthenticatedUser from "components/UnauthenticatedUser";
 import UserInfo from "components/UserInfo";
 import { getUserAppointments } from "utils/hooks/requests/appointments";
 import { extendedAppointment } from "types";
-
+import { prisma } from "prisma/client";
 interface Props {
   session: Session | null;
   appointments: extendedAppointment[] | null;
@@ -25,8 +24,6 @@ export const getServerSideProps: any = async (
   const session = await getSession(context);
 
   if (session && session.user && session.user.id) {
-    const prisma = new PrismaClient();
-
     if (!session.user.phone) {
       const user = await prisma.client.findUnique({
         where: {
