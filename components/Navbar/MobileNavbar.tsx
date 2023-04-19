@@ -5,8 +5,8 @@ import HamburgerMenuButton from "./HamburgerMenuButton";
 import MobileProfilePicture from "./MobileProfilePicture";
 import { motion } from "framer-motion";
 import Button from "components/Button";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faSignOut } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSignOut } from "@fortawesome/free-solid-svg-icons";
 import { roboto } from "utils/fonts";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/router";
@@ -132,12 +132,12 @@ const MobileNavbar: FunctionComponent<MobileNavbarProps> = ({
           `}
             onClick={handleSignOut}
           >
-            {/* <FontAwesomeIcon
+            <FontAwesomeIcon
               icon={faSignOut}
               className={`
             mr-4 text-3xl
             `}
-            /> */}
+            />
             <p>Deconectare</p>
           </span>
         ) : (

@@ -2,8 +2,8 @@ import { FunctionComponent, useState } from "react";
 import { roboto } from "utils/fonts";
 import { Appointment } from "@prisma/client";
 import useGetAvailableHours from "utils/hooks/date/get-available-hours";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
 interface DropdownProps {
   onSelect: (selectedHour: string) => void;
@@ -42,12 +42,12 @@ const AvailableHoursDropdown: FunctionComponent<DropdownProps> = ({
         onClick={() => toggleDropdown()}
       >
         <span className={"truncate"}>{selectedValue ?? "Ora"}</span>
-        {/* <FontAwesomeIcon
+        <FontAwesomeIcon
           icon={faChevronDown}
           className={`text-accent
         xs:text-3xl
         `}
-        /> */}
+        />
       </div>
 
       {isOpen && (

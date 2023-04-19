@@ -3,8 +3,8 @@ import React, { FunctionComponent } from "react";
 import { useRouter } from "next/router";
 import { roboto } from "utils/fonts";
 import { signOut } from "next-auth/react";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faSignOut, faUser } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSignOut, faUser } from "@fortawesome/free-solid-svg-icons";
 
 interface ProfilePictureProps {
   image: string;
@@ -59,7 +59,7 @@ const ProfilePicture: FunctionComponent<ProfilePictureProps> = ({
             onClick={() => router.push("/profile")}
           >
             <span className={"flex flex-row ml-4 items-center"}>
-              {/* <FontAwesomeIcon icon={faUser} className={`text-xl mr-2`} /> */}
+              <FontAwesomeIcon icon={faUser} className={`text-xl mr-2`} />
               <p>Profil</p>
             </span>
           </li>
@@ -68,7 +68,7 @@ const ProfilePicture: FunctionComponent<ProfilePictureProps> = ({
             onClick={() => signOut()}
           >
             <span className={"flex flex-row ml-4 items-center"}>
-              {/* <FontAwesomeIcon icon={faSignOut} className={`text-xl mr-2`} /> */}
+              <FontAwesomeIcon icon={faSignOut} className={`text-xl mr-2`} />
               <p>Deconectare</p>
             </span>
           </li>

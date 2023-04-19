@@ -15,3 +15,4 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 module.exports = () => {
   return withBundleAnalyzer(nextConfig)
 }
+

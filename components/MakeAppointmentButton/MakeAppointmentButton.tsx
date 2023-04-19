@@ -1,5 +1,5 @@
-// import { faCalendarPlus } from "@fortawesome/free-solid-svg-icons";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCalendarPlus } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import AppointmentModal from "components/AppointmentModal";
 import UnauthenticatedUser from "components/UnauthenticatedUser";
 import { Session } from "next-auth";
@@ -37,10 +37,10 @@ const MakeAppointmentButton: FunctionComponent<Props> = ({ session }) => {
         >
           Rezerva acum!
         </h1>
-        {/* <FontAwesomeIcon
+        <FontAwesomeIcon
           icon={faCalendarPlus}
           className={`text-9xl group-hover:text-white group-hover:animate-bounce`}
-        /> */}
+        />
       </div>
       {appointmentModal && (
         <AppointmentModal
