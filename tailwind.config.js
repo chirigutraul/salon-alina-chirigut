@@ -16,6 +16,8 @@ module.exports = {
       'black-25':'rgba(37,32,40, 0.25)',
       'black-10':'rgba(37,32,40, 0.1)',
       'error':'#AD5043',
+      'white':'rgba(255,255,255, 1)',
+      'white-80':'rgba(255,255,255, 0.80)',
     },
     extend: {
       screens:{

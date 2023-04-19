@@ -5,8 +5,6 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import useWindowSize from "utils/hooks/BreakPointsHooks";
 import breakpoints from "utils/TailwindBreakPoints";
-import { roboto } from "utils/fonts";
-
 const isNumberOdd = (verifiedNumber: number) => verifiedNumber % 2 === 0;
 
 function ServiceComponent({
@@ -64,9 +62,7 @@ function ServiceComponent({
       md:w-[28vw]
       `}
       >
-        <p className={`text-2xl text-white ${roboto.className}`}>
-          {service.nameOfService}
-        </p>
+        <p className={`text-2xl text-white `}>{service.nameOfService}</p>
         <p
           className={`px-8 mt-2 text-white text-md 
           md:px-0

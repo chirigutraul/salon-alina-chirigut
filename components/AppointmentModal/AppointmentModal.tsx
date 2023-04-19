@@ -1,6 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Session } from "next-auth";
-import { roboto } from "utils/fonts";
 import Flatpickr from "react-flatpickr";
 import ReactModal from "react-modal";
 import "flatpickr/dist/themes/airbnb.css";
@@ -72,9 +71,7 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
     >
       <div className={"flex flex-col justify-between h-full w-full p-4"}>
         <form className={"flex flex-col gap-4"}>
-          <div
-            className={`flex items-center justify-between ${roboto.className} xs:text-3xl`}
-          >
+          <div className={`flex items-center justify-between  xs:text-3xl`}>
             <p>Buna, {session.user.name}!</p>
             <FontAwesomeIcon
               onClick={toggleModal}
@@ -160,9 +157,7 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
         </form>
         <div className={"mt-4"}>
           <button
-            className={` ${
-              roboto.className
-            } w-full text-white bg-secondary py-2 rounded-md
+            className={`w-full text-white  py-2 rounded-md
             xs:text-2xl font-medium
             ${!canUserMakeAppointment && "bg-gray-400"}
             `}

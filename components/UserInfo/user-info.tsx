@@ -2,8 +2,6 @@ import { faEnvelope, faPhone } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import React, { FunctionComponent } from "react";
-import { roboto } from "utils/fonts";
-
 interface Props {
   client: {
     id: string;
@@ -40,7 +38,7 @@ const UserInfo: FunctionComponent<Props> = ({ client }) => {
         </div>
         <h1
           className={`
-        ${roboto.className} text-2xl font-bold
+         text-2xl font-bold
         md:text-3xl
         xl:text-4xl
         `}
@@ -51,7 +49,7 @@ const UserInfo: FunctionComponent<Props> = ({ client }) => {
       <div className={"flex flex-col gap-4"}>
         <span>
           <h2
-            className={`text-xl font-bold ${roboto.className}
+            className={`text-xl font-bold 
           md:text-2xl 
           xl:text-3xl
           `}
@@ -69,7 +67,7 @@ const UserInfo: FunctionComponent<Props> = ({ client }) => {
 
         <span>
           <h2
-            className={`text-xl font-bold ${roboto.className}
+            className={`text-xl font-bold 
           md:text-2xl 
           xl:text-3xl
           `}

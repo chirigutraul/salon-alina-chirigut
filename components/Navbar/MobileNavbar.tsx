@@ -7,7 +7,6 @@ import { motion } from "framer-motion";
 import Button from "components/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignOut } from "@fortawesome/free-solid-svg-icons";
-import { roboto } from "utils/fonts";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/router";
 
@@ -75,7 +74,7 @@ const MobileNavbar: FunctionComponent<MobileNavbarProps> = ({
         animate={{ x: 0 }}
         exit={{ x: "100%" }}
         className={`
-      h-screen w-[90%] absolute bg-secondary top-0 right-0
+      h-screen w-[90%] absolute  top-0 right-0
       bg-opacity-80
       flex flex-col pl-8 pt-16
       rounded-l-[1rem]
@@ -127,7 +126,7 @@ const MobileNavbar: FunctionComponent<MobileNavbarProps> = ({
 
         {!!session ? (
           <span
-            className={`mt-16 text-white ${roboto.className}
+            className={`mt-16 text-white 
           flex flex-row ml-4 text-2xl underline cursor-pointer
           `}
             onClick={handleSignOut}

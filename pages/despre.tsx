@@ -1,7 +1,5 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { roboto } from "utils/fonts";
-
 export default function Despre() {
   const router = useRouter();
 
@@ -13,9 +11,7 @@ export default function Despre() {
       lg:py-16 lg:px-32
       `}
       >
-        <h1 className={`${roboto.className} text-3xl absolute z-10`}>
-          Despre noi
-        </h1>
+        <h1 className={` text-3xl absolute z-10`}>Despre noi</h1>
         <h3 className={` text-xl w-[60%] mt-12 absolute z-10`}>
           Manichiura & pedichiura realizate cu drag
         </h3>
@@ -34,9 +30,7 @@ export default function Despre() {
       lg:py-16 lg:px-32
       `}
       >
-        <h3 className={`${roboto.className} text-3xl font-bold`}>
-          Bun venit la Ally Nails
-        </h3>
+        <h3 className={` text-3xl font-bold`}>Bun venit la Ally Nails</h3>
         <p className="text-lg font-bold lg:w-[80%] xl:w-[60%]">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
           elementum, libero vitae venenatis hendrerit, orci quam mattis nibh, id
@@ -51,8 +45,8 @@ export default function Despre() {
         </p>
         <button
           onClick={() => router.push("/profile")}
-          className={`bg-secondary text-white p-4 rounded-md 
-          my-4 text-2xl ${roboto.className} font-thin
+          className={` text-white p-4 rounded-md 
+          my-4 text-2xl  font-thin
           hover:opacity-90
           md:w-64
           lg:my-8

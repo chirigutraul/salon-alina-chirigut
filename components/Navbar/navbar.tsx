@@ -11,8 +11,6 @@ import ProfilePicture from "./ProfilePicture";
 import HamburgerMenuButton from "./HamburgerMenuButton";
 import Logo from "./Logo";
 import MobileNavbar from "./MobileNavbar";
-import { roboto } from "utils/fonts";
-
 const Navbar = () => {
   const router = useRouter();
   const { width } = useWindowSize();
@@ -30,7 +28,7 @@ const Navbar = () => {
   return (
     <div
       className={`
-    flex flex-col bg-secondary py-4 px-8
+    flex flex-col  py-4 px-8
     xs:px-2 
     md:flex-row md:justify-between md:px-4 
     lg:justify-between lg:items-center lg:px-8
@@ -66,7 +64,7 @@ const Navbar = () => {
           )
         ) : (
           <div
-            className={`flex justify-center ${roboto.className} font-medium text-white text-xl hover:text-primary`}
+            className={`flex justify-center  font-medium text-white text-xl hover:text-primary`}
           >
             <button onClick={() => navigateToSignIn()}>CONECTEAZA-TE</button>
           </div>

@@ -1,5 +1,4 @@
 import { FunctionComponent, useState } from "react";
-import { roboto } from "utils/fonts";
 import { Appointment } from "@prisma/client";
 import useGetAvailableHours from "utils/hooks/date/get-available-hours";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -33,7 +32,7 @@ const AvailableHoursDropdown: FunctionComponent<DropdownProps> = ({
 
   return (
     <div
-      className={`relative rounded-md h-12 text-gray-400 bg-white cursor-pointer ${roboto.className} font-light`}
+      className={`relative rounded-md h-12 text-gray-400 bg-white cursor-pointer  font-light`}
     >
       <div
         className={`flex items-center justify-between w-full h-full px-4 shadow-md border-[1px] rounded-md border-secondary

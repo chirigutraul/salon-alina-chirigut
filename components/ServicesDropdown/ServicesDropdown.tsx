@@ -1,6 +1,5 @@
 import { Service } from "@prisma/client";
 import { FunctionComponent, useEffect, useState } from "react";
-import { roboto } from "utils/fonts";
 import { servicesLabels } from "utils/constants";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -29,7 +28,7 @@ const Dropdown: FunctionComponent<DropdownProps> = ({ onSelect }) => {
 
   return (
     <div
-      className={` bg-white ${roboto.className} rounded-md font-light
+      className={` bg-white  rounded-md font-light
     border-[1px] border-secondary h-12 cursor-pointer relative w-full
     `}
     >

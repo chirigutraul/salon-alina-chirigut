@@ -1,6 +1,4 @@
-import { Appointment } from "@prisma/client";
 import React, { FunctionComponent } from "react";
-import { roboto, montserrat } from "utils/fonts";
 import { appointmentStatuses, servicesLabels } from "utils/constants";
 import { extendedAppointment } from "types/DbEntitiesTypes";
 
@@ -21,7 +19,7 @@ const AppointmentCard: FunctionComponent<Props> = ({ appointment }) => {
     >
       <p
         className={`
-      ${roboto.className}
+      
       font-medium text-lg
       sm:text-xl
       md:text-lg
@@ -31,7 +29,6 @@ const AppointmentCard: FunctionComponent<Props> = ({ appointment }) => {
       </p>
       <p
         className={`
-      ${montserrat.className}
       `}
       >
         {date}
@@ -44,14 +41,12 @@ const AppointmentCard: FunctionComponent<Props> = ({ appointment }) => {
       >
         <p
           className={`
-        ${montserrat.className}
         `}
         >
           Ora {time.substring(0, 5)}
         </p>
         <p
           className={`
-        ${montserrat.className}
         font-bold
         `}
         >

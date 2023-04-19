@@ -14,7 +14,7 @@ function VisitCard() {
       whileInView={{ x: "0" }}
       transition={{ duration: 1 }}
       viewport={{ once: true }}
-      className="h-[40rem] border-8 border-secondary relative p-8 bg-secondary
+      className="h-[40rem] border-8 border-secondary relative p-8 
     md:h-[48rem]"
     >
       <div className="relative w-full h-full">

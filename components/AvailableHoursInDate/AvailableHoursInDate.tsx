@@ -39,8 +39,8 @@ const AvailableHoursInDate: FunctionComponent<Props> = ({
             className={`
         border-2 py-2 px-4 rounded-md cursor-pointer border-secondary
         transition-all duration-300
-        hover:bg-secondary hover:text-white
-        ${selectedHour === hour && "bg-secondary text-white"}
+        hover: hover:text-white
+        ${selectedHour === hour && " text-white"}
         `}
           >
             {hour}

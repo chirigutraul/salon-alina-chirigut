@@ -2,8 +2,6 @@ import Image from "next/image";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import CustomModal from "components/CustomModal";
-import { roboto } from "utils/fonts";
-
 const imagesArray: string[] = [
   "https://images.unsplash.com/photo-1632345031435-8727f6897d53?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
   "https://images.unsplash.com/photo-1522337660859-02fbefca4702?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80",
@@ -35,7 +33,7 @@ export default function Home() {
   return (
     <div className="py-8 text-center sm:px-8">
       <div>
-        <h1 className={`text-4xl font-bold text-secondary ${roboto.className}`}>
+        <h1 className={`text-4xl font-bold text-secondary `}>
           Galerie Clienti
         </h1>
       </div>

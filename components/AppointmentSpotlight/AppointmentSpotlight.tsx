@@ -1,6 +1,4 @@
-import { Appointment } from "@prisma/client";
 import React, { FunctionComponent } from "react";
-import { roboto } from "utils/fonts";
 import { servicesLabels, appointmentStatuses } from "utils/constants";
 import { extendedAppointment } from "types";
 
@@ -20,12 +18,10 @@ const AppointmentSpotlight: FunctionComponent<Props> = ({
         lg:h-72
       `}
       >
-        <h1 className={`${roboto.className} text-3xl font-light`}>
+        <h1 className={` text-3xl font-light`}>
           Nu ai nicio programare in viitorul apropiat.
         </h1>
-        <h2 className={`${roboto.className} text-3xl font-light`}>
-          Te asteptam cu drag!
-        </h2>
+        <h2 className={` text-3xl font-light`}>Te asteptam cu drag!</h2>
       </div>
     );
 
@@ -38,13 +34,11 @@ const AppointmentSpotlight: FunctionComponent<Props> = ({
   `}
     >
       <span>
-        <h1 className={`${roboto.className} text-3xl font-light`}>
-          Te asteptam!
-        </h1>
+        <h1 className={` text-3xl font-light`}>Te asteptam!</h1>
         <h1 className={`text-xl`}>Urmatoarea ta programare:</h1>
       </span>
       <span>
-        <h1 className={`${roboto.className} font-bold text-3xl`}>
+        <h1 className={` font-bold text-3xl`}>
           {servicesLabels.get(closestAppointment.service.name)}
         </h1>
       </span>

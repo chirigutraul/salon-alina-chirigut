@@ -6,7 +6,7 @@ import servicesArray from "./servicesArray";
 function TopServicesGallery() {
   return (
     <div
-      className={`bg-secondary flex flex-col
+      className={` flex flex-col
     items-center p-8 gap-8
     md:flex-row md:items-start md:justify-center
     `}

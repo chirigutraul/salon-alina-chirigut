@@ -1,7 +1,6 @@
 import Image from "next/image";
 import React, { FunctionComponent } from "react";
 import { useRouter } from "next/router";
-import { roboto } from "utils/fonts";
 import { signOut } from "next-auth/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignOut, faUser } from "@fortawesome/free-solid-svg-icons";
@@ -37,7 +36,7 @@ const ProfilePicture: FunctionComponent<ProfilePictureProps> = ({
       )}
       <p
         className={`
-        text-xl text-white ${roboto.className} 
+        text-xl text-white  
         md:text-base 
         xl:text-xl
         `}
@@ -52,7 +51,7 @@ const ProfilePicture: FunctionComponent<ProfilePictureProps> = ({
       `}
       >
         <ul
-          className={`text-xl flex flex-col items-center justify-center ${roboto.className} font-light`}
+          className={`text-xl flex flex-col items-center justify-center  font-light`}
         >
           <li
             className={`w-full py-2 hover:bg-black hover:bg-opacity-10`}

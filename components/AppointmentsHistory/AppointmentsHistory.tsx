@@ -1,6 +1,5 @@
 import AppointmentCard from "components/AppointmentCard";
 import React, { FunctionComponent } from "react";
-import { roboto } from "utils/fonts";
 import { servicesLabels, appointmentStatuses } from "utils/constants";
 import breakpoints from "utils/TailwindBreakPoints";
 import useWindowSize from "utils/hooks/BreakPointsHooks";
@@ -22,13 +21,9 @@ const DesktopAppointmentsHistory: FunctionComponent<Props> = ({
       <table className={"w-[90%] text-left"}>
         <thead>
           <tr>
-            <th className={`${roboto.className} text-2xl`}>Serviciu</th>
-            <th className={`${roboto.className} text-2xl text-right`}>
-              Data si ora
-            </th>
-            <th className={`${roboto.className} text-2xl text-right`}>
-              Status
-            </th>
+            <th className={` text-2xl`}>Serviciu</th>
+            <th className={` text-2xl text-right`}>Data si ora</th>
+            <th className={` text-2xl text-right`}>Status</th>
           </tr>
         </thead>
         <tbody>
@@ -73,7 +68,7 @@ const AppointmentsHistory: FunctionComponent<Props> = ({ appointments }) => {
     >
       <p
         className={`
-      ${roboto.className}
+      
       font-light text-center  
       text-2xl
       sm:text-3xl
