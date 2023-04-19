@@ -37,10 +37,10 @@ const AvailableHoursInDate: FunctionComponent<Props> = ({
             key={index + hour}
             onClick={() => setHour(hour)}
             className={`
-        border-2 py-2 px-4 rounded-md cursor-pointer border-accent
+        border-2 py-2 px-4 rounded-md cursor-pointer border-secondary
         transition-all duration-300
-        hover:bg-accent hover:text-white
-        ${selectedHour === hour && "bg-accent text-white"}
+        hover:bg-secondary hover:text-white
+        ${selectedHour === hour && "bg-secondary text-white"}
         `}
           >
             {hour}

@@ -75,7 +75,7 @@ const MobileNavbar: FunctionComponent<MobileNavbarProps> = ({
         animate={{ x: 0 }}
         exit={{ x: "100%" }}
         className={`
-      h-screen w-[90%] absolute bg-accent top-0 right-0
+      h-screen w-[90%] absolute bg-secondary top-0 right-0
       bg-opacity-80
       flex flex-col pl-8 pt-16
       rounded-l-[1rem]

@@ -64,7 +64,7 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
       isOpen={isOpen}
       onRequestClose={toggleModal}
       className={` bg-primary focus:outline-none
-      absolute top-0 left-0 bottom-0 right-0 text-accent min-h-[530px] min-w-[170px]
+      absolute top-0 left-0 bottom-0 right-0 text-secondary min-h-[530px] min-w-[170px]
       md:max-w-[630px] md:min-h-[630px] md:rounded-md md:shadow-md
       md:top-1/2 md:left-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2
       `}
@@ -97,7 +97,7 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
             </label>
             <div
               onClick={() => fp.current.flatpickr.open()}
-              className={`flex bg-white px-4 h-12 items-center mt-2 rounded-md border-[1px] border-accent`}
+              className={`flex bg-white px-4 h-12 items-center mt-2 rounded-md border-[1px] border-secondary`}
             >
               <Flatpickr
                 ref={fp}
@@ -162,7 +162,7 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
           <button
             className={` ${
               roboto.className
-            } w-full text-white bg-accent py-2 rounded-md
+            } w-full text-white bg-secondary py-2 rounded-md
             xs:text-2xl font-medium
             ${!canUserMakeAppointment && "bg-gray-400"}
             `}

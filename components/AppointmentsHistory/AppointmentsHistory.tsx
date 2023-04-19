@@ -68,7 +68,7 @@ const AppointmentsHistory: FunctionComponent<Props> = ({ appointments }) => {
       className={`
     bg-primary flex flex-col gap-6 my-8
     md:h-[24rem] md:overflow-scroll md:overflow-x-hidden md:box-content md:col-span-2
-    lg:border-2 lg:border-accent lg:rounded-md lg: py-8
+    lg:border-2 lg:border-secondary lg:rounded-md lg: py-8
     `}
     >
       <p

@@ -24,8 +24,8 @@ const MakeAppointmentButton: FunctionComponent<Props> = ({ session }) => {
       <div
         onClick={toggleAppointmentModal}
         className={`
-        border-2 border-accent flex flex-col items-center justify-between
-        rounded-md mt-8 cursor-pointer group hover:bg-accent
+        border-2 border-secondary flex flex-col items-center justify-between
+        rounded-md mt-8 cursor-pointer group hover:bg-secondary
         h-64 py-6
         lg:col-start-2 lg:col-end-3 lg:h-72
         `}

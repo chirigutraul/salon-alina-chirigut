@@ -1,57 +1,59 @@
-import Button from 'components/Button'
-import { Session } from 'next-auth';
-import React, { FunctionComponent, useState } from 'react'
-import { updateClientById } from 'utils/hooks/requests/clients';
+import Button from "components/Button";
+import { Session } from "next-auth";
+import React, { FunctionComponent, useState } from "react";
+import { updateClientById } from "utils/hooks/requests/clients";
 
 interface Props {
   session: Session | null;
 }
 
-const AuthenticatedUserWithoutPhone: FunctionComponent<Props> = ({session}) => {
+const AuthenticatedUserWithoutPhone: FunctionComponent<Props> = ({
+  session,
+}) => {
   const [phone, setPhone] = useState<string>();
 
   const addPhoneNumberToUser = async () => {
-    if(session) {
-      if(phone && session.user.id) {
-        await updateClientById(session.user.id, {phone}).then(res => {
-          if(res){
+    if (session) {
+      if (phone && session.user.id) {
+        await updateClientById(session.user.id, { phone }).then((res) => {
+          if (res) {
             window.location.reload();
           }
-        })
+        });
       }
     }
-  }
+  };
 
   return (
     <div>
-      <div 
+      <div
         className={`
         bg-primary w-full px-8 py-8 my-4 flex flex-col items-center gap-8
         `}
       >
         <p
           className={`
-          text-center text-2xl font-medium text-accent
+          text-center text-2xl font-medium text-secondary
           `}
         >
-        Pentru a putea face programari, te rugam sa adaugi numarul de telefon.
+          Pentru a putea face programari, te rugam sa adaugi numarul de telefon.
         </p>
         <input
-          type='text'
-          name='phone'
-          placeholder='Numar de telefon'
+          type="text"
+          name="phone"
+          placeholder="Numar de telefon"
           onChange={(e) => setPhone(e.target.value)}
-          className='w-full h-12 px-4 border border-gray-300 rounded-sm shadow-sm'
+          className="w-full h-12 px-4 border border-gray-300 rounded-sm shadow-sm"
         />
         <Button
-          type='submit'
-          title='Confirma'
-          size='xl'
+          type="submit"
+          title="Confirma"
+          size="xl"
           onClick={addPhoneNumberToUser}
         />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default AuthenticatedUserWithoutPhone
+export default AuthenticatedUserWithoutPhone;

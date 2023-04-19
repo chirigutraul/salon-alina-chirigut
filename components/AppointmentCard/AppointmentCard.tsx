@@ -15,7 +15,7 @@ const AppointmentCard: FunctionComponent<Props> = ({ appointment }) => {
   return (
     <div
       className={`
-    border-2 border-accent border-solid rounded-md
+    border-2 border-secondary border-solid rounded-md
     p-4
     `}
     >

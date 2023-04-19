@@ -15,7 +15,7 @@ const AppointmentSpotlight: FunctionComponent<Props> = ({
     return (
       <div
         className={`
-        h-64 border-2 border-accent rounded-md mt-8 p-4
+        h-64 border-2 border-secondary rounded-md mt-8 p-4
         flex flex-col justify-between py-8 text-center
         lg:h-72
       `}
@@ -32,7 +32,7 @@ const AppointmentSpotlight: FunctionComponent<Props> = ({
   return (
     <div
       className={`
-      h-64 border-2 border-accent rounded-md mt-8 p-4
+      h-64 border-2 border-secondary rounded-md mt-8 p-4
       flex flex-col justify-between
       lg:h-72
   `}

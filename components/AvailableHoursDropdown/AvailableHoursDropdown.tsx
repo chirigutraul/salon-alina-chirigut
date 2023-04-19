@@ -36,7 +36,7 @@ const AvailableHoursDropdown: FunctionComponent<DropdownProps> = ({
       className={`relative rounded-md h-12 text-gray-400 bg-white cursor-pointer ${roboto.className} font-light`}
     >
       <div
-        className={`flex items-center justify-between w-full h-full px-4 shadow-md border-[1px] rounded-md border-accent
+        className={`flex items-center justify-between w-full h-full px-4 shadow-md border-[1px] rounded-md border-secondary
         xs:text-2xl 
         `}
         onClick={() => toggleDropdown()}
@@ -44,7 +44,7 @@ const AvailableHoursDropdown: FunctionComponent<DropdownProps> = ({
         <span className={"truncate"}>{selectedValue ?? "Ora"}</span>
         <FontAwesomeIcon
           icon={faChevronDown}
-          className={`text-accent
+          className={`text-secondary
         xs:text-3xl
         `}
         />
@@ -53,7 +53,7 @@ const AvailableHoursDropdown: FunctionComponent<DropdownProps> = ({
       {isOpen && (
         <ul
           className={`absolute py-1 overflow-y-scroll bg-white rounded-md shadow-md h-48
-          top-10 w-full z-50 text-accent
+          top-10 w-full z-50 text-secondary
           md:h-28
           `}
         >

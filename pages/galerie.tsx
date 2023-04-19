@@ -35,7 +35,7 @@ export default function Home() {
   return (
     <div className="py-8 text-center sm:px-8">
       <div>
-        <h1 className={`text-4xl font-bold text-accent ${roboto.className}`}>
+        <h1 className={`text-4xl font-bold text-secondary ${roboto.className}`}>
           Galerie Clienti
         </h1>
       </div>

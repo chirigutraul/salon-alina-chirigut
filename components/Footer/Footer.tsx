@@ -13,7 +13,7 @@ function Footer() {
   return (
     <div
       id="contact"
-      className={`bg-accent grid p-4 text-white gap-8
+      className={`bg-secondary grid p-4 text-white gap-8
       lg:grid-cols-2 lg:p-8
     `}
     >

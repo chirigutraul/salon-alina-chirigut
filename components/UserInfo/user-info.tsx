@@ -17,7 +17,7 @@ interface Props {
 const UserInfo: FunctionComponent<Props> = ({ client }) => {
   return (
     <div
-      className={` text-accent
+      className={` text-secondary
       md:col-span-2
       lg:col-span-1 lg:row-span-2 
     `}

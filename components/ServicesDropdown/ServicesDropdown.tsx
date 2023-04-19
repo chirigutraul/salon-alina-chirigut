@@ -30,7 +30,7 @@ const Dropdown: FunctionComponent<DropdownProps> = ({ onSelect }) => {
   return (
     <div
       className={` bg-white ${roboto.className} rounded-md font-light
-    border-[1px] border-accent h-12 cursor-pointer relative w-full
+    border-[1px] border-secondary h-12 cursor-pointer relative w-full
     `}
     >
       <div
@@ -43,7 +43,7 @@ const Dropdown: FunctionComponent<DropdownProps> = ({ onSelect }) => {
         </p>
         <FontAwesomeIcon
           icon={faChevronDown}
-          className={`xs:text-3xl text-accent`}
+          className={`xs:text-3xl text-secondary`}
         />
       </div>
 
@@ -57,7 +57,7 @@ const Dropdown: FunctionComponent<DropdownProps> = ({ onSelect }) => {
             {services.map((option) => (
               <li
                 key={option.id}
-                className={`pl-4 py-2 hover:bg-primary hover:bg-opacity-30 text-accent
+                className={`pl-4 py-2 hover:bg-primary hover:bg-opacity-30 text-secondary
                 xs:text-xl
                 `}
                 onClick={() => {

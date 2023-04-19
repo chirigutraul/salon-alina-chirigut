@@ -28,10 +28,10 @@ const Button: FunctionComponent<ButtonProps> = ({
       className={`
       px-6 py-2 rounded-sm w-48
       texl-md
-      text-white bg-accent
+      text-white bg-secondary
       ${size === "xl" && "px-8 py-3 text-xl w-56"}
       ${size === "2xl" && "px-10 py-5 text-2xl w-64"}
-      ${variant === "light" && "bg-primary text-accent"}
+      ${variant === "light" && "bg-primary text-secondary"}
       ${disabled ? "bg-gray-300 text-gray-500 cursor-not-allowed" : ""}
       ${full ? "w-full" : ""}
     `}

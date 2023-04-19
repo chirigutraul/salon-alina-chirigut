@@ -28,7 +28,7 @@ export default function Despre() {
       </div>
       <div
         className={`
-      flex flex-col gap-4 p-4 text-accent
+      flex flex-col gap-4 p-4 text-secondary
       bg-gradient-to-t  from-primary to-white
       md:py-8 md:px-4
       lg:py-16 lg:px-32
@@ -51,7 +51,7 @@ export default function Despre() {
         </p>
         <button
           onClick={() => router.push("/profile")}
-          className={`bg-accent text-white p-4 rounded-md 
+          className={`bg-secondary text-white p-4 rounded-md 
           my-4 text-2xl ${roboto.className} font-thin
           hover:opacity-90
           md:w-64
