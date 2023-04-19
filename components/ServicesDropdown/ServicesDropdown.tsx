@@ -2,8 +2,8 @@ import { Service } from "@prisma/client";
 import { FunctionComponent, useEffect, useState } from "react";
 import { roboto } from "utils/fonts";
 import { servicesLabels } from "utils/constants";
-import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getServices } from "utils/hooks/requests/services";
 
 interface DropdownProps {
@@ -41,10 +41,10 @@ const Dropdown: FunctionComponent<DropdownProps> = ({ onSelect }) => {
           {(selectedValue && servicesLabels.get(selectedValue.name)) ??
             "Serviciul"}
         </p>
-        <FontAwesomeIcon
+        {/* <FontAwesomeIcon
           icon={faChevronDown}
           className={`xs:text-3xl text-accent`}
-        />
+        /> */}
       </div>
 
       {isOpen && (

@@ -1,5 +1,5 @@
-import { faEnvelope, faPhone } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faEnvelope, faPhone } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import React, { FunctionComponent } from "react";
 import { roboto } from "utils/fonts";
@@ -59,10 +59,10 @@ const UserInfo: FunctionComponent<Props> = ({ client }) => {
             Email:
           </h2>
           <span className={"flex items-center gap-2"}>
-            <FontAwesomeIcon
+            {/* <FontAwesomeIcon
               icon={faEnvelope}
               className={`text-xl xl:text-2xl`}
-            />
+            /> */}
             <p className={`text-xl xl:text-2xl`}>{client.email}</p>
           </span>
         </span>
@@ -77,7 +77,7 @@ const UserInfo: FunctionComponent<Props> = ({ client }) => {
             Telefon:
           </h2>
           <span className={"flex items-center gap-2"}>
-            <FontAwesomeIcon icon={faPhone} className={`text-xl xl:text-2xl`} />
+            {/* <FontAwesomeIcon icon={faPhone} className={`text-xl xl:text-2xl`} /> */}
             <p className={`text-xl xl:text-2xl`}>{client.phone}</p>
           </span>
         </span>

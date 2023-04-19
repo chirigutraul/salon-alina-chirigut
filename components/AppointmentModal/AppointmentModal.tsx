@@ -7,9 +7,9 @@ import "flatpickr/dist/themes/airbnb.css";
 import ServicesDropdown from "components/ServicesDropdown";
 import AvailableHoursDropdown from "components/AvailableHoursDropdown";
 import { Appointment, Service } from "@prisma/client";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCalendarPlus } from "@fortawesome/free-regular-svg-icons";
-import { faClose } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faCalendarPlus } from "@fortawesome/free-regular-svg-icons";
+// import { faClose } from "@fortawesome/free-solid-svg-icons";
 import {
   createAppointment,
   getAppointmentsFromCertainDate,
@@ -76,14 +76,14 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
             className={`flex items-center justify-between ${roboto.className} xs:text-3xl`}
           >
             <p>Buna, {session.user.name}!</p>
-            <FontAwesomeIcon
+            {/* <FontAwesomeIcon
               onClick={toggleModal}
               icon={faClose}
               className={`
               cursor-pointer
               xs:text-4xl
               `}
-            />
+            /> */}
           </div>
 
           <h3 className={"xs:text-2xl"}>
@@ -120,13 +120,13 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
                   ],
                 }}
               />
-              <FontAwesomeIcon
+              {/* <FontAwesomeIcon
                 icon={faCalendarPlus}
                 className={`
                   text-xl
                   xs:text-3xl
                   `}
-              />
+              /> */}
             </div>
           </div>
           <div>

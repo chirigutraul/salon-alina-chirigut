@@ -1,13 +1,13 @@
 import React from "react";
 import { roboto } from "utils/fonts";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faPhone,
-  faEnvelope,
-  faLocationDot,
-} from "@fortawesome/free-solid-svg-icons";
-import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
-import { IconProp } from "@fortawesome/fontawesome-svg-core";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import {
+//   faPhone,
+//   faEnvelope,
+//   faLocationDot,
+// } from "@fortawesome/free-solid-svg-icons";
+// import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
+// import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
 function Footer() {
   return (
@@ -27,7 +27,7 @@ function Footer() {
             <h2 className={`text-2xl ${roboto.className}`}>Telefon</h2>
             <p>De luni pana vineri orele 09:00 - 21:00</p>
             <div className={"flex items-center mt-2"}>
-              <FontAwesomeIcon icon={faPhone} className={`text-2xl mr-2`} />
+              {/* <FontAwesomeIcon icon={faPhone} className={`text-2xl mr-2`} /> */}
               <h3 className={`text-lg ${roboto.className}`}>+40769763966</h3>
             </div>
           </li>
@@ -35,7 +35,7 @@ function Footer() {
             <h2 className={`text-2xl ${roboto.className}`}>Email</h2>
             <p>Pentru probleme sau informatii extra</p>
             <div className={"flex items-center mt-2"}>
-              <FontAwesomeIcon icon={faEnvelope} className={`text-2xl mr-2`} />
+              {/* <FontAwesomeIcon icon={faEnvelope} className={`text-2xl mr-2`} /> */}
               <h3 className={`text-lg ${roboto.className}`}>
                 chirigutalina@gmail.com
               </h3>
@@ -45,10 +45,10 @@ function Footer() {
             <h2 className={`text-2xl ${roboto.className}`}>Whatsapp</h2>
             <p>Trimite-ne un mesaj pe Whatsapp</p>
             <div className={"flex items-center mt-2"}>
-              <FontAwesomeIcon
+              {/* <FontAwesomeIcon
                 icon={faWhatsapp as IconProp}
                 className={`text-3xl mr-2`}
-              />
+              /> */}
               <h3 className={`text-lg ${roboto.className}`}>+40769763966</h3>
             </div>
           </li>
@@ -56,10 +56,10 @@ function Footer() {
             <h2 className={`text-2xl ${roboto.className}`}>Adresa</h2>
             <p>Salonul se afla la adresa</p>
             <div className={"flex items-center mt-2"}>
-              <FontAwesomeIcon
+              {/* <FontAwesomeIcon
                 icon={faLocationDot}
                 className={`text-3xl mr-2`}
-              />
+              /> */}
               <h3 className={`text-lg ${roboto.className}`}>
                 Strada Nicolae Grigorescu 9, Sannicolau-Mare
               </h3>
