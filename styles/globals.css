@@ -141,7 +141,7 @@ a {
   @apply bg-gradient bg-opacity-80;
 }
 
-.btn-light {
+.btn-border-dark {
   @apply text-black border-2 border-black btn;
 }
 
@@ -151,6 +151,19 @@ a {
 
 .btn-light:active {
   @apply bg-black-75;
+}
+
+
+.btn-border-light {
+  @apply text-white border-2 border-white btn;
+}
+
+.btn-border-light:hover {
+  @apply bg-black-25 text-white-80;
+}
+
+.btn-border-light:active {
+  @apply bg-black-10;
 }
 
 
