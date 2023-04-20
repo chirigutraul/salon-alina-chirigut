@@ -8,7 +8,6 @@ export default function Home() {
   const { width } = useWindowSize();
 
   const isLg = (!!width && !!(width >= breakpoints.lg)) ?? false;
-  const is2Xl = (!!width && !!(width >= breakpoints["2xl"])) ?? false;
 
   return (
     <div>
@@ -29,7 +28,7 @@ export default function Home() {
               lg:w-[780px]
             `}
             >
-              <h2 className={`text-black`}>Bun venit la</h2>
+              <h2 className={`text-black-75`}>Bun venit la</h2>
               <h1 className={`text-gradient sp-2t`}>Ally Nails</h1>
               <h5 className={`text-black-75 sp-t`}>
                 unde fiecare programare este o <br /> experienta
@@ -41,8 +40,10 @@ export default function Home() {
               ${isLg ? "sp-2t" : "sp-4t"}
               `}
                 >
-                  <h5>Programare</h5>
-                  <FontAwesomeIcon icon={faArrowRight} className={"text-xl"} />
+                  <h6>Programare</h6>
+                  <h6>
+                    <FontAwesomeIcon icon={faArrowRight} />
+                  </h6>
                 </button>
               </Link>
             </div>

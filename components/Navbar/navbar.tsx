@@ -81,7 +81,9 @@ const DesktopLinks: FunctionComponent<DesktopLinksProps> = ({
         onClick={() => navigateToSignIn()}
       >
         <h6>Conectare</h6>
-        <FontAwesomeIcon icon={faSignIn} className={`text-xl md:text-2xl`} />
+        <h6>
+          <FontAwesomeIcon icon={faSignIn} />
+        </h6>
       </button>
     </div>
   </div>
