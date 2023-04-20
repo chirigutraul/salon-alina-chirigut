@@ -10,6 +10,10 @@ h1,h2,h3,h4,h5, nav a {
   font-family: 'Lato';
 }
 
+section {
+  padding-block: var(--section-spacing);
+}
+
 p {
   font-family: 'Montserrat';
 }
@@ -56,7 +60,7 @@ p {
 
 :root {
   --spacing-variable: 16px;
-  --vertical-spacing-variable: 8px;
+  --vertical-spacing-variable: 16px;
   --section-spacing: 64px;
   --navbar-height: 96px;
 }
@@ -176,8 +180,7 @@ p {
 }
 
 .nav-pad {
-  padding-top: calc(var(--navbar-height) + var(--section-spacing));
-  padding-bottom: var(--section-spacing);
+  padding-top: var(--navbar-height);
 }
 
 @screen md {

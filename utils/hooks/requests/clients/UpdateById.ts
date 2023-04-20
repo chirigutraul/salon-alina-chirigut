@@ -1,6 +1,6 @@
-import { IClient } from "types"
+import { Client } from "@prisma/client"
 
-const updateClientById = (id:string, dto:IClient) => {
+const updateClientById = (id:string, dto:Client) => {
  return fetch(`/api/clients/${id}`, {
     method: 'PATCH',
     headers: {
