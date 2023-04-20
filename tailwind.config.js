@@ -8,8 +8,10 @@ module.exports = {
   ],
   theme: {
     colors: {
+      'transparent': 'transparent',
       'primary': '#5A247B',
       'secondary': '#A875C7',
+      'full-black':'#000000',
       'black':'#252028',
       'black-75':'rgba(37,32,40, 0.75)',
       'black-50':'rgba(37,32,40, 0.5)',

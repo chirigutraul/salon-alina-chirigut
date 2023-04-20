@@ -67,8 +67,8 @@ interface DesktopLinksProps {
 const DesktopLinks: FunctionComponent<DesktopLinksProps> = ({
   navigateToSignIn,
 }) => (
-  <div className={"hidden md:flex md:gap-8 items-center gap-24"}>
-    <ul className={"flex gap-8 text-black"}>
+  <div className={"flex items-center"}>
+    <ul className={"flex gap-8 text-black sp-h"}>
       {links.map((link) => (
         <li key={"desktop" + link.route}>
           <Link href={link.route}>{link.title}</Link>
