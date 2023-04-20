@@ -1,29 +1,21 @@
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight, faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import { FunctionComponent } from "react";
-import useWindowSize from "utils/hooks/BreakPointsHooks";
-import breakpoints from "utils/TailwindBreakPoints";
 import { popularServices } from "utils/constants";
 import Image from "next/image";
 
 export default function Home() {
-  const { width } = useWindowSize();
-  const isMd = (!!width && !!(width >= breakpoints.lg)) ?? false;
-
   return (
     <>
-      <HeroSection isMd={isMd} />
+      <HeroSection />
       <PopularServices />
+      <AboutUsSection />
     </>
   );
 }
 
-interface HeroProps {
-  isMd: boolean;
-}
-
-const HeroSection: FunctionComponent<HeroProps> = ({ isMd }) => {
+const HeroSection: FunctionComponent = () => {
   return (
     <section
       className={`relative h-full w-full
@@ -118,6 +110,86 @@ const PopularServices: FunctionComponent = () => {
           </li>
         ))}
       </ul>
+    </section>
+  );
+};
+
+interface ReviewProps {
+  name: string;
+  score: number;
+  description: string;
+}
+
+const Review: FunctionComponent<ReviewProps> = ({
+  name,
+  score,
+  description,
+}) => {
+  const stars = [];
+
+  for (let i = 0; i < score; i++) {
+    stars.push(<FontAwesomeIcon icon={faStar} className={"text-yellow"} />);
+  }
+
+  return (
+    <div className={"bg-black-75 rounded-lg p-4 flex flex-col gap-2"}>
+      <h6>{name}</h6>
+      <div className={`flex flex-row gap-2  `}>{stars}</div>
+      <div className={"w-72"}>
+        <p>{description}</p>
+      </div>
+    </div>
+  );
+};
+
+const AboutUsSection: FunctionComponent = () => {
+  return (
+    <section className={`bg-gradient text-white`}>
+      <div className={`sp-2h`}>
+        <h2>Despre noi</h2>
+        <h5>
+          manichiura & pedichiura <br /> realizate cu drag
+        </h5>
+      </div>
+      <div className={"w-full aspect-video bg-white-80 sp-2t"}>
+        {/* picture goes here */}
+      </div>
+      <div className={"sp-2h w-full text-right sp-2t"}>
+        <h2>Aly Nails</h2>
+        <p className={"sp-t"}>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est
+          voluptas, dicta velit, explicabo libero exercitationem itaque quod
+          unde mollitia facilis minima dignissimos? Vel in temporibus tempora
+          libero corporis quos similique.
+        </p>
+      </div>
+      <div
+        className={`sp-2h sp-2t scroll-x overflow-x-auto
+        gap-4 flex flex-row relative
+      `}
+      >
+        <Review
+          name={"Chirigut Raul"}
+          score={5}
+          description={
+            "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+          }
+        />
+        <Review
+          name={"Chirigut Raul"}
+          score={3}
+          description={
+            "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+          }
+        />
+        <Review
+          name={"Chirigut Raul"}
+          score={4}
+          description={
+            "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+          }
+        />
+      </div>
     </section>
   );
 };

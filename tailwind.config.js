@@ -20,6 +20,7 @@ module.exports = {
       'error':'#AD5043',
       'white':'rgba(255,255,255, 1)',
       'white-80':'rgba(255,255,255, 0.80)',
+      'yellow':'#FFCF25',
     },
     extend: {
       screens:{
