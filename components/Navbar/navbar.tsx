@@ -70,7 +70,7 @@ const DesktopLinks: FunctionComponent<DesktopLinksProps> = ({
   <div className={"hidden md:flex md:gap-8 items-center gap-24"}>
     <ul className={"flex gap-8 text-black"}>
       {links.map((link) => (
-        <li>
+        <li key={"desktop" + link.route}>
           <Link href={link.route}>{link.title}</Link>
         </li>
       ))}
@@ -138,7 +138,7 @@ const HamburgerMenu: FunctionComponent<HamburgerMenuProps> = ({
         </button>
         <ul className={"flex flex-col gap-16"}>
           {links.map((link) => (
-            <li onClick={toggleNavbar}>
+            <li onClick={toggleNavbar} key={"mobile" + link.route}>
               <Link href={link.route}>
                 <h5>{link.title}</h5>
               </Link>
