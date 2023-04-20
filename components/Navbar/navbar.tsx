@@ -125,7 +125,8 @@ const HamburgerMenu: FunctionComponent<HamburgerMenuProps> = ({
       isOpen={isHamburgerOpen}
       onRequestClose={toggleNavbar}
       className={`
-    w-[80%] z-50 bg-gradient h-screen py-8 px-8  text-white 
+    w-[80%] z-50 bg-gradient h-screen py-8 px-8  text-white
+    focus:outline-none rounded-r-lg
     `}
     >
       <nav className={"relative h-full w-full"}>
