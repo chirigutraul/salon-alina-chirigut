@@ -48,7 +48,7 @@ const Navbar = () => {
           onClick={navigateHome}
           className={`relative h-[48px] w-[147px] md:h-[55px] md:w-[172px] xl:h-[87px] xl:w-[268px] cursor-pointer`}
         >
-          <Image src="/images/logo-desktop.png" alt="Logo-ul salonului" fill />
+          <Image src="/images/logo.png" alt="Logo-ul salonului" fill />
         </div>
         {isLarge ? (
           <DesktopLinks navigateToSignIn={navigateToSignIn} />
