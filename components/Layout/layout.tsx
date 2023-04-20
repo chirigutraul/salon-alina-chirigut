@@ -4,9 +4,7 @@ import Footer from "components/Footer";
 
 export default function Layout({ children }: { children: ReactElement }) {
   return (
-    <div
-      className={`bg-primary h-screen w-screen overflow-x-hidden font-regular scroll-smooth main-margin`}
-    >
+    <div className={`bg-primary`}>
       <Navbar />
       {children}
       <Footer />

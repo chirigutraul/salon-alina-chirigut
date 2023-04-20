@@ -1,82 +1,105 @@
 import React, { useState } from "react";
-import NavbarLinks from "./navbarLinks";
 
 import useWindowSize from "utils/hooks/BreakPointsHooks";
 import breakpoints from "utils/TailwindBreakPoints";
 
-import { AnimatePresence } from "framer-motion";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
-import ProfilePicture from "./ProfilePicture";
-import HamburgerMenuButton from "./HamburgerMenuButton";
-import Logo from "./Logo";
-import MobileNavbar from "./MobileNavbar";
+import Image from "next/image";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faSignIn } from "@fortawesome/free-solid-svg-icons";
+import { links } from "./navbarLinks";
+import ReactModal from "react-modal";
 const Navbar = () => {
   const router = useRouter();
   const { width } = useWindowSize();
   const { data: session } = useSession();
 
-  const isMedium = (!!width && !!(width >= breakpoints.md)) ?? false;
-  const [navbarOpenOnSmallerScreen, setNavbarOpenOnSmallerScreen] =
-    useState<boolean>(false);
+  const isLarge = (!!width && !!(width >= breakpoints.lg)) ?? false;
+  const [isHamburgerOpen, setHamburgerOpen] = useState<boolean>(false);
 
-  const toggleNavbar = () =>
-    setNavbarOpenOnSmallerScreen((currentValue) => !currentValue);
+  const toggleNavbar = () => setHamburgerOpen((currentValue) => !currentValue);
 
   const navigateToSignIn = () => router.push("/profile");
 
-  return (
+  const DesktopLinks = () => (
+    <div className={"hidden md:flex md:gap-8 items-center gap-24"}>
+      <ul className={"flex gap-8 text-black"}>
+        {links.map((link) => (
+          <li>
+            <a href={link.route}>{link.title}</a>
+          </li>
+        ))}
+      </ul>
+      <div>
+        <button
+          className={"btn btn-gradient btn-icon"}
+          onClick={navigateToSignIn}
+        >
+          <h6>Conectare</h6>
+          <FontAwesomeIcon
+            icon={faSignIn}
+            className={`
+        text-xl
+        md:text-2xl
+        `}
+          />
+        </button>
+      </div>
+    </div>
+  );
+
+  const HamburgerButton = () => (
     <div
+      className={
+        "grid place-items-center bg-gradient h-16 w-16 text-white rounded-md btn-gradient"
+      }
+      onClick={toggleNavbar}
+    >
+      <FontAwesomeIcon icon={faBars} className={`text-2xl`} />
+    </div>
+  );
+
+  const HamburgerMenu = () => (
+    <ReactModal
+      isOpen={isHamburgerOpen}
+      onRequestClose={toggleNavbar}
       className={`
-    flex flex-col  py-4 px-8
-    xs:px-2 
-    md:flex-row md:justify-between md:px-4 
-    lg:justify-between lg:items-center lg:px-8
-    `}
+      w-[80%] z-50 bg-gradient h-screen py-8 px-4 overflow-hidden
+      `}
+    >
+      <nav>
+        <ul className={"flex flex-col gap-8 text-white"}>
+          {links.map((link) => (
+            <li>
+              <a href={link.route}>
+                <h5>{link.title}</h5>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </ReactModal>
+  );
+
+  return (
+    <nav
+      className={`
+      bg-white-80 left-0 right-0 absolute flex h-[96px] xl:h-[128px] justify-between items-center px-4 border-black-10 border-b-2
+      ${isHamburgerOpen ? "" : "z-10"}
+      xl:px-16 
+      `}
     >
       <div
-        className={`
-      flex flex-row justify-between items-center relative w-full
-      xs:basis-24
-      md:justify-center md:basis-36 md:w-[8rem]
-      lg:w-[14rem] lg:basis-24
+        className={`relative h-[48px] w-[147px]
+      md:h-[55px] md:w-[172px] xl:h-[87px] xl:w-[268px]
       `}
       >
-        <Logo />
-
-        <HamburgerMenuButton
-          navbarOpen={navbarOpenOnSmallerScreen}
-          toggleNavbar={toggleNavbar}
-          isMedium={isMedium}
-        />
+        <Image src="/images/logo-desktop.png" alt="Logo-ul salonului" fill />
       </div>
-
-      <NavbarLinks isMedium={isMedium} />
-
-      {isMedium &&
-        (session ? (
-          session.user.image &&
-          session.user.name && (
-            <ProfilePicture
-              image={session.user.image}
-              name={session.user.name}
-            />
-          )
-        ) : (
-          <div
-            className={`flex justify-center  font-medium text-white text-xl hover:text-primary`}
-          >
-            <button onClick={() => navigateToSignIn()}>CONECTEAZA-TE</button>
-          </div>
-        ))}
-      <AnimatePresence>
-        <MobileNavbar
-          isMedium={isMedium}
-          navbarOpen={navbarOpenOnSmallerScreen}
-          toggleNavbar={toggleNavbar}
-        />
-      </AnimatePresence>
-    </div>
+      {isLarge ? <DesktopLinks /> : <HamburgerButton />}
+      {isHamburgerOpen && <HamburgerMenu />}
+    </nav>
   );
 };
 

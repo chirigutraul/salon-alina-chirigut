@@ -1,13 +1,22 @@
 @tailwind base;
 @tailwind components;
 
-h1,h2,h3,h4,h5,h6 {
+html {
+  @apply scroll-smooth;
+}
+
+h1,h2,h3,h4,h5,h6, a {
   font-weight: bold;
   font-family: 'Lato';
 }
 
 p {
   font-family: 'Montserrat';
+}
+
+a {
+  font-size: 16px; 
+  line-height:24px;
 }
 
 @screen xs {
@@ -112,15 +121,16 @@ p {
 }
 
 .btn {
-  @apply grid px-4 py-2 rounded-md place-items-center;
+  @apply px-8 py-3 rounded-md place-items-center;
 }
 
-.h7 {
-  font-size: 16px; line-height:24px;
+.btn-icon {
+  @apply flex flex-row gap-2 items-center
 }
+
 /* UTILITY CLASSES */
 .btn-gradient {
-  @apply text-white btn bg-gradient;
+  @apply text-white bg-gradient;
 }
 
 .btn-gradient:hover {
