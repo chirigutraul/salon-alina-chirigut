@@ -11,3 +11,11 @@ export interface extendedAppointment {
   endDate: Date;
   service: Service;
 }
+
+export interface IClient {
+  id?: number;
+  firstName?: string;
+  lastName?: string;
+  email?:string;
+  phone?: string;
+}
