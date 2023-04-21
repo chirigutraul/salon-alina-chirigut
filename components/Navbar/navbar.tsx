@@ -46,7 +46,12 @@ const Navbar = () => {
       >
         <div
           onClick={navigateHome}
-          className={`relative h-[48px] w-[147px] md:h-[55px] md:w-[172px] xl:h-[87px] xl:w-[268px] cursor-pointer`}
+          className={`relative cursor-pointer
+          h-[48px] w-[147px] 
+          md:h-[55px] md:w-[172px]
+          xl:h-[72px] xl:w-[221px]
+          2xl:h-[87px] 2xl:w-[268px]
+            `}
         >
           <Image src="/images/logo.png" alt="Logo-ul salonului" fill />
         </div>

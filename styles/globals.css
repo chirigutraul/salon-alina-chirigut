@@ -267,7 +267,7 @@ p {
 }
 
 .btn {
-  @apply px-8 py-3 rounded-md place-items-center;
+  @apply px-6 py-3 rounded-md place-items-center;
 }
 
 .btn-icon {

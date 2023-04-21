@@ -25,7 +25,7 @@ const HeroSection: FunctionComponent = () => {
       <div className={`nav-pad w-full sp-h grid place-items-center`}>
         <div
           className={`flex flex-col items-center justify-center bg-white-80
-            text-center rounded-lg h-full sp-2h sp-4v
+            text-center rounded-lg h-full sp-2h sp-2v
             w-full
             xs:w-[372px]
             md:w-[576px]
@@ -33,7 +33,7 @@ const HeroSection: FunctionComponent = () => {
           `}
         >
           <h2 className={`text-black-75`}>Bun venit la</h2>
-          <h1 className={`text-gradient sp-2t`}>Ally Nails</h1>
+          <h1 className={`text-gradient sp-2t`}>Aly Nails</h1>
           <h5 className={`text-black-75 sp-t`}>
             unde fiecare programare este o <br /> experienta
           </h5>
