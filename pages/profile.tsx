@@ -10,7 +10,7 @@ import MakeAppointmentButton from "components/MakeAppointmentButton";
 import UnauthenticatedUser from "components/UnauthenticatedUser";
 import UserInfo from "components/UserInfo";
 import { getUserAppointments } from "utils/hooks/requests/appointments";
-import { extendedAppointment } from "types";
+import { extendedAppointment } from "types/DbEntitiesTypes";
 import { prisma } from "prisma/client";
 interface Props {
   session: Session | null;
