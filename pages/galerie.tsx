@@ -31,34 +31,29 @@ export default function Home() {
   };
 
   return (
-    <div className="py-8 text-center sm:px-8">
-      <div>
-        <h1 className={`text-4xl font-bold text-secondary `}>
-          Galerie Clienti
-        </h1>
+    <section className={`bg-white text-black nav-pad`}>
+      <div className={`text-center sp-2v`}>
+        <h1>Galerie</h1>
       </div>
       <CustomModal isOpen={modalVisibility} onRequestClose={closeModal}>
         <div className="relative w-full h-full">
           <Image
             src={selectedImage}
-            alt={"Client al salonului Ally Nails"}
+            className="object-cover"
             fill={true}
-            className={"object-cover"}
+            alt="Manichiura client"
           />
         </div>
       </CustomModal>
       <div
-        className={`mt-8 grid grid-cols-1 gap-8
-      sm:grid-cols-2
-      md:grid-cols-3
-      lg:grid-cols-4
+        className={`grid grid-cols-1 gap-4
+        md:grid-cols-2 xl:grid-cols-3
       `}
       >
         {imagesArray.map((image, index: number) => (
           <motion.div
             onClick={() => openImageModal(image)}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 1.1 }}
+            whileHover={{ opacity: 0.9 }}
             transition={{ duration: 0.2 }}
             className="relative w-full cursor-pointer aspect-square"
             key={index}
@@ -73,6 +68,6 @@ export default function Home() {
           </motion.div>
         ))}
       </div>
-    </div>
+    </section>
   );
 }
