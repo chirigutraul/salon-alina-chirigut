@@ -39,7 +39,7 @@ const Navbar = () => {
     <>
       <nav
         className={`
-      bg-white-80 left-0 right-0 absolute z-50 flex h-[96px] xl:h-[128px] justify-between items-center px-4 border-black-10 border-b-2
+      bg-white-80 left-0 right-0 absolute z-50 flex h-[96px] xl:h-[128px] justify-between items-center px-4 
       ${isHamburgerOpen ? "" : ""}
       xl:px-16 
       `}

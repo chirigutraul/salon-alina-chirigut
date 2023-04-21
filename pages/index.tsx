@@ -22,7 +22,7 @@ const HeroSection: FunctionComponent = () => {
         bg-[url('/images/hero-background.png')]
         bg-center bg-cover`}
     >
-      <div className={`sp-4v nav-pad w-full sp-h grid place-items-center`}>
+      <div className={`nav-pad w-full sp-h grid place-items-center`}>
         <div
           className={`flex flex-col items-center justify-center bg-white-80
             text-center rounded-lg h-full sp-2h sp-4v
@@ -99,10 +99,10 @@ const PopularServices: FunctionComponent = () => {
         <h2>Servicii populare</h2>
       </div>
       <ul className={`lg:flex-row lg:flex`}>
-        {popularServices.map((service) => (
+        {popularServices.map((service, index) => (
           <li className={"sp-2t"}>
             <ServiceCard
-              key={service.name}
+              key={service.name + index}
               name={service.name}
               description={service.description}
               picture={service.picture}
