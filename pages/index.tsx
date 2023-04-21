@@ -103,9 +103,8 @@ const PopularServices: FunctionComponent = () => {
       </div>
       <ul className={`lg:flex-row lg:flex`}>
         {popularServices.map((service, index) => (
-          <li className={"sp-2t"}>
+          <li className={"sp-2t"} key={service.name + index}>
             <ServiceCard
-              key={service.name + index}
               name={service.name}
               description={service.description}
               picture={service.picture}
