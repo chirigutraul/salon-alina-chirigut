@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from "react";
 import { servicesLabels, appointmentStatuses } from "utils/constants";
-import { extendedAppointment } from "types";
+import { extendedAppointment } from "types/DbEntitiesTypes";
 
 interface Props {
   closestAppointment: extendedAppointment | null;
