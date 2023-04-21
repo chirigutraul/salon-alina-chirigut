@@ -12,6 +12,7 @@ export default function Home() {
       <HeroSection />
       <PopularServices />
       <AboutUsSection />
+      <VisitUsSection />
     </>
   );
 }
@@ -227,6 +228,31 @@ const AboutUsSection: FunctionComponent = () => {
             "Lorem ipsum dolor sit amet consectetur adipisicing elit."
           }
         />
+      </div>
+    </section>
+  );
+};
+
+const VisitUsSection: FunctionComponent = () => {
+  return (
+    <section
+      className={`bg-white text-center flex flex-col sp-h
+    lg:flex-row lg:items-center lg:gap-4 lg:text-left lg:sp-2h
+    `}
+    >
+      <div className={"basis-full lg:basis-1/2"}>
+        <h1>Fa-ne o vizita la locatie!</h1>
+      </div>
+      <div
+        className={`bg-black-25 basis-full aspect-[15/16] sp-4t relative
+      lg:basis-1/2 lg:sp-0t
+      `}
+      >
+        <div
+          className={`absolute w-full h-16 bottom-0 bg-black-50 grid place-items-center text-white`}
+        >
+          <h5>Strada Nicolae Grigorescu, Nr.9</h5>
+        </div>
       </div>
     </section>
   );
