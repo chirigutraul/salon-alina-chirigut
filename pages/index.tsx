@@ -1,9 +1,10 @@
 import { faArrowRight, faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
-import { FunctionComponent } from "react";
+import { FunctionComponent, useRef } from "react";
 import { popularServices } from "utils/constants";
 import Image from "next/image";
+import { useHorizontalScroll } from "utils/hooks/useHorizontalScroll";
 
 export default function Home() {
   return (
@@ -143,6 +144,7 @@ const Review: FunctionComponent<ReviewProps> = ({
 };
 
 const AboutUsSection: FunctionComponent = () => {
+  const horizontalScrollRef = useHorizontalScroll();
   return (
     <section className={`bg-gradient text-white`}>
       <div className={`sp-2h`}>
@@ -151,21 +153,36 @@ const AboutUsSection: FunctionComponent = () => {
           manichiura & pedichiura <br /> realizate cu drag
         </h5>
       </div>
-      <div className={"w-full aspect-video bg-white-80 sp-2t"}>
-        {/* picture goes here */}
-      </div>
-      <div className={"sp-2h w-full text-right sp-2t"}>
-        <h2>Aly Nails</h2>
-        <p className={"sp-t"}>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est
-          voluptas, dicta velit, explicabo libero exercitationem itaque quod
-          unde mollitia facilis minima dignissimos? Vel in temporibus tempora
-          libero corporis quos similique.
-        </p>
+      <div
+        className={`flex flex-col
+      md:flex-row md:sp-2h md:gap-4
+      `}
+      >
+        <div
+          className={`basis-full aspect-video bg-white-80 sp-2t
+        md:basis-1/2 
+        `}
+        >
+          {/* picture goes here */}
+        </div>
+        <div
+          className={`sp-2h basis-full text-right sp-2t
+        md:basis-1/2 md:sp-0h
+        `}
+        >
+          <h2>Aly Nails</h2>
+          <p className={"sp-t"}>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est
+            voluptas, dicta velit, explicabo libero exercitationem itaque quod
+            unde mollitia facilis minima dignissimos? Vel in temporibus tempora
+            libero corporis quos similique.
+          </p>
+        </div>
       </div>
       <div
-        className={`sp-2h sp-2t scroll-x overflow-x-auto
-        gap-4 flex flex-row relative
+        ref={horizontalScrollRef as any}
+        className={`sp-2h sp-t scroll-x overflow-x-auto
+        gap-4 flex flex-row relative review-container sp-v
       `}
       >
         <Review
@@ -178,6 +195,27 @@ const AboutUsSection: FunctionComponent = () => {
         <Review
           name={"Chirigut Raul"}
           score={3}
+          description={
+            "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+          }
+        />
+        <Review
+          name={"Chirigut Raul"}
+          score={4}
+          description={
+            "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+          }
+        />
+        <Review
+          name={"Chirigut Raul"}
+          score={4}
+          description={
+            "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+          }
+        />
+        <Review
+          name={"Chirigut Raul"}
+          score={4}
           description={
             "Lorem ipsum dolor sit amet consectetur adipisicing elit."
           }

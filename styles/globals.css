@@ -66,6 +66,10 @@ p {
 }
 
 /* HORIZONTAL SPACING */
+@responsive {
+.sp-0h {
+  padding-inline: 0px;
+}
 
 .sp-h {
   padding-inline: var(--spacing-variable);
@@ -100,6 +104,10 @@ p {
 }
 
 /* BLOCK SPACING */
+
+.sp-0v {
+  padding-block: 0px;
+}
 
 .sp-1\/2v {
   padding-block: calc(var(--vertical-spacing-variable)/2);
@@ -138,6 +146,10 @@ p {
 }
 
 /* TOP SPACING */
+
+.sp-0t {
+  margin-top: 0px;
+}
 
 .sp-1\/2t {
   margin-top: calc(var(--vertical-spacing-variable)/2);
@@ -181,6 +193,7 @@ p {
 
 .nav-pad {
   padding-top: var(--navbar-height);
+}
 }
 
 @screen md {
@@ -313,3 +326,12 @@ p {
 
 
 @tailwind utilities;
+
+.review-container::-webkit-scrollbar {
+  height:5px;
+}
+.review-container::-webkit-scrollbar-thumb {
+  height:5px;
+  background-color: rgba(255,255,255,0.4);
+  margin-left: calc(var(--spacing-variable) * 2);
+}
