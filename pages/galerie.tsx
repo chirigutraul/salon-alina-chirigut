@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import CustomModal from "components/CustomModal";
+import ReactModal from "react-modal";
 const imagesArray: string[] = [
   "https://images.unsplash.com/photo-1632345031435-8727f6897d53?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
   "https://images.unsplash.com/photo-1522337660859-02fbefca4702?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80",
@@ -26,8 +26,8 @@ export default function Home() {
   };
 
   const openImageModal = (imageUrl: string) => {
-    setModalVisibility(true);
     setSelectedImage(imageUrl);
+    setModalVisibility(true);
   };
 
   return (
@@ -35,18 +35,8 @@ export default function Home() {
       <div className={`text-center sp-2v`}>
         <h1>Galerie</h1>
       </div>
-      <CustomModal isOpen={modalVisibility} onRequestClose={closeModal}>
-        <div className="relative w-full h-full">
-          <Image
-            src={selectedImage}
-            className="object-cover"
-            fill={true}
-            alt="Manichiura client"
-          />
-        </div>
-      </CustomModal>
       <div
-        className={`grid grid-cols-1 gap-4
+        className={`grid grid-cols-1 gap-4 sp-h
         md:grid-cols-2 xl:grid-cols-3
       `}
       >
@@ -68,6 +58,23 @@ export default function Home() {
           </motion.div>
         ))}
       </div>
+      <ReactModal
+        isOpen={modalVisibility}
+        onRequestClose={closeModal}
+        className={`w-full aspect-square top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 absolute
+        md:w-[80%]
+        `}
+        overlayClassName={`fixed inset-0 bg-black-50`}
+      >
+        <div className="relative w-full aspect-square">
+          <Image
+            src={selectedImage}
+            className="object-cover"
+            fill={true}
+            alt="Manichiura client"
+          />
+        </div>
+      </ReactModal>
     </section>
   );
 }
