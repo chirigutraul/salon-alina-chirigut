@@ -29,9 +29,10 @@ const HeroSection: FunctionComponent = () => {
           className={`flex flex-col items-center justify-center bg-white-80
             text-center rounded-lg h-full sp-2h sp-2v
             w-full
-            xs:w-[372px]
-            md:w-[576px]
-            lg:w-[780px]
+            xs:max-w-full
+            sm:max-w-[372px]
+            md:max-w-[576px]
+            lg:max-w-[780px]
           `}
         >
           <h2 className={`text-black-75`}>Bun venit la</h2>
