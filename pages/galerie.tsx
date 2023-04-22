@@ -61,10 +61,10 @@ export default function Home() {
       <ReactModal
         isOpen={modalVisibility}
         onRequestClose={closeModal}
-        className={`w-full aspect-square top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 absolute
+        className={`w-full aspect-square top-[50%] left-[50%] -translate-x-1/2  -translate-y-1/2 absolute
         md:w-[80%]
         `}
-        overlayClassName={`fixed inset-0 bg-black-50`}
+        overlayClassName={`fixed inset-0 bg-black-50 z-20`}
       >
         <div className="relative w-full aspect-square">
           <Image
