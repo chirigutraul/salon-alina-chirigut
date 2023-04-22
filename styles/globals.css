@@ -19,7 +19,7 @@ h1,h2,h3,h4,h5, nav a {
 }
 
 p {
-  @apply font-bold leading-tight font-montserrat;
+  @apply font-medium leading-tight font-montserrat;
 }
 
 section {
