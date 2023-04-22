@@ -26,6 +26,10 @@ module.exports = {
       screens:{
         'xs': '375px',
       },
+      fontFamily:{
+        'lato':['var(--font-lato)'], 
+        'montserrat':['var(--font-montserrat)']
+      }
     },
   },
   plugins: [],
