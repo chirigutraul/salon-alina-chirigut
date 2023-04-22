@@ -4,7 +4,7 @@ import Footer from "components/Footer";
 
 export default function Layout({ children }: { children: ReactElement }) {
   return (
-    <div className={`bg-primary`}>
+    <div>
       <Navbar />
       {children}
       <Footer />

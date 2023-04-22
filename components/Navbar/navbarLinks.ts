@@ -13,8 +13,8 @@ export const links: LinkType[] = [
     route: "/galerie",
   },
   {
-    title: "DESPRE NOI",
-    route: "/despre",
+    title: "PRETURI",
+    route: "/preturi",
   },
   {
     title: "PROGRAMARI",
