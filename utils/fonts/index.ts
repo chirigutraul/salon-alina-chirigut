@@ -2,10 +2,10 @@ import { Montserrat, Lato } from '@next/font/google';
 
 export const montserrat = Montserrat({
   weight: '500',
-  style:'normal'
+  subsets: ['latin-ext']
 })
 
 export const lato = Lato({
   weight: "900",
-  style:'normal'
+  subsets: ['latin-ext']
 })

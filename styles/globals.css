@@ -5,16 +5,21 @@ html {
   @apply scroll-smooth;
 }
 
+:root {
+  --spacing-variable: 16px;
+  --vertical-spacing-variable: 16px;
+  --section-spacing: 64px;
+  --navbar-height: 96px;
+  --font-base-size: 18px;
+  --typography-scale: 1.25;
+}
+
 h1,h2,h3,h4,h5, nav a {
-  font-weight: bold;
+  @apply font-sans font-bold leading-tight;
 }
 
 section {
   padding-block: var(--section-spacing);
-}
-
-p {
-  font-family: 'Montserrat';
 }
 
 a {
@@ -23,33 +28,27 @@ a {
 }
 
 h1 {
-  font-size: 55px;
-  line-height: 66px;
+  font-size: calc(var(--font-base-size) * var(--typography-scale) * var(--typography-scale) * var(--typography-scale) * var(--typography-scale) * var(--typography-scale));
 }
 
 h2 {
-  font-size: 44px;
-  line-height: 52px;
+  font-size: calc(var(--font-base-size) * var(--typography-scale) * var(--typography-scale) * var(--typography-scale) * var(--typography-scale));
 }
 
 h3 {
-  font-size: 35px;
-  line-height: 42px;
+  font-size: calc(var(--font-base-size) * var(--typography-scale) * var(--typography-scale) * var(--typography-scale));
 }
 
 h4 {
-  font-size: 28px;
-  line-height: 33px;
+  font-size: calc(var(--font-base-size) * var(--typography-scale) * var(--typography-scale));
 }
 
-h5 {
-  font-size: 22px;
-  line-height: 26px;
+h5 {  
+  font-size: calc(var(--font-base-size) * var(--typography-scale));
 }
 
 h6 {
-  font-size: 18px;
-  line-height: 24px;
+  font-size: calc(var(--font-base-size));
 }
 
 p {
@@ -57,12 +56,6 @@ p {
   line-height: 30px;
 }
 
-:root {
-  --spacing-variable: 16px;
-  --vertical-spacing-variable: 16px;
-  --section-spacing: 64px;
-  --navbar-height: 96px;
-}
 
 /* HORIZONTAL SPACING */
 @responsive {
@@ -196,77 +189,23 @@ p {
 }
 
 @screen md {
-  h1 {
-    font-size: 76px;
-    line-height: 91px;
-  }
-
-  h2 {
-    font-size: 57px;
-    line-height: 68px;
-  }
-
-  h3 {
-    font-size: 43px;
-    line-height: 51px;
-  }
-
-  h4 {
-    font-size: 32px;
-    line-height: 38px;
-  }
-
-  h5 {
-    font-size: 24px;
-    line-height: 28px;
-  }
-
   :root {
     --spacing-variable: 32px;
     --vertical-spacing-variable: 16px;
+    --font-base-size: 18px;
+    --typography-scale: 1.333;
   }
-  
 }
 
 @screen xl {
-  h1 {
-    font-size: 88px;
-    line-height: 105px;
-  }
-
-  h2 {
-    font-size: 66px;
-    line-height: 79px;
-  }
-
-  h3 {
-    font-size: 50px;
-    line-height: 60px;
-  }
-
-  h4 {
-    font-size: 37px;
-    line-height: 44px;
-  }
-
-  h5 {
-    font-size: 28px;
-    line-height: 33px;
-  }
-
-  h6 {
-    font-size: 21px;
-    line-height: 30px;
-  }
-
   :root {
     --spacing-variable: 64px;
     --vertical-spacing-variable: 32px;
     --section-spacing:128px;
     --navbar-height: 128px;
+    --font-base-size: 21px;
+    --typography-scale: 1.333;
   }
-
-
 }
 
 /* REUSABLE CLASSES */
