@@ -1,63 +1,72 @@
-import Image from "next/image";
+import { FunctionComponent } from "react";
 
 export default function Preturi() {
   return (
     <section
       className={`relative h-full w-full flex flex-col items-center
         bg-[url('/images/hero-background.png')]
-        bg-center bg-cover xs:sp-h 
+        bg-center bg-cover sp-h sm:sp-5h 
       `}
     >
       <div className={"text-center nav-pad text-white sp-2v"}>
         <h2>Lista de preturi</h2>
       </div>
-      <div className={"sp-h sp-v w-full bg-white-80 rounded-md"}>
-        <table className={"prices-table w-full table-auto"}>
+      <div className={"w-full bg-white-80 rounded-md word overflow-auto"}>
+        <table
+          className={`prices-table w-full table-auto 
+           divide-solid whitespace-nowrap
+           [&>*:nth-child(odd)]:bg-black-10
+          `}
+        >
           <thead>
-            <tr>
-              <th>
+            <tr className={`border-b-[1px] border-black-50`}>
+              <th className={`sp-h sp-v`}>
                 <h6>Serviciu</h6>
               </th>
-              <th>
+              <th className={`sp-h sp-v`}>
                 <h6>Durata</h6>
               </th>
-              <th>
+              <th className={`sp-h sp-v`}>
                 <h6>Pret</h6>
               </th>
             </tr>
           </thead>
-          <tbody>
+          <tbody
+            className={`
+          [&>*:nth-child(even)]:bg-black-10
+          `}
+          >
             <tr>
-              <td>
-                <p>Manichiura constructie gel</p>
+              <td className={`sp-h sp-v`}>
+                <h6>Manichiura constructie gel</h6>
               </td>
-              <td>
-                <p>1h 30m</p>
+              <td className={`sp-h sp-v`}>
+                <h6>1h 30m</h6>
               </td>
-              <td>
-                <p>100 lei</p>
+              <td className={`sp-h sp-v`}>
+                <h6>100 lei</h6>
               </td>
             </tr>
             <tr>
-              <td>
-                <p>Intretinere</p>
+              <td className={`sp-h sp-v`}>
+                <h6>Manichiura constructie gel</h6>
               </td>
-              <td>
-                <p>1h 30m</p>
+              <td className={`sp-h sp-v`}>
+                <h6>1h 30m</h6>
               </td>
-              <td>
-                <p>70 lei</p>
+              <td className={`sp-h sp-v`}>
+                <h6>100 lei</h6>
               </td>
             </tr>
             <tr>
-              <td>
-                <p>Pedichiura constructie gel</p>
+              <td className={`sp-h sp-v`}>
+                <h6>Manichiura constructie gel</h6>
               </td>
-              <td>
-                <p>1h 30m</p>
+              <td className={`sp-h sp-v`}>
+                <h6>1h 30m</h6>
               </td>
-              <td>
-                <p>100 lei</p>
+              <td className={`sp-h sp-v`}>
+                <h6>100 lei</h6>
               </td>
             </tr>
           </tbody>

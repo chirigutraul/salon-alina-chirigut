@@ -196,8 +196,8 @@ p {
 }
 
 .prices-table td{
-  border-top:1px solid black;
   @apply sp-v;
+  min-width:8ch;
 }
 
 .prices-table th {
