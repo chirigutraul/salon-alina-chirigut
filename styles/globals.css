@@ -191,31 +191,22 @@ p {
   padding-top: var(--navbar-height);
 }
 
-.prices-table{
-  @apply bg-white-80;
-}
-
-.prices-table td {
-  padding-bottom: var(--vertical-spacing-variable);
-}
-
 .prices-table td,th {
-  padding-inline:32px;
   text-align: right;
 }
 
-.prices-table th {
-  padding-block:16px;
+.prices-table td{
+  border-top:1px solid black;
+  @apply sp-v;
 }
 
-.prices-table td {
-  border-top:1px solid black;
+.prices-table th {
+  padding-bottom: var(--vertical-spacing-variable);
 }
 
 .prices-table td:first-child, th:first-child {
   text-align: left;
 }
-
 }
 
 @screen md {
