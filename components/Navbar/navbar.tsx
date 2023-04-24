@@ -188,7 +188,7 @@ const HamburgerMenu: FunctionComponent<HamburgerMenuProps> = ({
         <ul>
           {links.map((link) => (
             <li key={"mobile" + link.title} className={`sp-v`}>
-              <Link href={link.route}>
+              <Link href={link.route} onClick={toggleNavbar}>
                 <h5>
                   {link.title.substring(0, 1) +
                     link.title.substring(1).toLowerCase()}
