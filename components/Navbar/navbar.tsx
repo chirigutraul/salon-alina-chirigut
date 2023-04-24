@@ -4,13 +4,14 @@ import useWindowSize from "utils/hooks/BreakPointsHooks";
 import breakpoints from "utils/TailwindBreakPoints";
 
 import { useRouter } from "next/router";
-import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faClose, faSignIn } from "@fortawesome/free-solid-svg-icons";
 import { links } from "./navbarLinks";
 import ReactModal from "react-modal";
 import Link from "next/link";
+import { Session } from "next-auth";
+import { useSession } from "next-auth/react";
 
 const Navbar = () => {
   const router = useRouter();
@@ -56,9 +57,9 @@ const Navbar = () => {
           <Image src="/images/logo.png" alt="Logo-ul salonului" fill />
         </div>
         {isLarge ? (
-          <DesktopLinks navigateToSignIn={navigateToSignIn} />
+          <DesktopLinks navigateToSignIn={navigateToSignIn} session={session} />
         ) : (
-          <HamburgerButton toggleNavbar={toggleNavbar} />
+          <HamburgerButton toggleNavbar={toggleNavbar} session={session} />
         )}
       </nav>
     </>
@@ -67,10 +68,12 @@ const Navbar = () => {
 
 interface DesktopLinksProps {
   navigateToSignIn: () => void;
+  session: Session | null;
 }
 
 const DesktopLinks: FunctionComponent<DesktopLinksProps> = ({
   navigateToSignIn,
+  session,
 }) => (
   <div className={"flex items-center"}>
     <ul className={"flex gap-8 text-black sp-h"}>
@@ -80,22 +83,37 @@ const DesktopLinks: FunctionComponent<DesktopLinksProps> = ({
         </li>
       ))}
     </ul>
-    <div>
-      <button
-        className={"btn btn-gradient btn-icon"}
+    {session ? (
+      <div
+        className={`h-14 w-14  xl:h-16 xl:w-16 relative rounded-full overflow-hidden cursor-pointer`}
         onClick={() => navigateToSignIn()}
       >
-        <h6>Conectare</h6>
-        <h6>
-          <FontAwesomeIcon icon={faSignIn} />
-        </h6>
-      </button>
-    </div>
+        <Image
+          src={session.user.image}
+          alt="Imaginea de profil"
+          fill={true}
+          className={`object-cover`}
+        />
+      </div>
+    ) : (
+      <div>
+        <button
+          className={"btn btn-gradient btn-icon"}
+          onClick={() => navigateToSignIn()}
+        >
+          <h6>Conectare</h6>
+          <h6>
+            <FontAwesomeIcon icon={faSignIn} />
+          </h6>
+        </button>
+      </div>
+    )}
   </div>
 );
 
 interface HamburgerButtonProps {
   toggleNavbar: () => void;
+  session: Session | null;
 }
 
 const HamburgerButton: FunctionComponent<HamburgerButtonProps> = ({
