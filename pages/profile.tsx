@@ -1,5 +1,5 @@
 import AuthenticatedUserWithoutPhone from "components/AuthenticatedUserWithoutPhone";
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useState } from "react";
 
 import { GetServerSidePropsContext } from "next";
 import { getSession } from "next-auth/react";
@@ -12,6 +12,7 @@ import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarPlus } from "@fortawesome/free-solid-svg-icons";
 import { appointmentStatuses, servicesLabels } from "utils/constants";
+import AppointmentModal from "components/AppointmentModal";
 
 interface Props {
   session: Session | null;
@@ -58,10 +59,15 @@ export default function Profile({
   appointments,
   closestAppointment,
 }: Props) {
+  const [isOpen, setIsOpen] = useState(false);
   if (!session || !session.user) return <UnauthenticatedUser />;
 
   if (!session.user.phone)
     return <AuthenticatedUserWithoutPhone session={session} />;
+
+  const toggleAppointmentModal = () => {
+    setIsOpen((curr) => !curr);
+  };
 
   return (
     <section className={`bg-white sp-h text-white bg-gradient`}>
@@ -82,11 +88,18 @@ export default function Profile({
           md:flex-row
           `}
           >
-            <AppointmentButton />
+            <AppointmentButton
+              toggleAppointmentModal={toggleAppointmentModal}
+            />
             <AppointmentsHistory appointments={appointments} />
           </div>
         </div>
       </div>
+      <AppointmentModal
+        isOpen={isOpen}
+        toggleModal={toggleAppointmentModal}
+        session={session}
+      />
     </section>
   );
 }
@@ -163,13 +176,19 @@ const AppointmentSpotlight: FunctionComponent<AppointmentSpotlight> = ({
   );
 };
 
-const AppointmentButton: FunctionComponent = () => {
+interface AppointmentButtonProps {
+  toggleAppointmentModal: () => void;
+}
+const AppointmentButton: FunctionComponent<AppointmentButtonProps> = ({
+  toggleAppointmentModal,
+}) => {
   return (
     <div
       className={`profile-dark-container flex flex-col gap-4 justify-center text-center sp-1/2h sp-2v rounded-lg
       hover:text-black hover:bg-white-80 cursor-pointer md:aspect-square
       md:h-64 lg:h-80
       `}
+      onClick={toggleAppointmentModal}
     >
       <h5>Rezerva acum!</h5>
       <FontAwesomeIcon
