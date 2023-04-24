@@ -221,7 +221,7 @@ const AppointmentsHistory: FunctionComponent<AppointmentsHistoryProps> = ({
             Momentan, nu ai nicio programare in istoric..
           </h5>
           <h5 className={`sp-t`}>
-            Poti face o programare dand click pe butonul 'Rezerva Acum'.
+            Poti face o programare dand click pe butonul Rezerva Acum.
           </h5>
         </div>
       </div>
