@@ -1,17 +1,18 @@
 import AuthenticatedUserWithoutPhone from "components/AuthenticatedUserWithoutPhone";
-import React from "react";
+import React, { FunctionComponent } from "react";
 
 import { GetServerSidePropsContext } from "next";
 import { getSession } from "next-auth/react";
 import { Session } from "next-auth";
-import AppointmentsHistory from "components/AppointmentsHistory";
-import AppointmentSpotlight from "components/AppointmentSpotlight";
-import MakeAppointmentButton from "components/MakeAppointmentButton";
 import UnauthenticatedUser from "components/UnauthenticatedUser";
-import UserInfo from "components/UserInfo";
 import { getUserAppointments } from "utils/hooks/requests/appointments";
 import { extendedAppointment } from "types/DbEntitiesTypes";
 import { prisma } from "prisma/client";
+import Image from "next/image";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCalendarPlus } from "@fortawesome/free-solid-svg-icons";
+import { appointmentStatuses, servicesLabels } from "utils/constants";
+
 interface Props {
   session: Session | null;
   appointments: extendedAppointment[] | null;
@@ -52,25 +53,243 @@ export const getServerSideProps: any = async (
   };
 };
 
-const Profile = ({ session, appointments, closestAppointment }: Props) => {
+export default function Profile({
+  session,
+  appointments,
+  closestAppointment,
+}: Props) {
   if (!session || !session.user) return <UnauthenticatedUser />;
 
   if (!session.user.phone)
     return <AuthenticatedUserWithoutPhone session={session} />;
 
   return (
-    <div
-      className={`px-4 grid grid-cols-1
-    md:grid-cols-2 md:gap-x-4
-    lg:grid-cols-3
-    `}
-    >
-      <UserInfo client={session.user} />
-      <MakeAppointmentButton session={session} />
-      <AppointmentSpotlight closestAppointment={closestAppointment} />
-      <AppointmentsHistory appointments={appointments} />
+    <section className={`bg-white sp-h text-white bg-gradient`}>
+      <div className={`sp-2t`}>
+        {/* <h1 className={`text-center`}>Profilul tau</h1> */}
+        <div className={`sp-2v`}>
+          <div
+            className={`flex flex-col gap-8
+          sm:flex-row
+          `}
+          >
+            <UserInfo session={session} />
+            <AppointmentSpotlight closestAppointment={closestAppointment} />
+          </div>
+
+          <div
+            className={`flex flex-col gap-8 mt-8
+          md:flex-row
+          `}
+          >
+            <AppointmentButton />
+            <AppointmentsHistory appointments={appointments} />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+interface UserInfoProps {
+  session: Session;
+}
+const UserInfo: FunctionComponent<UserInfoProps> = ({ session }) => {
+  return (
+    <div className={`bg-black-50 sp-h sp-v rounded-lg`}>
+      <div className={`flex flex-col items-center`}>
+        <div className={`w-32 h-32 relative rounded-full overflow-hidden`}>
+          <Image
+            fill={true}
+            src={session.user.image}
+            alt="Imaginea de profil"
+            className={`object-cover`}
+          />
+        </div>
+        <h4 className={`sp-t`}>{session.user.name}</h4>
+      </div>
+      <div className={`sp-t overflow-auto`}>
+        <span className={`flex gap-2 items-end`}>
+          <h5>Email:</h5>
+          <h6>{session.user.email}</h6>
+        </span>
+        <span className={`flex gap-2 items-end sp-1/2t`}>
+          <h5>Telefon:</h5>
+          <h6>{session.user.phone}</h6>
+        </span>
+      </div>
     </div>
   );
 };
 
-export default Profile;
+interface AppointmentSpotlight {
+  closestAppointment: extendedAppointment | null;
+}
+const AppointmentSpotlight: FunctionComponent<AppointmentSpotlight> = ({
+  closestAppointment,
+}) => {
+  if (!closestAppointment)
+    return (
+      <div
+        className={`bg-black-50 sp-h sp-v rounded-lg text-center grid place-items-center
+        md:flex-grow 
+        `}
+      >
+        <div>
+          <h3>Te asteptam!</h3>
+          <h5 className={`sp-t`}>
+            Momentan, nu ai nicio programare in viitorul apropiat..
+          </h5>
+        </div>
+      </div>
+    );
+
+  return (
+    <div className={`bg-black-50 sp-h sp-v rounded-lg`}>
+      <h4 className={`sp-t`}>Te asteptam!</h4>
+      <h5>Urmatoarea ta programare:</h5>
+
+      <h3>Intretinere</h3>
+
+      <h5 className={`sp-t`}>Data: 25.03.2023</h5>
+
+      <span className={`flex justify-between`}>
+        <h5>Ora: 14:00</h5>
+        <h5>Cost: 80LEI</h5>
+      </span>
+
+      <h5 className={`text-right sp-t`}>Status: In asteptare</h5>
+    </div>
+  );
+};
+
+const AppointmentButton: FunctionComponent = () => {
+  return (
+    <div
+      className={`profile-dark-container flex flex-col gap-4 justify-center text-center sp-1/2h sp-2v rounded-lg
+      hover:text-black hover:bg-white-80 cursor-pointer md:aspect-square
+      md:h-64 lg:h-80
+      `}
+    >
+      <h5>Rezerva acum!</h5>
+      <FontAwesomeIcon
+        icon={faCalendarPlus}
+        className={`
+        text-9xl
+        md:text-8xl md:order-3
+      `}
+      />
+    </div>
+  );
+};
+interface AppointmentsHistoryProps {
+  appointments: extendedAppointment[] | null;
+}
+const AppointmentsHistory: FunctionComponent<AppointmentsHistoryProps> = ({
+  appointments,
+}) => {
+  if (!appointments) {
+    return (
+      <div
+        className={`bg-black-50 sp-h sp-v rounded-lg overflow-auto appointments-history-container
+        text-center md:h-64 md:flex-grow md:-order-1
+        lg:h-80 
+        `}
+      >
+        <div className={`flex flex-col h-full w-full justify-center`}>
+          <h4>Istoric programari</h4>
+          <h5 className={`sp-t`}>
+            Momentan, nu ai nicio programare in istoric..
+          </h5>
+          <h5 className={`sp-t`}>
+            Poti face o programare dand click pe butonul 'Rezerva Acum'.
+          </h5>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className={`order-2 flex-grow md:-order-1`}>
+      <div
+        className={`bg-black-50 sp-h sp-v rounded-lg h-96 
+      overflow-auto appointments-history-container
+      md:hidden 
+      `}
+      >
+        <h4 className={`text-center`}>Istoricul programarilor tale</h4>
+        <ul>
+          {appointments?.map((appointment) => {
+            const date = appointment.date.toString().split("T")[0];
+            const hour = appointment.date
+              .toString()
+              .split("T")[1]
+              .substring(0, 5);
+            return (
+              <li
+                className={`border-[1px] border-white-80 rounded-lg sp-t`}
+                key={appointment.id}
+              >
+                <div className={`sp-h sp-v`}>
+                  <h5>{servicesLabels.get(appointment.service.name)}</h5>
+                  <span className={`flex justify-between`}>
+                    <h6>{`Data: ${date}`}</h6>
+                    <h6>{`Ora: ${hour}`}</h6>
+                  </span>
+                  <p className={`text-right`}>
+                    Status: {appointmentStatuses.get(appointment.status)}
+                  </p>
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+      <div
+        className={`bg-black-50 sp-h sp-v hidden rounded-lg overflow-auto appointments-history-container
+        md:h-64 md:flex-grow md:-order-1 md:block
+        lg:h-80 
+        `}
+      >
+        <h5>Istoricul programarilor tale</h5>
+        <table className={`w-full sp-t`}>
+          <thead>
+            <tr>
+              <th>
+                <h6>Serviciu</h6>
+              </th>
+              <th>
+                <h6>Data</h6>
+              </th>
+              <th>
+                <h6>Status</h6>
+              </th>
+            </tr>
+          </thead>
+          <tbody className={`divide divide-solid divide-white divide-y-[1px]`}>
+            {appointments.map((appointment) => {
+              const date = appointment.date.toString().split("T")[0];
+              return (
+                <tr>
+                  <td className={`py-2`}>
+                    <p className={`h7`}>
+                      {servicesLabels.get(appointment.service.name)}
+                    </p>
+                  </td>
+                  <td className={`text-right`}>
+                    <p className={`h7`}>{date}</p>
+                  </td>
+                  <td className={`text-right`}>
+                    <p className={`h7`}>
+                      {appointmentStatuses.get(appointment.status)}
+                    </p>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+};
