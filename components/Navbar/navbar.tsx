@@ -164,7 +164,10 @@ const HamburgerMenu: FunctionComponent<HamburgerMenuProps> = ({
     >
       <div className={`flex items-center justify-between`}>
         {session ? (
-          <div className={`flex items-center gap-4`} onClick={navigateAndClose}>
+          <div
+            className={`flex items-center gap-4 cursor-pointer`}
+            onClick={navigateAndClose}
+          >
             <div className={`relative h-16 w-16 rounded-full overflow-hidden`}>
               <Image
                 src={session.user.image}
@@ -180,7 +183,7 @@ const HamburgerMenu: FunctionComponent<HamburgerMenuProps> = ({
         )}
         <FontAwesomeIcon
           icon={faClose}
-          className={`text-3xl`}
+          className={`text-3xl cursor-pointer`}
           onClick={toggleNavbar}
         />
       </div>
