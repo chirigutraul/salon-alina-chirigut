@@ -289,7 +289,7 @@ const AppointmentsHistory: FunctionComponent<AppointmentsHistoryProps> = ({
             {appointments.map((appointment) => {
               const date = appointment.date.toString().split("T")[0];
               return (
-                <tr>
+                <tr key={appointment.id}>
                   <td className={`py-2`}>
                     <p className={`h7`}>
                       {servicesLabels.get(appointment.service.name)}
