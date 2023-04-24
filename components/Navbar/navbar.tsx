@@ -6,12 +6,17 @@ import breakpoints from "utils/TailwindBreakPoints";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faClose, faSignIn } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBars,
+  faClose,
+  faSignIn,
+  faSignOut,
+} from "@fortawesome/free-solid-svg-icons";
 import { links } from "./navbarLinks";
 import ReactModal from "react-modal";
 import Link from "next/link";
 import { Session } from "next-auth";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 
 const Navbar = () => {
   const router = useRouter();
@@ -33,6 +38,7 @@ const Navbar = () => {
         isHamburgerOpen={isHamburgerOpen}
         toggleNavbar={toggleNavbar}
         navigateToSignIn={navigateToSignIn}
+        session={session}
       />
     );
 
@@ -59,7 +65,7 @@ const Navbar = () => {
         {isLarge ? (
           <DesktopLinks navigateToSignIn={navigateToSignIn} session={session} />
         ) : (
-          <HamburgerButton toggleNavbar={toggleNavbar} session={session} />
+          <HamburgerButton toggleNavbar={toggleNavbar} />
         )}
       </nav>
     </>
@@ -113,7 +119,6 @@ const DesktopLinks: FunctionComponent<DesktopLinksProps> = ({
 
 interface HamburgerButtonProps {
   toggleNavbar: () => void;
-  session: Session | null;
 }
 
 const HamburgerButton: FunctionComponent<HamburgerButtonProps> = ({
@@ -133,12 +138,14 @@ interface HamburgerMenuProps {
   isHamburgerOpen: boolean;
   toggleNavbar: () => void;
   navigateToSignIn: () => void;
+  session: Session | null;
 }
 
 const HamburgerMenu: FunctionComponent<HamburgerMenuProps> = ({
   navigateToSignIn,
   isHamburgerOpen,
   toggleNavbar,
+  session,
 }) => {
   const navigateAndClose = () => {
     navigateToSignIn();
@@ -150,36 +157,66 @@ const HamburgerMenu: FunctionComponent<HamburgerMenuProps> = ({
       isOpen={isHamburgerOpen}
       onRequestClose={toggleNavbar}
       className={`
-    w-[80%] z-50 bg-gradient h-screen py-8 px-8  text-white
-    focus:outline-none rounded-r-lg
+    w-[80%] z-50 bg-gradient text-white
+    focus:outline-none rounded-l-lg min-h-screen right-0 absolute
+    sp-2v sp-h
     `}
     >
-      <nav className={"relative h-full w-full"}>
-        <button onClick={toggleNavbar}>
-          <FontAwesomeIcon
-            icon={faClose}
-            className={`absolute right-8 text-4xl`}
-          />
-        </button>
-        <ul className={"flex flex-col gap-16"}>
+      <div className={`flex items-center justify-between`}>
+        {session ? (
+          <div className={`flex items-center gap-4`} onClick={navigateAndClose}>
+            <div className={`relative h-16 w-16 rounded-full overflow-hidden`}>
+              <Image
+                src={session.user.image}
+                alt="Imaginea de profil"
+                fill={true}
+                className={`object-cover`}
+              />
+            </div>
+            <h5>{session?.user.name.split(" ")[0]}</h5>
+          </div>
+        ) : (
+          <h5> Nu esti conectat. </h5>
+        )}
+        <FontAwesomeIcon
+          icon={faClose}
+          className={`text-3xl`}
+          onClick={toggleNavbar}
+        />
+      </div>
+      <nav className={`sp-v`}>
+        <ul>
           {links.map((link) => (
-            <li onClick={toggleNavbar} key={"mobile" + link.route}>
+            <li key={"mobile" + link.title} className={`sp-v`}>
               <Link href={link.route}>
-                <h5>{link.title}</h5>
+                <h5>
+                  {link.title.substring(0, 1) +
+                    link.title.substring(1).toLowerCase()}
+                </h5>
               </Link>
             </li>
           ))}
         </ul>
-        <div className={"absolute bottom-0"}>
-          <button
-            onClick={navigateAndClose}
-            className={"btn btn-border-light btn-icon"}
-          >
-            <h5>Conectare</h5>
-            <FontAwesomeIcon icon={faSignIn} />
+      </nav>
+      {session ? (
+        <div onClick={() => signOut()}>
+          <button className={`btn btn-border-light btn-icon`}>
+            <h5>Delogare</h5>
+            <h5>
+              <FontAwesomeIcon icon={faSignOut} />
+            </h5>
           </button>
         </div>
-      </nav>
+      ) : (
+        <div onClick={() => navigateAndClose()}>
+          <button className={`btn btn-border-light btn-icon`}>
+            <h5>Conectare</h5>
+            <h5>
+              <FontAwesomeIcon icon={faSignIn} />
+            </h5>
+          </button>
+        </div>
+      )}
     </ReactModal>
   );
 };
