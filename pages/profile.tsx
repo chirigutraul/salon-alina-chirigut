@@ -72,7 +72,7 @@ export default function Profile({
   return (
     <section className={`bg-white sp-h text-white bg-gradient`}>
       <div className={`sp-2t`}>
-        {/* <h1 className={`text-center`}>Profilul tau</h1> */}
+        <h1 className={`text-center`}>Profilul tau</h1>
         <div className={`sp-2v`}>
           <div
             className={`flex flex-col gap-8
