@@ -7,6 +7,7 @@ const UnauthenticatedUser = () => {
   const googleAuth = () => {
     signIn("google", {});
   };
+
   return (
     <section className={`bg-gradient sp-h grid place-items-center`}>
       <div
@@ -20,13 +21,15 @@ const UnauthenticatedUser = () => {
           una din metodele de mai jos:
         </h5>
         <div className={`sp-2t`}>
-          <Image
-            src="/images/sign-in-badges/google-2x.png"
-            width={382}
-            height={92}
-            alt="Sign in with google button"
-            className={`scale-75`}
-          />
+          <div onClick={googleAuth} className={`cursor-pointer`}>
+            <Image
+              src="/images/sign-in-badges/google-2x.png"
+              width={382}
+              height={92}
+              alt="Sign in with google button"
+              className={`scale-75`}
+            />
+          </div>
           <div
             className={`w-72 h-16 bg-white sp-t rounded-md
           xl:w-96

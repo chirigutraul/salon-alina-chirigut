@@ -10,7 +10,7 @@ import { extendedAppointment } from "types/DbEntitiesTypes";
 import { prisma } from "prisma/client";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCalendarPlus } from "@fortawesome/free-solid-svg-icons";
+import { faCalendarPlus, faSignOut } from "@fortawesome/free-solid-svg-icons";
 import { appointmentStatuses, servicesLabels } from "utils/constants";
 import AppointmentModal from "components/AppointmentModal";
 
