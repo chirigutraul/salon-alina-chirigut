@@ -11,6 +11,7 @@ import {
   faClose,
   faSignIn,
   faSignOut,
+  faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { links } from "./navbarLinks";
 import ReactModal from "react-modal";
@@ -91,15 +92,43 @@ const DesktopLinks: FunctionComponent<DesktopLinksProps> = ({
     </ul>
     {session ? (
       <div
-        className={`h-14 w-14  xl:h-16 xl:w-16 relative rounded-full overflow-hidden cursor-pointer`}
+        className={`h-14 w-14  xl:h-16 xl:w-16 relative cursor-pointer group`}
         onClick={() => navigateToSignIn()}
       >
         <Image
           src={session.user.image}
           alt="Imaginea de profil"
           fill={true}
-          className={`object-cover`}
+          className={`object-cover rounded-full`}
         />
+        <div
+          className={`absolute text-white top-[99%] left-[-100%] rounded-md overflow-hidden
+          hidden group-hover:block 
+          `}
+        >
+          <nav>
+            <ul>
+              <li
+                className={`py-2 px-2 bg-black-75 hover:bg-black flex items-center justify-center gap-2 cursor-pointer`}
+                onClick={() => navigateToSignIn()}
+              >
+                <h6>Profil</h6>
+                <h6>
+                  <FontAwesomeIcon icon={faUser} />
+                </h6>
+              </li>
+              <li
+                className={`py-2 px-2 bg-black-75 hover:bg-black flex gap-2 items-center justify-center cursor-pointer`}
+                onClick={() => signOut()}
+              >
+                <h6>Delogare</h6>
+                <h6>
+                  <FontAwesomeIcon icon={faSignOut} />
+                </h6>
+              </li>
+            </ul>
+          </nav>
+        </div>
       </div>
     ) : (
       <div>
