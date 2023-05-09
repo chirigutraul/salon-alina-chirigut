@@ -8,6 +8,10 @@ const UnauthenticatedUser = () => {
     signIn("google", {});
   };
 
+  const facebookAuth = () => {
+    signIn("facebook", {});
+  };
+
   return (
     <section className={`bg-gradient sp-h grid place-items-center`}>
       <div
@@ -31,10 +35,13 @@ const UnauthenticatedUser = () => {
             />
           </div>
           <div
-            className={`w-72 h-16 bg-white sp-t rounded-md
+            className={`w-72 h-16 bg-white sp-t rounded-md cursor-pointer text-black
           xl:w-96
           `}
-          ></div>
+            onClick={facebookAuth}
+          >
+            <h6>Sign in with facebook</h6>
+          </div>
         </div>
       </div>
     </section>

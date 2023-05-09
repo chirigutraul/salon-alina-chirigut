@@ -1,3 +1,5 @@
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Button from "components/Button";
 import { Session } from "next-auth";
 import React, { FunctionComponent, useState } from "react";
@@ -25,34 +27,38 @@ const AuthenticatedUserWithoutPhone: FunctionComponent<Props> = ({
   };
 
   return (
-    <div>
+    <section className={`bg-gradient sp-h grid place-items-center`}>
       <div
-        className={`
-        bg-primary w-full px-8 py-8 my-4 flex flex-col items-center gap-8
-        `}
+        className={`text-white sp-4t sp-2h sp-2v flex flex-col items-center text-center bg-black-75 w-full justify-between rounded-lg
+      max-w-[500px]
+      xl:sp-h
+      `}
       >
-        <p
-          className={`
-          text-center text-2xl font-medium text-secondary
-          `}
-        >
-          Pentru a putea face programari, te rugam sa adaugi numarul de telefon.
-        </p>
-        <input
-          type="text"
-          name="phone"
-          placeholder="Numar de telefon"
-          onChange={(e) => setPhone(e.target.value)}
-          className="w-full h-12 px-4 border border-gray-300 rounded-sm shadow-sm"
-        />
-        <Button
-          type="submit"
-          title="Confirma"
-          size="xl"
-          onClick={addPhoneNumberToUser}
-        />
+        <h5>
+          Pentru a putea face programari, te rugam sa te autentifici folosind
+          una din metodele de mai jos:
+        </h5>
+        <div className={`sp-t`}>
+          <input
+            type="text"
+            name="phone"
+            placeholder="Numar de telefon"
+            onChange={(e) => setPhone(e.target.value)}
+            className="w-full h-12 px-4 border border-gray-300 rounded-sm shadow-sm text-black-50"
+          />
+          <button
+            type="submit"
+            onClick={addPhoneNumberToUser}
+            className={`btn btn-border-light btn-icon`}
+          >
+            <h6>Confirma</h6>
+            <h6>
+              <FontAwesomeIcon icon={faArrowRight} />
+            </h6>
+          </button>
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -92,7 +92,7 @@ const DesktopLinks: FunctionComponent<DesktopLinksProps> = ({
     </ul>
     {session ? (
       <div
-        className={`h-14 w-14  xl:h-16 xl:w-16 relative cursor-pointer group`}
+        className={`h-12 w-12  xl:h-12 xl:w-12 relative cursor-pointer group`}
         onClick={() => navigateToSignIn()}
       >
         <Image
