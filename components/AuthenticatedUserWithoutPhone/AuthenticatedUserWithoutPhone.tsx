@@ -1,9 +1,10 @@
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Button from "components/Button";
+import TextInput from "components/TextInput";
 import { Session } from "next-auth";
 import React, { FunctionComponent, useState } from "react";
 import { updateClientById } from "utils/hooks/requests/clients";
+import { validatePhoneNumber } from "utils/helpers/validatePhoneNumber";
 
 interface Props {
   session: Session | null;
@@ -12,7 +13,7 @@ interface Props {
 const AuthenticatedUserWithoutPhone: FunctionComponent<Props> = ({
   session,
 }) => {
-  const [phone, setPhone] = useState<string>();
+  const [phone, setPhone] = useState<string>("");
 
   const addPhoneNumberToUser = async () => {
     if (session) {
@@ -40,14 +41,14 @@ const AuthenticatedUserWithoutPhone: FunctionComponent<Props> = ({
         </h5>
         <div className={`sp-t w-full flex flex-col align-center`}>
           <label className={`text-left`}>
-            <h6>Numarul tau de telefon:</h6>
+            <h6>Numar de telefon:</h6>
           </label>
-          <input
-            type="text"
+          <TextInput
             name="phone"
-            placeholder="Numar de telefon"
-            onChange={(e) => setPhone(e.target.value)}
-            className="w-full h-12 px-4 mt-2 border border-gray-300 rounded-md shadow-sm text-black-50"
+            placeholder="Numarul tau de telefon"
+            value={phone}
+            onChange={(e) => setPhone(e)}
+            validationMethod={validatePhoneNumber}
           />
           <button
             type="submit"
