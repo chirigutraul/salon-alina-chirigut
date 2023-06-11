@@ -2,6 +2,8 @@ import Image from "next/image";
 import React from "react";
 
 import { signIn } from "next-auth/react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFacebook, faGoogle } from "@fortawesome/free-brands-svg-icons";
 
 const UnauthenticatedUser = () => {
   const googleAuth = () => {
@@ -15,7 +17,7 @@ const UnauthenticatedUser = () => {
   return (
     <section className={`bg-gradient sp-h grid place-items-center`}>
       <div
-        className={`text-white sp-4t sp-2h sp-2v flex flex-col items-center text-center bg-black-75 w-full justify-between rounded-lg
+        className={`text-white sp-4t sp-2h sp-2v text-center bg-black-75 w-full justify-between rounded-lg
         max-w-[500px]
         xl:sp-h
         `}
@@ -24,23 +26,30 @@ const UnauthenticatedUser = () => {
           Pentru a putea face programari, te rugam sa te autentifici folosind
           una din metodele de mai jos:
         </h5>
-        <div className={`sp-2t`}>
-          <div onClick={googleAuth} className={`cursor-pointer`}>
-            <Image
-              src="/images/sign-in-badges/google-2x.png"
-              width={382}
-              height={92}
-              alt="Sign in with google button"
-              className={`scale-75`}
-            />
+        <div
+          className={`w-full flex flex-col items-center justify-between gap-4 sp-t`}
+        >
+          <div
+            onClick={googleAuth}
+            className={`flex justify-between gap-4 cursor-pointer relative bg-white text-black px-4 py-2 rounded-md pr-10
+            hover:bg-white-80
+            `}
+          >
+            <h5>
+              <FontAwesomeIcon icon={faGoogle} />
+            </h5>
+            <h6>Sign in with google</h6>
           </div>
           <div
-            className={`w-72 h-16 bg-white sp-t rounded-md cursor-pointer text-black
-          xl:w-96
-          `}
-            onClick={facebookAuth}
+            onClick={googleAuth}
+            className={`flex justify-between gap-4 cursor-pointer relative bg-white text-black px-4 py-2 rounded-md
+            hover:bg-white-80
+            `}
           >
-            <h6>Sign in with facebook</h6>
+            <h5>
+              <FontAwesomeIcon icon={faFacebook} />
+            </h5>
+            <h6>Sign in with Facebook</h6>
           </div>
         </div>
       </div>

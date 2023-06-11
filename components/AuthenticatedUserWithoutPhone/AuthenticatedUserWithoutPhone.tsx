@@ -38,18 +38,21 @@ const AuthenticatedUserWithoutPhone: FunctionComponent<Props> = ({
           Pentru a putea face programari, te rugam sa te autentifici folosind
           una din metodele de mai jos:
         </h5>
-        <div className={`sp-t`}>
+        <div className={`sp-t w-full flex flex-col align-center`}>
+          <label className={`text-left`}>
+            <h6>Numarul tau de telefon:</h6>
+          </label>
           <input
             type="text"
             name="phone"
             placeholder="Numar de telefon"
             onChange={(e) => setPhone(e.target.value)}
-            className="w-full h-12 px-4 border border-gray-300 rounded-sm shadow-sm text-black-50"
+            className="w-full h-12 px-4 mt-2 border border-gray-300 rounded-md shadow-sm text-black-50"
           />
           <button
             type="submit"
             onClick={addPhoneNumberToUser}
-            className={`btn btn-border-light btn-icon`}
+            className={`btn btn-border-light btn-icon sp-t ml-auto mr-auto`}
           >
             <h6>Confirma</h6>
             <h6>
