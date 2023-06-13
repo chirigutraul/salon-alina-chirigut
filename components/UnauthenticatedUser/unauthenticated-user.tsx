@@ -1,4 +1,3 @@
-import Image from "next/image";
 import React from "react";
 
 import { signIn } from "next-auth/react";
@@ -6,14 +5,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faGoogle } from "@fortawesome/free-brands-svg-icons";
 
 const UnauthenticatedUser = () => {
-  const googleAuth = () => {
-    signIn("google", {});
-  };
-
-  const facebookAuth = () => {
-    signIn("facebook", {});
-  };
-
   return (
     <section className={`bg-gradient sp-h grid place-items-center`}>
       <div
@@ -30,7 +21,7 @@ const UnauthenticatedUser = () => {
           className={`w-full flex flex-col items-center justify-between gap-4 sp-t`}
         >
           <div
-            onClick={googleAuth}
+            onClick={() => signIn("google")}
             className={`flex justify-between gap-4 cursor-pointer relative bg-white text-black px-4 py-2 rounded-md pr-10
             hover:bg-white-80
             `}
@@ -41,7 +32,7 @@ const UnauthenticatedUser = () => {
             <h6>Sign in with google</h6>
           </div>
           <div
-            onClick={googleAuth}
+            onClick={() => signIn("facebook")}
             className={`flex justify-between gap-4 cursor-pointer relative bg-white text-black px-4 py-2 rounded-md
             hover:bg-white-80
             `}

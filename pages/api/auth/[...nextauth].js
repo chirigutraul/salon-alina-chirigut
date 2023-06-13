@@ -1,7 +1,7 @@
 import NextAuth from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
 import FacebookProvider from "next-auth/providers/facebook";
-import {prisma} from "prisma/client";
+import { getClientById, createClient } from "utils/hooks/requests/clients";
 
 export default NextAuth({
   secret: process.env.JWT_SECRET,
@@ -32,27 +32,29 @@ export default NextAuth({
     async signIn (user) {
       const sessionUser = user.user;
 
-      const loggedClient = await prisma.client.findUnique({
-        where: {
-          id: sessionUser.id
-        }
-      })
+      const loggedClient = await getClientById(sessionUser.id);
 
-     
-      if(!loggedClient){
-        const newClient = await prisma.client.create({
-          data: {
-            id:sessionUser.id,
-            firstName: sessionUser.name.split(" ")[0],
-            lastName: sessionUser.name.split(" ")[1],
-            email: sessionUser.email,
-            picture: sessionUser.image,
-          }
-        })
-      }
+      if(!loggedClient.id){
+        const sessionUserFirstName = sessionUser.name.split(" ")[0];
+        const sessionUserLastName = sessionUser.name.split(" ")[1];
 
-      user.user.phone = loggedClient?.phone || null;
-      return true
-    },
+        const newClientData = {
+          id:sessionUser.id,
+          firstName: sessionUserFirstName,
+          lastName: sessionUserLastName,
+          email: sessionUser.email,
+          picture: sessionUser.image,
+        };
+
+
+        const newClient = await createClient(newClientData);
+
+        user.user.phone = loggedClient?.phone || null;
+        return true
+    }
+
+    return true;
+
+    }
   }
 })

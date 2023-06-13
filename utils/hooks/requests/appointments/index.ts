@@ -64,6 +64,8 @@ export async function getUserAppointments(userId: string): Promise<userProfileAp
   const user = await fetch(`${process.env.API_URI}/api/clients/${userId}`);
   const userJson = await user.json();
 
+  if(!userJson.appointments || !userJson.appointments.length) return {appointments: [], closestAppointment: null};
+
   const sortedAppointments:Appointment[] = userJson.appointments.sort((a: Appointment, b: Appointment) => {
    return new Date(a.date).getTime() -  new Date(b.date).getTime()
   })
