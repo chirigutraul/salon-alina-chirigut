@@ -1,6 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { singleMethods, entity } from 'prisma/methods/methods';
 import { prisma } from 'prisma/client';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -26,7 +25,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       }
     });
 
-    if(!result || !result.id) return res.status(404).json({message: "No client was found."});
+    if(!result || !result.id) return res.status(404).json({message: "No client was found.", status: 'error'});
 
     return res.status(200).json(result);
   }
@@ -41,8 +40,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       data,
     });
 
-    if(!updateResult.id) return res.status(404).json({message: "No client was found."});
+    if(!updateResult.id) return res.status(404).json({message: "No client was found.", status: 'error'});
 
-    return res.status(200).json(updateResult);
+    return res.status(200).json({ message: "Numar de telefon adaugat cu success!" , status: 'success'});
   }
 }

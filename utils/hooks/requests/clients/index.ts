@@ -1,6 +1,7 @@
 import { IClient } from "types/DbEntitiesTypes"
 
 const CLIENTS_API_URL = `${process.env.API_URI}/api/clients`;
+const envSecret = process.env.JWT_SECRET;
 
 export const getClientById = async (id:string) => {
   const client = await fetch(`${CLIENTS_API_URL}/${id}`, {
@@ -38,5 +39,7 @@ export const updateClientById = async (id:string, dto:IClient) => {
     body: JSON.stringify({data:dto}),
   })
 
-  return updateResult;
+  const updateResultJson = await updateResult.json();
+
+  return updateResultJson;
 }

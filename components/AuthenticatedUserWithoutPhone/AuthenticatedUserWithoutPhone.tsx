@@ -5,6 +5,8 @@ import { Session } from "next-auth";
 import React, { FunctionComponent, useState } from "react";
 import { updateClientById } from "utils/hooks/requests/clients";
 import { validatePhoneNumber } from "utils/helpers/validatePhoneNumber";
+import { toast } from "react-toastify";
+import { RequestResponse } from "types/ResponseTypes";
 
 interface Props {
   session: Session | null;
@@ -18,11 +20,13 @@ const AuthenticatedUserWithoutPhone: FunctionComponent<Props> = ({
   const addPhoneNumberToUser = async () => {
     if (session) {
       if (phone && session.user.id) {
-        await updateClientById(session.user.id, { phone }).then((res) => {
-          if (res) {
-            window.location.reload();
+        await updateClientById(session.user.id, { phone }).then(
+          (res: RequestResponse) => {
+            if (res) {
+              toast[res.status](res.message);
+            }
           }
-        });
+        );
       }
     }
   };

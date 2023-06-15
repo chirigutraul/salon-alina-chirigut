@@ -6,13 +6,12 @@ const nextConfig = {
   images: {
     domains: ['images.unsplash.com', 'lh3.googleusercontent.com', 'platform-lookaside.fbsbx.com'],
   },
+  env: {
+    API_URI: process.env.API_URI,
+  }
 }
 
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
-})
-
 module.exports = () => {
-  return withBundleAnalyzer(nextConfig)
+  return nextConfig
 }
 
