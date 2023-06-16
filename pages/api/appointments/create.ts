@@ -14,8 +14,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       data: { ...data }
     });
 
-    if (!result) return res.status(400).json({ message: "Ceva nu a functionat!", status: 400 })
+    if (!result) return res.status(400).json({ message: "Ceva nu a functionat!", status: 'error' })
 
-    return res.status(200).json({ message: "Programarea ta a fost creata! Multumim!", status: 200 })
+    return res.status(200).json({ message: "Programarea ta a fost creata! Multumim!", status: 'success' })
   }
 }
