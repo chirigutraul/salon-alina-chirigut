@@ -73,7 +73,10 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
     <ReactModal
       isOpen={isOpen}
       onRequestClose={toggleModal}
-      className={`bg-white-80 absolute p-8 h-full w-full`}
+      className={`bg-white-80 absolute p-8 h-full w-full
+      md:max-w-[32rem] md:max-h-[40rem] md:top-1/2 md:left-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2
+      md:rounded-md md:overflow-hidden
+      `}
       overlayClassName={`h-full w-full bg-black bg-opacity-50 fixed z-10 top-0 backdrop-blur-sm`}
     >
       <div className={`relative h-full`}>
