@@ -183,7 +183,7 @@ const AboutUsSection: FunctionComponent = () => {
       <div
         ref={horizontalScrollRef as any}
         className={`sp-2h sp-t scroll-x overflow-x-auto
-        gap-4 flex flex-row relative review-container sp-v
+        gap-4 flex flex-row relative styled-scrollbar sp-v
       `}
       >
         <Review

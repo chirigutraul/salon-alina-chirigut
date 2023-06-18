@@ -275,6 +275,14 @@ p {
   @apply text-black border-2 border-black btn;
 }
 
+.btn-border-dark:hover {
+  @apply bg-black-25;
+}
+
+.btn-border-dark:active {
+  @apply bg-black-10;
+}
+
 .btn-light:hover {
   @apply bg-black text-white-80;
 }
@@ -295,13 +303,12 @@ p {
   @apply bg-black-10;
 }
 
-
 @tailwind utilities;
 
-.review-container::-webkit-scrollbar{
+.styled-scrollbar::-webkit-scrollbar{
   height:5px;
 }
-.review-container::-webkit-scrollbar-thumb {
+.styled-scrollbar::-webkit-scrollbar-thumb {
   height:5px;
   background-color: rgba(255,255,255,0.4);
 }
@@ -324,4 +331,11 @@ p {
   width:2px;
   height:2px;
   background-color: rgba(255,255,255,1);
+}
+
+
+.flatpickr-input::placeholder {
+  @apply font-light text-black;
+  font-size: var(--font-base-size);
+  line-height: 1.2;
 }

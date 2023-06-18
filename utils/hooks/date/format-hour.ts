@@ -1,7 +1,12 @@
 import { Service } from "@prisma/client";
 
 export function useMinutesToString(service: Service | undefined){
-    if(!service || service.duration) return null; 
+    if(!service){
+      return null;
+    }
+
+    if(!service.duration) return null; 
+
     const parsedMinutes = parseInt(service.duration);
     const hours = Math.floor(parsedMinutes / 60);
     const remainingMinutes = parsedMinutes % 60;

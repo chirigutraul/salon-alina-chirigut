@@ -24,10 +24,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           lte: nextDayAfterDate,
           },
         },
-        include:{
-          client: true,
-          service: true
-        }
     });
     return res.status(200).json(result);
 }
