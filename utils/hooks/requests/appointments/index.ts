@@ -41,7 +41,7 @@ export async function createAppointment(clientId: string, date: Date, time: Stri
 export async function getAppointmentsFromCertainDate(date:Date): Promise<Appointment[]>{
   const formatedDate = date.toISOString();
   const response = await fetch(
-    "/api/appointments/get-appointments-from-date",
+    `${process.env.API_URI}/api/appointments/get-appointments-from-date`,
     {
       method: "POST",
       headers: {
