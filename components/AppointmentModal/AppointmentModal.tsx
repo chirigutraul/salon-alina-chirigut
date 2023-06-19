@@ -91,10 +91,6 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
         <h6>
           Pentru a realiza o programare, te rugam sa completezi formularul:
         </h6>
-        <p>Serviciul: {selectedService?.name}</p>
-        <p>Durata: {serviceDuration}</p>
-        <p>Ora: {hour}</p>
-        <p>Data: {selectedDate?.toLocaleDateString()}</p>
         <div className={`flex flex-col gap-4 sp-t`}>
           <ServicesDropdown onSelect={setSelectedService} />
           <DatePicker ref={fp} setDate={setDate} selectedDate={selectedDate} />
