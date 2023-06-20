@@ -69,6 +69,14 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
     if (selectedDate) fetchAppointments(selectedDate);
   }, [selectedDate]);
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [isOpen]);
+
   return (
     <ReactModal
       isOpen={isOpen}
