@@ -117,7 +117,10 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
           />
         </div>
         <div className={`w-full flex justify-center absolute bottom-0`}>
-          <button className={`btn-icon btn-border-dark sp-2t`}>
+          <button
+            className={`btn-icon btn-border-dark sp-2t`}
+            onClick={handleAppointmentCreation}
+          >
             <h6 className={`font-bold`}>Programeaza</h6>
             <h5>
               <FontAwesomeIcon icon={faArrowRight} />
