@@ -50,7 +50,6 @@ export async function getAppointmentsFromCertainDate(date:Date): Promise<Appoint
       body: JSON.stringify({ date: formatedDate }),
     }
   );
-
   const parsedResponse = await response.json();
   return parsedResponse;
 }

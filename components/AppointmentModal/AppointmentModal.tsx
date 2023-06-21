@@ -28,7 +28,7 @@ interface Props {
 }
 
 const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
-  const [selectedDate, setDate] = useState<Date>();
+  const [selectedDate, setSelectedDate] = useState<Date>();
   const [hour, setHour] = useState<string>("");
   const [appointmentsFromSelectedDate, setAppointmentsFromSelectedDate] =
     useState<Appointment[]>([]);
@@ -47,6 +47,7 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
 
   const fetchAppointments = async (date: Date) => {
     const retrievedAppointments = await getAppointmentsFromCertainDate(date);
+    console.log("RETRIEVED APPOINTMENTS:", retrievedAppointments);
     setAppointmentsFromSelectedDate(retrievedAppointments);
   };
 
@@ -66,7 +67,9 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
   };
 
   useEffect(() => {
-    if (selectedDate) fetchAppointments(selectedDate);
+    if (selectedDate && selectedService) {
+      fetchAppointments(selectedDate);
+    }
   }, [selectedDate]);
 
   useEffect(() => {
@@ -101,7 +104,11 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
         </h6>
         <div className={`flex flex-col gap-4 sp-t`}>
           <ServicesDropdown onSelect={setSelectedService} />
-          <DatePicker ref={fp} setDate={setDate} selectedDate={selectedDate} />
+          <DatePicker
+            ref={fp}
+            setDate={setSelectedDate}
+            selectedDate={selectedDate}
+          />
           <AvailableHoursDropdown
             onSelect={(selectedHour) => setHour(selectedHour)}
             appointments={appointmentsFromSelectedDate}
@@ -123,6 +130,3 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
 };
 
 export default AppointmentModal;
-
-{
-}
