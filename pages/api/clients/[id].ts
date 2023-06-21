@@ -2,11 +2,13 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { prisma } from 'prisma/client';
 
+import { ERROR_MESSAGES } from 'utils/constants';
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { id } = req.query;
 
   if(!id){
-    return res.status(400).json({message: "No id provided"});
+    return res.status(400).json({message: ERROR_MESSAGES.ID_NOT_FOUND});
   }
 
   const { method } = req;
@@ -25,7 +27,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       }
     });
 
-    if(!result || !result.id) return res.status(404).json({message: "No client was found.", status: 'error'});
+    if(!result || !result.id) return res.status(404).json({message: ERROR_MESSAGES.USER_NOT_FOUND, status: 'error'});
 
     return res.status(200).json(result);
   }
@@ -40,7 +42,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       data,
     });
 
-    if(!updateResult.id) return res.status(404).json({message: "No client was found.", status: 'error'});
+    if(!updateResult.id) return res.status(404).json({message: ERROR_MESSAGES.USER_NOT_FOUND, status: 'error'});
 
     return res.status(200).json({ message: "Numar de telefon adaugat cu success!" , status: 'success'});
   }

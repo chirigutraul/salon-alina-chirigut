@@ -37,8 +37,14 @@ const CLIENTS_API_URL = process.env.API_URI + 'clients';
 const SERVICES_API_URL = process.env.API_URI + 'services';
 const APPOINTMENTS_API_URL = process.env.API_URI + 'appointments';
 
+const ERROR_MESSAGES = {
+  ID_NOT_FOUND: 'Id-ul clientului nu a fost gasit',
+  USER_NOT_FOUND: 'Nu a fost gasit un user.'
+}
+
 export {
   CLIENTS_API_URL,
   SERVICES_API_URL,
-  APPOINTMENTS_API_URL
+  APPOINTMENTS_API_URL,
+  ERROR_MESSAGES
 }
