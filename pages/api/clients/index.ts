@@ -1,7 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { prisma } from 'prisma/client';
-import { multipleMethods, entity } from 'prisma/methods/methods';
+import { ERROR_MESSAGES, SUCCESS_MESSAGES } from 'utils/constants/index';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { method } = req;
@@ -12,7 +12,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const { id, firstName, lastName, email, picture } = client;
 
     if(!client || !id || !firstName || !lastName || !email || !picture){
-      return res.status(400).json({message: "Something went wrong."});
+      return res.status(400).json({message: ERROR_MESSAGES.SOMETHING_WENT_WRONG});
     }
 
     const createdClient = await prisma.client.create({
@@ -20,9 +20,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     });
 
     if(!createdClient) {
-      return res.status(400).json({message: "Something went wrong."});
+      return res.status(400).json({message: ERROR_MESSAGES.SOMETHING_WENT_WRONG});
     }
 
-    return res.status(200).json({ message : "Account created successfully."});
+    return res.status(200).json({ message : SUCCESS_MESSAGES.ACCOUNT_CREATED});
   } 
 }

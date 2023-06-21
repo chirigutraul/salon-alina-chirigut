@@ -39,12 +39,18 @@ const APPOINTMENTS_API_URL = process.env.API_URI + 'appointments';
 
 const ERROR_MESSAGES = {
   ID_NOT_FOUND: 'Id-ul clientului nu a fost gasit',
-  USER_NOT_FOUND: 'Nu a fost gasit un user.'
+  USER_NOT_FOUND: 'Nu a fost gasit un user.',
+  SOMETHING_WENT_WRONG: 'Ceva nu a functionat.',
+}
+
+const SUCCESS_MESSAGES = {
+  ACCOUNT_CREATED: 'Contul a fost creat cu success!',
 }
 
 export {
   CLIENTS_API_URL,
   SERVICES_API_URL,
   APPOINTMENTS_API_URL,
-  ERROR_MESSAGES
+  ERROR_MESSAGES,
+  SUCCESS_MESSAGES
 }
