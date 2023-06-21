@@ -1,6 +1,6 @@
 import { FunctionComponent, useMemo, useState } from "react";
 import { Appointment } from "@prisma/client";
-import useGetAvailableHours from "utils/hooks/date/get-available-hours";
+import getAvailableHours from "utils/helpers/get-available-hours";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import Label from "components/Label";
@@ -22,7 +22,7 @@ const AvailableHoursDropdown: FunctionComponent<DropdownProps> = ({
   const [isOpen, setIsOpen] = useState(false);
 
   const availableHours = useMemo(() => {
-    const availableHoursInSelectedDate = useGetAvailableHours(
+    const availableHoursInSelectedDate = getAvailableHours(
       appointments,
       selectedDate,
       selectedServiceDuration
