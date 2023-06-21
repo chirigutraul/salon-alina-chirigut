@@ -35,8 +35,10 @@ export const popularServices = [
 
 const CLIENTS_API_URL = process.env.API_URI + 'clients';
 const SERVICES_API_URL = process.env.API_URI + 'services';
+const APPOINTMENTS_API_URL = process.env.API_URI + 'appointments';
 
 export {
   CLIENTS_API_URL,
   SERVICES_API_URL,
+  APPOINTMENTS_API_URL
 }

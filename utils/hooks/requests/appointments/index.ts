@@ -1,4 +1,5 @@
 import { Appointment, Service } from "@prisma/client"
+import { APPOINTMENTS_API_URL, CLIENTS_API_URL } from 'utils/constants'
 
 export async function createAppointment(clientId: string, date: Date, time: String, service: Service): Promise<Response> {
   if (!service || !service.duration) {
@@ -27,7 +28,7 @@ export async function createAppointment(clientId: string, date: Date, time: Stri
     }
   }
 
-  const createdAppointment = await fetch(`${process.env.API_URI}/appointments/create`, {
+  const createdAppointment = await fetch(`${APPOINTMENTS_API_URL}/appointments/create`, {
     method: 'post',
     body: JSON.stringify(groupedData),
     headers: {
@@ -41,7 +42,7 @@ export async function createAppointment(clientId: string, date: Date, time: Stri
 export async function getAppointmentsFromCertainDate(date:Date): Promise<Appointment[]>{
   const formatedDate = date.toISOString();
   const response = await fetch(
-    `${process.env.API_URI}/appointments/get-appointments-from-date`,
+    `${APPOINTMENTS_API_URL}/get-appointments-from-date`,
     {
       method: "POST",
       headers: {
@@ -60,7 +61,7 @@ interface userProfileAppointments {
 }
 
 export async function getUserAppointments(userId: string): Promise<userProfileAppointments>{
-  const user = await fetch(`${process.env.API_URI}/clients/${userId}`);
+  const user = await fetch(`${CLIENTS_API_URL}/${userId}`);
   const userJson = await user.json();
 
   if(!userJson.appointments || !userJson.appointments.length) return {appointments: [], closestAppointment: null};
