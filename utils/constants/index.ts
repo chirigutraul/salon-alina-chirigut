@@ -32,3 +32,11 @@ export const popularServices = [
     picture: 'https://images.unsplash.com/photo-1610992015762-45dca7fa3a85?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=664&q=80',
   },
 ];
+
+const CLIENTS_API_URL = process.env.API_URI + 'clients';
+const SERVICES_API_URL = process.env.API_URI + 'services';
+
+export {
+  CLIENTS_API_URL,
+  SERVICES_API_URL,
+}
