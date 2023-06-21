@@ -28,7 +28,7 @@ export async function createAppointment(clientId: string, date: Date, time: Stri
     }
   }
 
-  const createdAppointment = await fetch(`${APPOINTMENTS_API_URL}/appointments/create`, {
+  const createdAppointment = await fetch(`${APPOINTMENTS_API_URL}/create`, {
     method: 'post',
     body: JSON.stringify(groupedData),
     headers: {
