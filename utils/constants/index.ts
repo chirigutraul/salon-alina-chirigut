@@ -41,6 +41,7 @@ const ERROR_MESSAGES = {
   ID_NOT_FOUND: 'Id-ul clientului nu a fost gasit',
   USER_NOT_FOUND: 'Nu a fost gasit un user.',
   SOMETHING_WENT_WRONG: 'Ceva nu a functionat.',
+  SERVICES_NOT_FOUND:'Serviciile nu au fost gasite.',
 }
 
 const SUCCESS_MESSAGES = {
