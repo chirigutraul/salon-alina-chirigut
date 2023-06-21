@@ -1,7 +1,6 @@
 import { IClient } from "types/DbEntitiesTypes"
 
-const CLIENTS_API_URL = `${process.env.API_URI}/api/clients`;
-const envSecret = process.env.JWT_SECRET;
+const CLIENTS_API_URL = process.env.API_URI + 'clients';
 
 export const getClientById = async (id:string) => {
   const client = await fetch(`${CLIENTS_API_URL}/${id}`, {

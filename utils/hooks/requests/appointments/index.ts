@@ -27,7 +27,7 @@ export async function createAppointment(clientId: string, date: Date, time: Stri
     }
   }
 
-  const createdAppointment = await fetch('/api/appointments/create', {
+  const createdAppointment = await fetch(`${process.env.API_URI}/appointments/create`, {
     method: 'post',
     body: JSON.stringify(groupedData),
     headers: {
@@ -41,7 +41,7 @@ export async function createAppointment(clientId: string, date: Date, time: Stri
 export async function getAppointmentsFromCertainDate(date:Date): Promise<Appointment[]>{
   const formatedDate = date.toISOString();
   const response = await fetch(
-    `${process.env.API_URI}/api/appointments/get-appointments-from-date`,
+    `${process.env.API_URI}/appointments/get-appointments-from-date`,
     {
       method: "POST",
       headers: {
@@ -60,7 +60,7 @@ interface userProfileAppointments {
 }
 
 export async function getUserAppointments(userId: string): Promise<userProfileAppointments>{
-  const user = await fetch(`${process.env.API_URI}/api/clients/${userId}`);
+  const user = await fetch(`${process.env.API_URI}/clients/${userId}`);
   const userJson = await user.json();
 
   if(!userJson.appointments || !userJson.appointments.length) return {appointments: [], closestAppointment: null};
