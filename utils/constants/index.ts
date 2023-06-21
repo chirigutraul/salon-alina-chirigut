@@ -42,10 +42,12 @@ const ERROR_MESSAGES = {
   USER_NOT_FOUND: 'Nu a fost gasit un user.',
   SOMETHING_WENT_WRONG: 'Ceva nu a functionat.',
   SERVICES_NOT_FOUND:'Serviciile nu au fost gasite.',
+  APPOINTMENTS_NOT_FOUND: 'Programarile nu au fost gasite.',
 }
 
 const SUCCESS_MESSAGES = {
   ACCOUNT_CREATED: 'Contul a fost creat cu success!',
+  APPOINTMENT_CREATED: 'Programarea a fost creata cu success!',
 }
 
 export {
