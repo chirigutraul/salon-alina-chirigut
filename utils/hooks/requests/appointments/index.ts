@@ -1,7 +1,8 @@
 import { Appointment, Service } from "@prisma/client"
+import { RequestResponse } from "types/ResponseTypes";
 import { APPOINTMENTS_API_URL, CLIENTS_API_URL } from 'utils/constants'
 
-export async function createAppointment(clientId: string, date: Date, time: String, service: Service): Promise<Response> {
+export async function createAppointment(clientId: string, date: Date, time: String, service: Service): Promise<RequestResponse> {
   if (!service || !service.duration) {
     throw new Error('Service is not valid')
   }
@@ -28,7 +29,7 @@ export async function createAppointment(clientId: string, date: Date, time: Stri
     }
   }
 
-  const createdAppointment = await fetch(APPOINTMENTS_API_URL, {
+  const response = await fetch(APPOINTMENTS_API_URL, {
     method: 'post',
     body: JSON.stringify(groupedData),
     headers: {
@@ -36,6 +37,7 @@ export async function createAppointment(clientId: string, date: Date, time: Stri
     },
   })
 
+  const createdAppointment = await response.json();
   return createdAppointment;
 }
 

@@ -20,6 +20,8 @@ import {
 } from "utils/hooks/requests/appointments";
 import { useMinutesToString } from "utils/hooks/date/format-hour";
 import DatePicker from "components/DatePicker";
+import { toast } from "react-toastify";
+import { RequestResponse } from "types/ResponseTypes";
 
 interface Props {
   isOpen: boolean;
@@ -59,9 +61,8 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
       selectedDate,
       hour,
       selectedService
-    ).then(async (res) => {
-      const parsedResponse = await res.json();
-      setResponse(parsedResponse);
+    ).then(async (res: RequestResponse) => {
+      toast[res.status](res.message);
       toggleModal();
     });
   };
