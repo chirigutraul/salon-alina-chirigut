@@ -5,7 +5,7 @@ import { GetServerSidePropsContext } from "next";
 import { getSession } from "next-auth/react";
 import { Session } from "next-auth";
 import UnauthenticatedUser from "components/UnauthenticatedUser";
-import { getUserAppointments } from "utils/hooks/requests/appointments";
+import { getUserAppointments } from "utils/hooks/requests/clients";
 import { extendedAppointment } from "types/DbEntitiesTypes";
 import { prisma } from "prisma/client";
 import Image from "next/image";

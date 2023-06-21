@@ -54,37 +54,3 @@ export async function getAppointmentsFromCertainDate(date:Date): Promise<Appoint
   const parsedResponse = await response.json();
   return parsedResponse;
 }
-
-interface userProfileAppointments {
-  appointments: Appointment[];
-  closestAppointment: Appointment | null;
-}
-
-export async function getUserAppointments(userId: string): Promise<userProfileAppointments>{
-  const user = await fetch(`${CLIENTS_API_URL}/${userId}`);
-  const userJson = await user.json();
-
-  if(!userJson.appointments || !userJson.appointments.length) return {appointments: [], closestAppointment: null};
-
-  const sortedAppointments:Appointment[] = userJson.appointments.sort((a: Appointment, b: Appointment) => {
-   return new Date(a.date).getTime() -  new Date(b.date).getTime()
-  })
-
-  const dateToday = new Date();
-
-  let closestAppointment:Appointment | null = null;
-
-  for(const appointment of sortedAppointments){
-    if(new Date(appointment.date).getTime() > dateToday.getTime()){
-      closestAppointment = appointment;
-      break;
-    } 
-  }
-
-  const appointmentsAndSpotlight: userProfileAppointments = {
-    appointments: sortedAppointments,
-    closestAppointment: closestAppointment
-  }
-
-  return appointmentsAndSpotlight;
-}
