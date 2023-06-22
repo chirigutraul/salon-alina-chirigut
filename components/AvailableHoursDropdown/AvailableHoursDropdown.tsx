@@ -29,7 +29,7 @@ const AvailableHoursDropdown: FunctionComponent<DropdownProps> = ({
     );
 
     return availableHoursInSelectedDate;
-  }, [appointments, selectedDate]);
+  }, [appointments, selectedDate, selectedServiceDuration]);
 
   if (!selectedDate || !selectedServiceDuration) return null;
 

@@ -37,7 +37,11 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
   const [selectedService, setSelectedService] = useState<Service>();
   const fp = useRef<any>(null);
 
-  const serviceDuration = useMinutesToString(selectedService);
+  const serviceDuration = useMemo(() => {
+    if (selectedService) {
+      return useMinutesToString(selectedService);
+    }
+  }, [selectedService]);
 
   const canUserMakeAppointment = useMemo(() => {
     return selectedDate && hour && selectedService;
@@ -116,6 +120,7 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
           <button
             className={`btn-icon btn-border-dark sp-2t`}
             onClick={handleAppointmentCreation}
+            disabled={!canUserMakeAppointment}
           >
             <h6 className={`font-bold`}>Programeaza</h6>
             <h5>
