@@ -62,21 +62,32 @@ const AvailableHoursDropdown: FunctionComponent<DropdownProps> = ({
             md:h-28
             `}
           >
-            {availableHours.map((option, index) => (
-              <li
-                key={option + index}
-                onClick={() => {
-                  setSelectedValue(option);
-                  onSelect(option);
-                  toggleDropdown();
-                }}
-                className={`px-4 py-1 overflow-hidden hover:bg-black hover:bg-opacity-30
+            {!!availableHours.length ? (
+              availableHours.map((option, index) => (
+                <li
+                  key={option + index}
+                  onClick={() => {
+                    setSelectedValue(option);
+                    onSelect(option);
+                    toggleDropdown();
+                  }}
+                  className={`px-4 py-1 overflow-hidden hover:bg-black hover:bg-opacity-30
                 xs:text-xl cursor-pointer
                 `}
+                >
+                  <h6>{option}</h6>
+                </li>
+              ))
+            ) : (
+              <li
+                key={"no-available-hours"}
+                className={`px-4 py-1 overflow-hidden hover:bg-black hover:bg-opacity-30
+              xs:text-xl cursor-pointer
+              `}
               >
-                <h6>{option}</h6>
+                <h6>Nu exista ore disponibile.</h6>
               </li>
-            ))}
+            )}
           </ul>
         )}
       </div>
