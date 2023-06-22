@@ -1,6 +1,6 @@
 import { Appointment } from "@prisma/client";
 
-function useGetAvailableHours(
+function getAvailableHours(
   appointments: Appointment[],
   selectedDate: Date | undefined,
   serviceDuration: string | undefined | null
@@ -70,4 +70,4 @@ function useGetAvailableHours(
   return availableHours;
 }
 
-export default useGetAvailableHours;
+export default getAvailableHours;
