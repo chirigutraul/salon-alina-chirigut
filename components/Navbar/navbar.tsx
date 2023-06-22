@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from "react";
+import React, { FunctionComponent, useEffect, useState } from "react";
 
 import useWindowSize from "utils/hooks/BreakPointsHooks";
 import breakpoints from "utils/TailwindBreakPoints";
@@ -13,7 +13,7 @@ import {
   faSignOut,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
-import { links } from "./navbarLinks";
+import { links, shouldNavbarBeDarker } from "./navbarLinks";
 import ReactModal from "react-modal";
 import Link from "next/link";
 import { Session } from "next-auth";
@@ -21,6 +21,7 @@ import { signOut, useSession } from "next-auth/react";
 
 const Navbar = () => {
   const router = useRouter();
+  const path = router.asPath as keyof typeof shouldNavbarBeDarker;
   const { width } = useWindowSize();
   const { data: session } = useSession();
 
@@ -47,8 +48,9 @@ const Navbar = () => {
     <>
       <nav
         className={`
-      bg-white-80 left-0 right-0 absolute flex h-[96px] xl:h-[128px] justify-between z-10 items-center px-4 
+      left-0 right-0 absolute flex h-[96px] xl:h-[128px] justify-between z-10 items-center px-4
       ${isHamburgerOpen ? "" : ""}
+      ${shouldNavbarBeDarker[path] ? "bg-black-10" : "bg-white-80"}
       xl:px-16 
       `}
       >
@@ -187,7 +189,7 @@ const HamburgerMenu: FunctionComponent<HamburgerMenuProps> = ({
       onRequestClose={toggleNavbar}
       className={`
     w-[80%] z-10 bg-gradient text-white
-    focus:outline-none rounded-l-lg min-h-screen right-0 absolute
+    focus:outline-none rounded-l-lg min-h-screen right-0 absolute 
     sp-2v sp-h
     `}
     >

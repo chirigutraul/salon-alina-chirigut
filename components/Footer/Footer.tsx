@@ -7,13 +7,23 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
+import { useRouter } from "next/router";
+
+const shouldFooterBeDarker = {
+  "/profile": true,
+};
 
 function Footer() {
+  const router = useRouter();
+  const path = router.asPath as keyof typeof shouldFooterBeDarker;
+
   return (
     <div
       id="contact"
-      className={`bg-gradient grid p-4 text-white gap-8
+      className={`grid p-4 text-white gap-8
       lg:grid-cols-2 lg:p-8
+
+      ${shouldFooterBeDarker[path] ? "bg-black-50" : "bg-gradient"}
     `}
     >
       <div>

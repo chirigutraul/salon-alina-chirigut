@@ -25,3 +25,8 @@ export const links: LinkType[] = [
     route: "#contact",
   },
 ];
+
+export const shouldNavbarBeDarker = {
+  "/galerie": true,
+  "/programari": true,
+};

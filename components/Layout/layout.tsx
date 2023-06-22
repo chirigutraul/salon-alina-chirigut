@@ -4,10 +4,22 @@ import Footer from "components/Footer";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useRouter } from "next/router";
+
+const shouldBackgroundBeGradient = {
+  "/profile": true,
+};
 
 export default function Layout({ children }: { children: ReactElement }) {
+  const router = useRouter();
+  const path = router.asPath as keyof typeof shouldBackgroundBeGradient;
+
   return (
-    <div>
+    <div
+      className={`
+      ${shouldBackgroundBeGradient[path] ? "bg-gradient" : ""}
+    `}
+    >
       <Navbar />
       {children}
       <Footer />
