@@ -35,10 +35,6 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
   const [appointmentsFromSelectedDate, setAppointmentsFromSelectedDate] =
     useState<Appointment[]>([]);
   const [selectedService, setSelectedService] = useState<Service>();
-  const [response, setResponse] = useState<{
-    status: number;
-    message: string;
-  }>();
   const fp = useRef<any>(null);
 
   const serviceDuration = useMinutesToString(selectedService);
@@ -49,7 +45,6 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
 
   const fetchAppointments = async (date: Date) => {
     const retrievedAppointments = await getAppointmentsFromCertainDate(date);
-    console.log("RETRIEVED APPOINTMENTS:", retrievedAppointments);
     setAppointmentsFromSelectedDate(retrievedAppointments);
   };
 
@@ -68,7 +63,7 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
   };
 
   useEffect(() => {
-    if (selectedDate && selectedService) {
+    if (selectedDate) {
       fetchAppointments(selectedDate);
     }
   }, [selectedDate]);
