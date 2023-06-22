@@ -1,6 +1,6 @@
 import { Service } from "@prisma/client";
 
-export function useMinutesToString(service: Service | undefined){
+export function minutesToString(service: Service | undefined){
     if(!service){
       return null;
     }

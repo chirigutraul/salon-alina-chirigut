@@ -18,7 +18,7 @@ import {
   createAppointment,
   getAppointmentsFromCertainDate,
 } from "utils/hooks/requests/appointments";
-import { useMinutesToString } from "utils/hooks/date/format-hour";
+import { minutesToString } from "utils/helpers/format-hour";
 import DatePicker from "components/DatePicker";
 import { toast } from "react-toastify";
 import { RequestResponse } from "types/ResponseTypes";
@@ -39,7 +39,7 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
 
   const serviceDuration = useMemo(() => {
     if (selectedService) {
-      return useMinutesToString(selectedService);
+      return minutesToString(selectedService);
     }
   }, [selectedService]);
 
