@@ -43,11 +43,14 @@ const ERROR_MESSAGES = {
   SOMETHING_WENT_WRONG: 'Ceva nu a functionat.',
   SERVICES_NOT_FOUND:'Serviciile nu au fost gasite.',
   APPOINTMENTS_NOT_FOUND: 'Programarile nu au fost gasite.',
+  DATE_NOT_FOUND: 'Data nu a fost gasita.',
+  METHOD_NOT_ALLOWED: 'Method not allowed.',
 }
 
 const SUCCESS_MESSAGES = {
   ACCOUNT_CREATED: 'Contul a fost creat cu success!',
   APPOINTMENT_CREATED: 'Programarea a fost creata cu success!',
+  NUMBER_ADDED: 'Numar de telefon adaugat cu success!',
 }
 
 export {
