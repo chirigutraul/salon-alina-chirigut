@@ -38,6 +38,7 @@ const AvailableHoursDropdown: FunctionComponent<DropdownProps> = ({
   return (
     <div>
       <p>{JSON.stringify(availableHours)}</p>
+      <p>{availableHours.length}</p>
       <Label text="Ora" />
       <div
         className={`relative rounded-md h-12 text-black bg-black-25 cursor-pointer font-light`}
