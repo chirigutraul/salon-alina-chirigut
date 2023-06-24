@@ -1,4 +1,4 @@
-import { FunctionComponent, useMemo, useState } from "react";
+import { FunctionComponent, useEffect, useState } from "react";
 import { Appointment } from "@prisma/client";
 import getAvailableHours from "utils/helpers/get-available-hours";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -21,14 +21,17 @@ const AvailableHoursDropdown: FunctionComponent<DropdownProps> = ({
   const [selectedValue, setSelectedValue] = useState<string>();
   const [isOpen, setIsOpen] = useState(false);
 
-  const availableHours = useMemo(() => {
-    const availableHoursInSelectedDate = getAvailableHours(
+  const [availableHoursInSelectedDate, setAvailableHoursInSelectedDate] =
+    useState<string[]>();
+
+  useEffect(() => {
+    const availableHours = getAvailableHours(
       appointments,
       selectedDate,
       selectedServiceDuration
     );
 
-    return availableHoursInSelectedDate;
+    setAvailableHoursInSelectedDate(availableHours);
   }, [appointments, selectedDate, selectedServiceDuration]);
 
   if (!selectedDate || !selectedServiceDuration) return null;
@@ -61,8 +64,8 @@ const AvailableHoursDropdown: FunctionComponent<DropdownProps> = ({
             md:h-28
             `}
           >
-            {!!availableHours.length ? (
-              availableHours.map((option, index) => (
+            {!!availableHoursInSelectedDate?.length ? (
+              availableHoursInSelectedDate.map((option, index) => (
                 <li
                   key={option + index}
                   onClick={() => {
