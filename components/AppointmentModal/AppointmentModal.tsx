@@ -128,7 +128,6 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
             </h5>
           </button>
         </div>
-        <p>{JSON.stringify(appointmentsFromSelectedDate)}</p>
       </div>
     </ReactModal>
   );

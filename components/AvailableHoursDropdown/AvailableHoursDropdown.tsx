@@ -37,8 +37,6 @@ const AvailableHoursDropdown: FunctionComponent<DropdownProps> = ({
 
   return (
     <div>
-      <p>{JSON.stringify(availableHours)}</p>
-      <p>{availableHours.length}</p>
       <Label text="Ora" />
       <div
         className={`relative rounded-md h-12 text-black bg-black-25 cursor-pointer font-light`}
@@ -64,7 +62,7 @@ const AvailableHoursDropdown: FunctionComponent<DropdownProps> = ({
             `}
           >
             {!!availableHours.length ? (
-              availableHours.map((option, index) => (
+              ["14:00", "12:00", "13:00"].map((option, index) => (
                 <li
                   key={option + index}
                   onClick={() => {
