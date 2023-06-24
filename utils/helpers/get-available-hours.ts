@@ -2,11 +2,9 @@ import { Appointment } from "@prisma/client";
 
 function getAvailableHours(
   appointments: Appointment[],
-  selectedDate: Date | undefined,
-  serviceDuration: string | undefined | null
+  selectedDate: Date,
+  serviceDuration: string,
 ): string[] {
-  if (!selectedDate || !serviceDuration) return [];
-
   const parsedServiceDuration: number | undefined = parseInt(serviceDuration);
   const availableHours: string[] = [];
 

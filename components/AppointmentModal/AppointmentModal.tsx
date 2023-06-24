@@ -46,6 +46,12 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
     setAppointmentsFromSelectedDate(retrievedAppointments);
   };
 
+  const resetAppointmentForm = () => {
+    setSelectedDate(undefined);
+    setHour("");
+    setSelectedService(undefined);
+  };
+
   const handleAppointmentCreation = async () => {
     if (!selectedDate || !hour || !selectedService) return;
 
@@ -57,6 +63,7 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
     ).then(async (res: RequestResponse) => {
       toast[res.status](res.message);
       toggleModal();
+      resetAppointmentForm();
     });
   };
 
@@ -113,7 +120,11 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
         <div className={`w-full flex justify-center absolute bottom-0`}>
           <button
             className={`btn-icon btn-border-dark sp-2t`}
-            onClick={handleAppointmentCreation}
+            onClick={
+              canUserMakeAppointment
+                ? handleAppointmentCreation
+                : () => toast.error("Toate campurile sunt obligatiorii!")
+            }
             disabled={!canUserMakeAppointment}
           >
             <h6 className={`font-bold`}>Programeaza</h6>

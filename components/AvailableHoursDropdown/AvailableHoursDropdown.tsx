@@ -25,11 +25,17 @@ const AvailableHoursDropdown: FunctionComponent<DropdownProps> = ({
     useState<string[]>();
 
   useEffect(() => {
-    const availableHours = getAvailableHours(
-      appointments,
-      selectedDate,
-      selectedServiceDuration
-    );
+    let availableHours: string[];
+
+    if (selectedDate && selectedServiceDuration) {
+      availableHours = getAvailableHours(
+        appointments,
+        selectedDate,
+        selectedServiceDuration
+      );
+    } else {
+      availableHours = [];
+    }
 
     setAvailableHoursInSelectedDate(availableHours);
   }, [appointments, selectedDate, selectedServiceDuration]);
