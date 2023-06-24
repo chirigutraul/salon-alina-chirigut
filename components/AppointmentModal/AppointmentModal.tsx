@@ -1,27 +1,20 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Session } from "next-auth";
-import Flatpickr from "react-flatpickr";
 import ReactModal from "react-modal";
 import "flatpickr/dist/themes/airbnb.css";
 import ServicesDropdown from "components/ServicesDropdown";
 import AvailableHoursDropdown from "components/AvailableHoursDropdown";
 import { Appointment, Service } from "@prisma/client";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCalendarPlus } from "@fortawesome/free-regular-svg-icons";
-import {
-  faArrowRight,
-  faClose,
-  faXmark,
-} from "@fortawesome/free-solid-svg-icons";
-import Label from "components/Label";
+import { faArrowRight, faXmark } from "@fortawesome/free-solid-svg-icons";
 import {
   createAppointment,
   getAppointmentsFromCertainDate,
 } from "utils/hooks/requests/appointments";
-import { minutesToString } from "utils/helpers/format-hour";
 import DatePicker from "components/DatePicker";
 import { toast } from "react-toastify";
 import { RequestResponse } from "types/ResponseTypes";
+import getAvailableHours from "utils/helpers/get-available-hours";
 
 interface Props {
   isOpen: boolean;
@@ -34,6 +27,8 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
   const [hour, setHour] = useState<string>("");
   const [appointmentsFromSelectedDate, setAppointmentsFromSelectedDate] =
     useState<Appointment[]>([]);
+  const [availableHoursInSelectedDate, setAvailableHoursInSelectedDate] =
+    useState<string[]>([]);
   const [selectedService, setSelectedService] = useState<Service>();
   const fp = useRef<any>(null);
 
@@ -85,6 +80,26 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
     }
   }, [isOpen]);
 
+  const parseDataAndGetAvailableHours = () => {
+    let availableHours: string[];
+
+    if (selectedDate && selectedService?.duration) {
+      availableHours = getAvailableHours(
+        appointmentsFromSelectedDate,
+        selectedDate,
+        selectedService.duration
+      );
+    } else {
+      availableHours = [];
+    }
+
+    setAvailableHoursInSelectedDate(availableHours);
+  };
+
+  useEffect(() => {
+    parseDataAndGetAvailableHours();
+  }, [appointmentsFromSelectedDate, selectedDate, selectedService]);
+
   return (
     <ReactModal
       isOpen={isOpen}
@@ -117,9 +132,9 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
           />
           <AvailableHoursDropdown
             onSelect={(selectedHour) => setHour(selectedHour)}
-            appointments={appointmentsFromSelectedDate}
-            selectedDate={selectedDate}
-            selectedServiceDuration={selectedService?.duration}
+            availableHours={availableHoursInSelectedDate}
+            selectedValue={hour}
+            setSelectedValue={setHour}
           />
         </div>
         <p>{JSON.stringify(selectedDate)}</p>

@@ -1,57 +1,27 @@
-import { FunctionComponent, useEffect, useState } from "react";
-import { Appointment } from "@prisma/client";
-import getAvailableHours from "utils/helpers/get-available-hours";
+import { FunctionComponent, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import Label from "components/Label";
 
 interface DropdownProps {
   onSelect: (selectedHour: string) => void;
-  appointments: Appointment[];
-  selectedDate?: Date;
-  selectedServiceDuration?: string | null;
+  availableHours: string[];
+  selectedValue: string;
+  setSelectedValue: (selectedHour: string) => void;
 }
 
 const AvailableHoursDropdown: FunctionComponent<DropdownProps> = ({
   onSelect,
-  appointments,
-  selectedDate,
-  selectedServiceDuration,
+  availableHours,
+  selectedValue,
+  setSelectedValue,
 }) => {
-  const [selectedValue, setSelectedValue] = useState<string>();
   const [isOpen, setIsOpen] = useState(false);
-
-  const [availableHoursInSelectedDate, setAvailableHoursInSelectedDate] =
-    useState<string[]>();
-
-  const parseDataAndGetAvailableHours = () => {
-    let availableHours: string[];
-
-    if (selectedDate && selectedServiceDuration) {
-      availableHours = getAvailableHours(
-        appointments,
-        selectedDate,
-        selectedServiceDuration
-      );
-    } else {
-      availableHours = [];
-    }
-
-    setAvailableHoursInSelectedDate(availableHours);
-  };
-
-  useEffect(() => {
-    parseDataAndGetAvailableHours();
-  }, [appointments, selectedDate, selectedServiceDuration]);
-
-  if (!selectedDate || !selectedServiceDuration) return null;
-
   const toggleDropdown = () => setIsOpen((curr) => !curr);
 
   return (
     <div>
       <Label text="Ora" />
-      <p>{JSON.stringify(availableHoursInSelectedDate)}</p>
       <div
         className={`relative rounded-md h-12 text-black bg-black-25 cursor-pointer font-light`}
       >
@@ -75,8 +45,8 @@ const AvailableHoursDropdown: FunctionComponent<DropdownProps> = ({
             md:h-28
             `}
           >
-            {!!availableHoursInSelectedDate?.length ? (
-              availableHoursInSelectedDate.map((option, index) => (
+            {!!availableHours?.length ? (
+              availableHours.map((option, index) => (
                 <li
                   key={option + index}
                   onClick={() => {
