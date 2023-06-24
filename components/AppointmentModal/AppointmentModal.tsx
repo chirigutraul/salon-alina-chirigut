@@ -37,12 +37,6 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
   const [selectedService, setSelectedService] = useState<Service>();
   const fp = useRef<any>(null);
 
-  const serviceDuration = useMemo(() => {
-    if (selectedService) {
-      return minutesToString(selectedService);
-    }
-  }, [selectedService]);
-
   const canUserMakeAppointment = useMemo(() => {
     return selectedDate && hour && selectedService;
   }, [selectedDate, hour, selectedService]);
@@ -113,7 +107,7 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
             onSelect={(selectedHour) => setHour(selectedHour)}
             appointments={appointmentsFromSelectedDate}
             selectedDate={selectedDate}
-            selectedServiceDuration={serviceDuration}
+            selectedServiceDuration={selectedService?.duration}
           />
         </div>
         <div className={`w-full flex justify-center absolute bottom-0`}>

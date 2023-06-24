@@ -1,10 +1,11 @@
 import { Service } from "@prisma/client";
-import { FunctionComponent, useEffect, useState } from "react";
+import { FunctionComponent, useEffect, useMemo, useState } from "react";
 import { servicesLabels } from "utils/constants";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getServices } from "utils/hooks/requests/services";
 import Label from "components/Label";
+import { minutesToString } from "utils/helpers/format-hour";
 
 interface DropdownProps {
   onSelect: (selectedService: Service) => void;
@@ -18,6 +19,10 @@ const Dropdown: FunctionComponent<DropdownProps> = ({ onSelect }) => {
 
   const toggleDropdown = () => setIsOpen((curr) => !curr);
 
+  const serviceDuration = useMemo(() => {
+    return minutesToString(selectedValue);
+  }, [selectedValue]);
+
   const fetchAndSetServices = async () => {
     const services = await getServices();
     setServices(services);
@@ -29,15 +34,12 @@ const Dropdown: FunctionComponent<DropdownProps> = ({ onSelect }) => {
 
   return (
     <div>
-      <div>
-        <Label text="Serviciul" />
-      </div>
+      <Label text="Serviciul" />
       <div
-        className={`bg-black-25 rounded-md font-light cursor-pointer relative w-full text-black
-    `}
+        className={`bg-black-25 rounded-md font-light cursor-pointer relative w-full text-black`}
       >
         <div
-          className={`py-3 px-6 flex justify-between items-center`}
+          className={`py-2 px-6 flex justify-between items-center`}
           onClick={() => toggleDropdown()}
         >
           <h6>
@@ -73,6 +75,7 @@ const Dropdown: FunctionComponent<DropdownProps> = ({ onSelect }) => {
           </div>
         )}
       </div>
+      {selectedValue && <p>Durata: {serviceDuration}</p>}
     </div>
   );
 };

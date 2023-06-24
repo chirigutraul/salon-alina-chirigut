@@ -62,7 +62,7 @@ const AvailableHoursDropdown: FunctionComponent<DropdownProps> = ({
             `}
           >
             {!!availableHours.length ? (
-              ["14:00", "12:00", "13:00"].map((option, index) => (
+              availableHours.map((option, index) => (
                 <li
                   key={option + index}
                   onClick={() => {
