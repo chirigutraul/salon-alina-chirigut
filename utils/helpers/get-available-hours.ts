@@ -5,6 +5,9 @@ function getAvailableHours(
   selectedDate: Date,
   serviceDuration: string,
 ): string[] {
+  return ["14:00", "14:30", "15:00", "15:30", "16:00", "16:30"]
+
+
   const parsedServiceDuration: number | undefined = parseInt(serviceDuration);
   const availableHours: string[] = [];
 

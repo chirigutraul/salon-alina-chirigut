@@ -24,11 +24,11 @@ const AvailableHoursDropdown: FunctionComponent<DropdownProps> = ({
   const [availableHoursInSelectedDate, setAvailableHoursInSelectedDate] =
     useState<string[]>();
 
-  const parseDataAndGetAvailableHours = async () => {
+  const parseDataAndGetAvailableHours = () => {
     let availableHours: string[];
 
     if (selectedDate && selectedServiceDuration) {
-      availableHours = await getAvailableHours(
+      availableHours = getAvailableHours(
         appointments,
         selectedDate,
         selectedServiceDuration
