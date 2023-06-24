@@ -24,7 +24,11 @@ export default function Layout({ children }: { children: ReactElement }) {
       {children}
       <Footer />
 
-      <ToastContainer theme="dark" position="bottom-right" />
+      <ToastContainer
+        theme="dark"
+        position="bottom-right"
+        key="toast-container"
+      />
     </div>
   );
 }

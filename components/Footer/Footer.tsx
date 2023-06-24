@@ -19,6 +19,7 @@ function Footer() {
 
   return (
     <div
+      key="footer"
       id="contact"
       className={`grid p-4 text-white gap-8
       lg:grid-cols-2 lg:p-8

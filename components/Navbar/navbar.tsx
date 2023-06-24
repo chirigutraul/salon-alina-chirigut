@@ -47,6 +47,7 @@ const Navbar = () => {
   return (
     <>
       <nav
+        key="navbar"
         className={`
       left-0 right-0 absolute flex h-[96px] xl:h-[128px] justify-between z-10 items-center px-4
       ${isHamburgerOpen ? "" : ""}
