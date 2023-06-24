@@ -5,70 +5,71 @@ function getAvailableHours(
   selectedDate: Date,
   serviceDuration: string,
 ): string[] {
-  return ["14:00", "14:30", "15:00", "15:30", "16:00", "16:30"]
+  const parsedServiceDuration: number | undefined = parseInt(serviceDuration);
+  const availableHours: string[] = [];
 
+  const minutesStep = 30;
 
-  // const parsedServiceDuration: number | undefined = parseInt(serviceDuration);
-  // const availableHours: string[] = [];
+  const parsedSelectedDate: Date = new Date(selectedDate.toLocaleDateString());
 
-  // const minutesStep = 30;
+  const startOfDay = new Date(
+    parsedSelectedDate.getFullYear(),
+    parsedSelectedDate.getMonth(),
+    parsedSelectedDate.getDate(),
+    9,
+    0,
+    0
+  );
 
-  // const parsedSelectedDate: Date = new Date(selectedDate.toLocaleDateString());
+  const endOfDay = new Date(
+    parsedSelectedDate.getFullYear(),
+    parsedSelectedDate.getMonth(),
+    parsedSelectedDate.getDate(),
+    21,
+    0,
+    0
+  );
 
-  // const startOfDay = new Date(
-  //   parsedSelectedDate.getFullYear(),
-  //   parsedSelectedDate.getMonth(),
-  //   parsedSelectedDate.getDate(),
-  //   9,
-  //   0,
-  //   0
-  // );
+  for (
+    let time = startOfDay;
+    time <= endOfDay;
+    time.setMinutes(time.getMinutes() + minutesStep)
+  ) {
+    var availability = true;
 
-  // const endOfDay = new Date(
-  //   parsedSelectedDate.getFullYear(),
-  //   parsedSelectedDate.getMonth(),
-  //   parsedSelectedDate.getDate(),
-  //   21,
-  //   0,
-  //   0
-  // );
+    const endTime = new Date(time);
+    endTime.setMinutes(endTime.getMinutes() + parsedServiceDuration);
 
-  // for (
-  //   let time = startOfDay;
-  //   time <= endOfDay;
-  //   time.setMinutes(time.getMinutes() + minutesStep)
-  // ) {
-  //   var availability = true;
+    if (endTime >= endOfDay) {
+      availability = false;
+    }
 
-  //   const endTime = new Date(time);
-  //   endTime.setMinutes(endTime.getMinutes() + parsedServiceDuration);
+    appointments.forEach((appointment) => {
+      const appointmentStart = new Date(appointment.date);
+      appointmentStart.setHours(appointmentStart.getHours() - 3);
+      const appointmentEnd = new Date(appointment.endDate);
+      appointmentEnd.setHours(appointmentEnd.getHours() - 3);
 
-  //   if (endTime >= endOfDay) {
-  //     availability = false;
-  //   }
+      if (
+        (time >= appointmentStart && time < appointmentEnd) ||
+        (endTime > appointmentStart && endTime < appointmentEnd)
+      ) {
+        availability = false;
+      }
+    });
 
-  //   appointments.forEach((appointment) => {
-  //     const appointmentStart = new Date(appointment.date);
-  //     appointmentStart.setHours(appointmentStart.getHours() - 3);
-  //     const appointmentEnd = new Date(appointment.endDate);
-  //     appointmentEnd.setHours(appointmentEnd.getHours() - 3);
+    if (availability) {
+      availableHours.push(
+        time.toLocaleTimeString("ro-RO", { hour: "2-digit", minute: "2-digit" })
+      );
+    }
+  }
 
-  //     if (
-  //       (time >= appointmentStart && time < appointmentEnd) ||
-  //       (endTime > appointmentStart && endTime < appointmentEnd)
-  //     ) {
-  //       availability = false;
-  //     }
-  //   });
+  if(availableHours.length === 0) {
+    availableHours.push("length still 0")
+  }
 
-  //   if (availability) {
-  //     availableHours.push(
-  //       time.toLocaleTimeString("ro-RO", { hour: "2-digit", minute: "2-digit" })
-  //     );
-  //   }
-  // }
-
-  // return availableHours;
+  return availableHours;
 }
 
 export default getAvailableHours;
