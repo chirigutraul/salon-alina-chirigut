@@ -67,6 +67,10 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
     });
   };
 
+  const showErrorMessage = () => {
+    toast.error("Toate campurile sunt obligatiorii!");
+  };
+
   useEffect(() => {
     if (selectedDate) {
       fetchAppointments(selectedDate);
@@ -123,9 +127,8 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
             onClick={
               canUserMakeAppointment
                 ? handleAppointmentCreation
-                : () => toast.error("Toate campurile sunt obligatiorii!")
+                : showErrorMessage
             }
-            disabled={!canUserMakeAppointment}
           >
             <h6 className={`font-bold`}>Programeaza</h6>
             <h5>
