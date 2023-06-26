@@ -96,6 +96,10 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
     setAvailableHoursInSelectedDate(availableHours);
   };
 
+  useEffect(() => {
+    parseDataAndGetAvailableHours();
+  }, [selectedDate, selectedService, appointmentsFromSelectedDate]);
+
   return (
     <ReactModal
       isOpen={isOpen}

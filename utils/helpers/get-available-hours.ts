@@ -10,21 +10,19 @@ function getAvailableHours(
 
   const minutesStep = 30;
 
-  const parsedSelectedDate: Date = new Date(selectedDate.toLocaleDateString());
-
   const startOfDay = new Date(
-    parsedSelectedDate.getFullYear(),
-    parsedSelectedDate.getMonth(),
-    parsedSelectedDate.getDate(),
+    selectedDate.getFullYear(),
+    selectedDate.getMonth(),
+    selectedDate.getDate(),
     9,
     0,
     0
   );
 
   const endOfDay = new Date(
-    parsedSelectedDate.getFullYear(),
-    parsedSelectedDate.getMonth(),
-    parsedSelectedDate.getDate(),
+    selectedDate.getFullYear(),
+    selectedDate.getMonth(),
+    selectedDate.getDate(),
     21,
     0,
     0
