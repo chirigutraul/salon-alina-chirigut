@@ -31,8 +31,12 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
     useState<string[]>([]);
   const [selectedService, setSelectedService] = useState<Service>();
   const fp = useRef<any>(null);
+
+  //TESTING VARIABLES
   const [startOfDay, setStartOfDay] = useState<Date>();
   const [endOfDay, setEndOfDay] = useState<Date>();
+  const [parsedDate, setParsedDate] = useState<Date>();
+  // TESTING VARIABLES END
 
   const canUserMakeAppointment = useMemo(() => {
     return selectedDate && hour && selectedService;
@@ -124,6 +128,7 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
         0
       );
 
+      setParsedDate(parsedSelectedDate);
       setStartOfDay(startOfDay);
       setEndOfDay(endOfDay);
     }
@@ -167,6 +172,7 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
           />
         </div>
         <p>Selected Date:{JSON.stringify(selectedDate)}</p>
+        <p>Parsed Date: {JSON.stringify(parsedDate)}</p>
         <p>Start of day:{JSON.stringify(startOfDay)}</p>
         <p>End of day:{JSON.stringify(endOfDay)}</p>
         <div className={`w-full flex justify-center absolute bottom-0`}>
