@@ -32,12 +32,6 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
   const [selectedService, setSelectedService] = useState<Service>();
   const fp = useRef<any>(null);
 
-  //TESTING VARIABLES
-  const [startOfDay, setStartOfDay] = useState<Date>();
-  const [endOfDay, setEndOfDay] = useState<Date>();
-  const [parsedDate, setParsedDate] = useState<Date>();
-  // TESTING VARIABLES END
-
   const canUserMakeAppointment = useMemo(() => {
     return selectedDate && hour && selectedService;
   }, [selectedDate, hour, selectedService]);
@@ -102,34 +96,6 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
     setAvailableHoursInSelectedDate(availableHours);
   };
 
-  useEffect(() => {
-    parseDataAndGetAvailableHours();
-
-    if (selectedDate && selectedService) {
-      const startOfDay = new Date(
-        selectedDate.getFullYear(),
-        selectedDate.getMonth(),
-        selectedDate.getDate(),
-        9,
-        0,
-        0
-      );
-
-      const endOfDay = new Date(
-        selectedDate.getFullYear(),
-        selectedDate.getMonth(),
-        selectedDate.getDate(),
-        21,
-        0,
-        0
-      );
-
-      setParsedDate(selectedDate);
-      setStartOfDay(startOfDay);
-      setEndOfDay(endOfDay);
-    }
-  }, [appointmentsFromSelectedDate, selectedDate, selectedService]);
-
   return (
     <ReactModal
       isOpen={isOpen}
@@ -167,10 +133,6 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
             setSelectedValue={setHour}
           />
         </div>
-        <p>Selected Date:{JSON.stringify(selectedDate)}</p>
-        <p>Parsed Date: {JSON.stringify(parsedDate)}</p>
-        <p>Start of day:{JSON.stringify(startOfDay)}</p>
-        <p>End of day:{JSON.stringify(endOfDay)}</p>
         <div className={`w-full flex justify-center absolute bottom-0`}>
           <button
             className={`btn-icon btn-border-dark sp-2t`}
