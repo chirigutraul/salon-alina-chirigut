@@ -106,29 +106,25 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
     parseDataAndGetAvailableHours();
 
     if (selectedDate && selectedService) {
-      const parsedSelectedDate: Date = new Date(
-        selectedDate.toLocaleDateString()
-      );
-
       const startOfDay = new Date(
-        parsedSelectedDate.getFullYear(),
-        parsedSelectedDate.getMonth(),
-        parsedSelectedDate.getDate(),
+        selectedDate.getFullYear(),
+        selectedDate.getMonth(),
+        selectedDate.getDate(),
         9,
         0,
         0
       );
 
       const endOfDay = new Date(
-        parsedSelectedDate.getFullYear(),
-        parsedSelectedDate.getMonth(),
-        parsedSelectedDate.getDate(),
+        selectedDate.getFullYear(),
+        selectedDate.getMonth(),
+        selectedDate.getDate(),
         21,
         0,
         0
       );
 
-      setParsedDate(parsedSelectedDate);
+      setParsedDate(selectedDate);
       setStartOfDay(startOfDay);
       setEndOfDay(endOfDay);
     }
