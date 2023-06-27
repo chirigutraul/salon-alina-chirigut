@@ -1,16 +1,22 @@
-import { Appointment, Service } from "@prisma/client"
+import { Appointment, Service } from "@prisma/client";
 import { RequestResponse } from "types/ResponseTypes";
-import { APPOINTMENTS_API_URL, CLIENTS_API_URL } from 'utils/constants'
+import { APPOINTMENTS_API_URL } from "utils/constants";
 
-export async function createAppointment(clientId: string, date: Date, time: String, service: Service): Promise<RequestResponse> {
+export async function createAppointment(
+  clientId: string,
+  date: Date,
+  time: String,
+  service: Service
+): Promise<RequestResponse> {
   if (!service || !service.duration) {
-    throw new Error('Service is not valid')
+    throw new Error("Service is not valid");
   }
 
   const parsedDate = new Date(date);
   parsedDate.setDate(parsedDate.getDate() + 1);
 
-  const dateAndTime = parsedDate.toISOString().split('T')[0] + 'T' + time + ':00.000Z'
+  const dateAndTime =
+    parsedDate.toISOString().split("T")[0] + "T" + time + ":00.000Z";
   const endTime = new Date(dateAndTime);
 
   const hoursAdded = parseInt(service.duration) / 60;
@@ -23,25 +29,27 @@ export async function createAppointment(clientId: string, date: Date, time: Stri
     data: {
       date: dateAndTime,
       endDate: endTime.toISOString(),
-      status: 'pending',
+      status: "pending",
       serviceId: service.id,
       clientId: clientId,
-    }
-  }
+    },
+  };
 
   const response = await fetch(APPOINTMENTS_API_URL, {
-    method: 'post',
+    method: "post",
     body: JSON.stringify(groupedData),
     headers: {
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json",
     },
-  })
+  });
 
   const createdAppointment = await response.json();
   return createdAppointment;
 }
 
-export async function getAppointmentsFromCertainDate(date:Date): Promise<Appointment[]>{
+export async function getAppointmentsFromCertainDate(
+  date: Date
+): Promise<Appointment[]> {
   const formatedDate = date.toISOString();
   const response = await fetch(
     `${APPOINTMENTS_API_URL}/get-appointments-from-date`,
@@ -55,4 +63,45 @@ export async function getAppointmentsFromCertainDate(date:Date): Promise<Appoint
   );
   const parsedResponse = await response.json();
   return parsedResponse;
+}
+
+interface userProfileAppointments {
+  appointments: Appointment[];
+  closestAppointment: Appointment | null;
+}
+
+export async function getUserAppointments(
+  userId: string
+): Promise<userProfileAppointments> {
+  const appointments = await fetch(
+    `${APPOINTMENTS_API_URL}?clientId=${userId}`
+  );
+  const appointmentsJson = await appointments.json();
+
+  if (!appointmentsJson || !appointmentsJson.length)
+    return { appointments: [], closestAppointment: null };
+
+  const sortedAppointments: Appointment[] = appointmentsJson.sort(
+    (a: Appointment, b: Appointment) => {
+      return new Date(a.date).getTime() - new Date(b.date).getTime();
+    }
+  );
+
+  const dateToday = new Date();
+
+  let closestAppointment: Appointment | null = null;
+
+  for (const appointment of sortedAppointments) {
+    if (new Date(appointment.date).getTime() > dateToday.getTime()) {
+      closestAppointment = appointment;
+      break;
+    }
+  }
+
+  const appointmentsAndSpotlight: userProfileAppointments = {
+    appointments: sortedAppointments,
+    closestAppointment: closestAppointment,
+  };
+
+  return appointmentsAndSpotlight;
 }
