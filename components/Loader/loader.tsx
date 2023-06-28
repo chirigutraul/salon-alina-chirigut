@@ -22,10 +22,14 @@ const Loading = () => {
     };
   });
 
-  // if (!loading) return null;
+  if (!loading) return null;
 
   return (
-    <div className="grid text-black bg-white place-content-center">
+    <div
+      className={`grid text-black bg-white place-content-center 
+    w-full h-full z-50 top-0 fixed
+    `}
+    >
       <h1>Loading</h1>
     </div>
   );
