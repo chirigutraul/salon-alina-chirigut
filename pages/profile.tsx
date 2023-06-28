@@ -144,21 +144,27 @@ const AppointmentSpotlight: FunctionComponent<AppointmentSpotlight> = ({
       </div>
     );
 
+  const [date, time] = closestAppointment.date.toString().split("T");
+
   return (
     <div className={`bg-black-50 sp-h sp-v rounded-lg flex-grow`}>
       <h4 className={`sp-t`}>Te asteptam!</h4>
       <h5>Urmatoarea ta programare:</h5>
 
-      <h3 className={`sp-1/2t`}>Intretinere</h3>
+      <h3 className={`sp-1/2t`}>
+        {servicesLabels.get(closestAppointment.service.name)}
+      </h3>
 
-      <h5 className={`sp-1/2t`}>Data: 25.03.2023</h5>
+      <h5 className={`sp-1/2t`}>Data: {date}</h5>
 
       <span className={`flex justify-between`}>
-        <h5>Ora: 14:00</h5>
-        <h5>Cost: 80LEI</h5>
+        <h5>Ora: {time.substring(0, 5)}</h5>
+        <h5>Cost: {closestAppointment.service.price}LEI</h5>
       </span>
 
-      <h5 className={`text-right`}>Status: In asteptare</h5>
+      <h5 className={`text-right`}>
+        Status: {appointmentStatuses.get(closestAppointment.status)}
+      </h5>
     </div>
   );
 };
