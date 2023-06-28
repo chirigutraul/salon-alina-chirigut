@@ -1,6 +1,19 @@
-import { FunctionComponent } from "react";
+import { Service } from "@prisma/client";
+import { servicesLabels } from "utils/constants";
+import { minutesToString } from "utils/helpers/format-hour";
+import { getServices } from "utils/hooks/requests/services";
 
-export default function Preturi() {
+export const getServerSideProps: any = async () => {
+  const services = await getServices();
+
+  return {
+    props: {
+      services,
+    },
+  };
+};
+
+export default function Preturi({ services }: { services: Service[] }) {
   return (
     <section
       className={`relative h-full w-full flex flex-col items-center
@@ -36,39 +49,21 @@ export default function Preturi() {
           [&>*:nth-child(even)]:bg-black-10
           `}
           >
-            <tr>
-              <td className={`sp-h sp-v`}>
-                <h6>Manichiura constructie gel</h6>
-              </td>
-              <td className={`sp-h sp-v`}>
-                <h6>1h 30m</h6>
-              </td>
-              <td className={`sp-h sp-v`}>
-                <h6>100 lei</h6>
-              </td>
-            </tr>
-            <tr>
-              <td className={`sp-h sp-v`}>
-                <h6>Manichiura constructie gel</h6>
-              </td>
-              <td className={`sp-h sp-v`}>
-                <h6>1h 30m</h6>
-              </td>
-              <td className={`sp-h sp-v`}>
-                <h6>100 lei</h6>
-              </td>
-            </tr>
-            <tr>
-              <td className={`sp-h sp-v`}>
-                <h6>Manichiura constructie gel</h6>
-              </td>
-              <td className={`sp-h sp-v`}>
-                <h6>1h 30m</h6>
-              </td>
-              <td className={`sp-h sp-v`}>
-                <h6>100 lei</h6>
-              </td>
-            </tr>
+            {services.map((service) => {
+              return (
+                <tr key={service.id}>
+                  <td className={`sp-h sp-v`}>
+                    <h6>{servicesLabels.get(service.name)}</h6>
+                  </td>
+                  <td className={`sp-h sp-v`}>
+                    <h6>{minutesToString(service)}</h6>
+                  </td>
+                  <td className={`sp-h sp-v`}>
+                    <h6>{service.price}lei</h6>
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>
