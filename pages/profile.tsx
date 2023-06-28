@@ -26,18 +26,6 @@ export const getServerSideProps: any = async (
   const session = await getSession(context);
 
   if (session && session.user && session.user.id) {
-    if (!session.user.phone) {
-      const user = await prisma.client.findUnique({
-        where: {
-          id: session.user.id,
-        },
-      });
-
-      if (user && user.phone) {
-        session.user.phone = user.phone;
-      }
-    }
-
     const { appointments, closestAppointment } = await getUserAppointments(
       session.user.id
     );
