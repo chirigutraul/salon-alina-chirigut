@@ -25,5 +25,7 @@ The following environment variables are required to run the application:
 - `GOOGLE_CLIENT_SECRET`: The client secret of the Google OAuth application.
 - `FACEBOOK_CLIENT_ID`: The client ID of the Facebook OAuth application.
 - `FACEBOOK_CLIENT_SECRET`: The client secret of the Facebook OAuth application.
+- `NEXTAUTH_URL`: Url for next authentication path
+- `DATABASE_URL`: The connection link for database
 
 Make sure to set these environment variables before running the application.
