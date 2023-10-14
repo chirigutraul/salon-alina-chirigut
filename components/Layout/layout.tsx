@@ -5,7 +5,6 @@ import Footer from "components/Footer";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/router";
-import Loader from "components/Loader/loader";
 
 const shouldBackgroundBeGradient = {
   "/profile": true,
@@ -26,8 +25,6 @@ export default function Layout({ children }: { children: ReactElement }) {
         position="bottom-right"
         key="toast-container"
       />
-
-      <Loader />
     </div>
   );
 }
