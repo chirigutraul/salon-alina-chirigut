@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { useState } from "react";
-import { motion } from "framer-motion";
 import ReactModal from "react-modal";
 const imagesArray: string[] = [
   "https://images.unsplash.com/photo-1632345031435-8727f6897d53?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
@@ -41,11 +40,9 @@ export default function Home() {
       `}
       >
         {imagesArray.map((image, index: number) => (
-          <motion.div
+          <div
             onClick={() => openImageModal(image)}
-            whileHover={{ opacity: 0.9 }}
-            transition={{ duration: 0.2 }}
-            className="relative w-full cursor-pointer aspect-square"
+            className="relative w-full cursor-pointer aspect-square hover:opacity-90 transition-all duration-200 transform hover:scale-[1.05]"
             key={index}
           >
             <Image
@@ -55,7 +52,7 @@ export default function Home() {
               alt="Manichiura client"
               sizes={"(max-width:1920px) theme(w-128)"}
             />
-          </motion.div>
+          </div>
         ))}
       </div>
       <ReactModal

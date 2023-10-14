@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -14,16 +18,41 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "baseUrl":".",
+    "baseUrl": ".",
     "paths": {
-      "@components":["/components"],
-      "@types":["/types"],
-      "@icons":["/components/Icons"],
-      "@utils":["/utils"],
-      "@requests":["/utils/hooks/requests"]
+      "@components": [
+        "/components"
+      ],
+      "@types": [
+        "/types"
+      ],
+      "@icons": [
+        "/components/Icons"
+      ],
+      "@utils": [
+        "/utils"
+      ],
+      "@requests": [
+        "/utils/hooks/requests"
+      ]
     },
-    "typeRoots": ["/types"]
+    "typeRoots": [
+      "/types"
+    ],
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/AppointmentForm/AppointmentCalendar/index.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "components/AppointmentForm/AppointmentCalendar/index.ts",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
