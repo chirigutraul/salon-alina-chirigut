@@ -1,34 +1,29 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Ally Nails Salon
 
-## Getting Started
+This project is a web application for Ally Nails Salon. 
+It serves as a landing page and it provides functionality for the clients of the salon.
+Using this application, the clients can:
+ - log in with Google or Facebook
+ - create appointments
+ - view useful salon information such as: prices, location, clients gallery, reviews etc.
+ - view their profile, contact information
+ - view their appointments history
 
-First, run the development server:
+# Tools used
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+The main technology stack of this project is TypeScript + Next.js. 
+Besides those, the project uses Prisma as an ORM, Tailwind.CSS as a CSS framework and 
+PlanetScale services for database.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# Environment Variables
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+The following environment variables are required to run the application:
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+- `API_URI`: The URI of the API server.
+- `JWT_SECRET`: The secret key used to sign JSON Web Tokens.
+- `GOOGLE_CLIENT_ID`: The client ID of the Google OAuth application.
+- `GOOGLE_CLIENT_SECRET`: The client secret of the Google OAuth application.
+- `FACEBOOK_CLIENT_ID`: The client ID of the Facebook OAuth application.
+- `FACEBOOK_CLIENT_SECRET`: The client secret of the Facebook OAuth application.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Make sure to set these environment variables before running the application.
