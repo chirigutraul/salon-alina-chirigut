@@ -1,6 +1,6 @@
 import { Appointment, Service } from "@prisma/client";
 import { RequestResponse } from "types/ResponseTypes";
-import { APPOINTMENTS_API_URL, CLIENTS_API_URL } from "utils/constants";
+import { APPOINTMENTS_API_URL } from "utils/constants";
 
 export async function createAppointment(
   clientId: string,
@@ -47,7 +47,7 @@ export async function createAppointment(
   return createdAppointment;
 }
 
-export async function getAppointmentsFromCertainDate(
+export async function getByDate(
   date: Date
 ): Promise<Appointment[]> {
   const formatedDate = date.toISOString();
@@ -65,21 +65,12 @@ export async function getAppointmentsFromCertainDate(
   return parsedResponse;
 }
 
-interface userProfileAppointments {
-  appointments: Appointment[];
-  closestAppointment: Appointment | null;
-}
-
-export async function getUserAppointments(
-  userId: string
-): Promise<userProfileAppointments> {
+export async function getById(userId: string) {
   const appointmentsResponse = await fetch(
     `${APPOINTMENTS_API_URL}?clientId=${userId}`
   );
-  const appointmentsJson = await appointmentsResponse.json();
 
-  if (!appointmentsJson || !appointmentsJson.length)
-    return { appointments: [], closestAppointment: null };
+  const appointmentsJson = await appointmentsResponse.json();
 
   const sortedAppointments: Appointment[] = appointmentsJson.sort(
     (a: Appointment, b: Appointment) => {
@@ -87,21 +78,6 @@ export async function getUserAppointments(
     }
   );
 
-  const dateToday = new Date();
-
-  let closestAppointment: Appointment | null = null;
-
-  for (const appointment of sortedAppointments) {
-    if (new Date(appointment.date).getTime() > dateToday.getTime()) {
-      closestAppointment = appointment;
-      break;
-    }
-  }
-
-  const appointmentsAndSpotlight: userProfileAppointments = {
-    appointments: sortedAppointments,
-    closestAppointment: closestAppointment,
-  };
-
-  return appointmentsAndSpotlight;
+  return sortedAppointments;
 }
+

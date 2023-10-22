@@ -1,56 +1,36 @@
 import AuthenticatedUserWithoutPhone from "components/AuthenticatedUserWithoutPhone";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-import { GetServerSidePropsContext } from "next";
-import { getSession } from "next-auth/react";
-import { Session } from "next-auth";
-import { getUserAppointments } from "utils/hooks/requests/appointments";
-import { extendedAppointment } from "types/DbEntitiesTypes";
+import { useSession } from "next-auth/react";
+import { getById } from "utils/hooks/requests/appointments";
 import AppointmentModal from "components/AppointmentModal";
-import { useRouter } from "next/router";
 import AppointmentSpotlight from "components/AppointmentSpotlight";
 import UserInfo from "components/UserInfo"
 import AppointmentButton from "components/AppointmentButton"
 import AppointmentsHistory from "components/AppointmentsHistory"
+import { Appointment } from "@prisma/client";
 
-interface Props {
-  session: Session | null;
-  appointments: extendedAppointment[] | null;
-  closestAppointment: extendedAppointment | null;
-}
+export default function Profile() {
+  const [isOpen, setIsOpen] = useState(false);
+  const { data: session } = useSession();
+  const [userAppointments, setUserAppointments] = useState<Appointment[]>();
+  const [spotlightAppointment, setSpotlightAppointment] = useState<Appointment>();
 
-export const getServerSideProps: any = async (
-  context: GetServerSidePropsContext
-) => {
-  const session = await getSession(context);
+  const fetchAppointments = async () => {
+    if (!session) {
+      return setUserAppointments([]);
+    }
 
-  if (session && session.user && session.user.id) {
-    const { appointments, closestAppointment } = await getUserAppointments(
-      session.user.id
-    );
-
-    return {
-      props: { session, appointments, closestAppointment },
-    };
+    const appointments = await getById(session.user.id);
+    setSpotlightAppointment(appointments[appointments?.length - 1]);
+    setUserAppointments(appointments);
   }
 
-  return {
-    props: {
-      session: null,
-    },
-  };
-};
+  useEffect(() => {
+    fetchAppointments();
+  }, [session]);
 
-export default function Profile({
-  session,
-  appointments,
-  closestAppointment,
-}: Props) {
-  const [isOpen, setIsOpen] = useState(false);
-  const router = useRouter();
-
-  const navigateToSignIn = () => router.push("/sign-in");
-  if (!session || !session.user) return navigateToSignIn();
+  if (!session || !session.user) return console.log("No user")
 
   if (!session.user.phone)
     return <AuthenticatedUserWithoutPhone session={session} />;
@@ -70,7 +50,7 @@ export default function Profile({
           `}
           >
             <UserInfo session={session} />
-            <AppointmentSpotlight closestAppointment={closestAppointment} />
+            <AppointmentSpotlight closestAppointment={spotlightAppointment} />
           </div>
 
           <div
@@ -81,7 +61,7 @@ export default function Profile({
             <AppointmentButton
               toggleAppointmentModal={toggleAppointmentModal}
             />
-            <AppointmentsHistory appointments={appointments} />
+            <AppointmentsHistory appointments={userAppointments} />
           </div>
         </div>
       </div>

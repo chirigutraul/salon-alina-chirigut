@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faXmark } from "@fortawesome/free-solid-svg-icons";
 import {
   createAppointment,
-  getAppointmentsFromCertainDate,
+  getByDate,
 } from "utils/hooks/requests/appointments";
 import DatePicker from "components/DatePicker";
 import { toast } from "react-toastify";
@@ -37,7 +37,7 @@ const AppointmentModal = ({ session, isOpen, toggleModal }: Props) => {
   }, [selectedDate, hour, selectedService]);
 
   const fetchAppointments = async (date: Date) => {
-    const retrievedAppointments = await getAppointmentsFromCertainDate(date);
+    const retrievedAppointments = await getByDate(date);
     setAppointmentsFromSelectedDate(retrievedAppointments);
   };
 
