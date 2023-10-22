@@ -8,13 +8,13 @@ import AppointmentSpotlight from "components/AppointmentSpotlight";
 import UserInfo from "components/UserInfo"
 import AppointmentButton from "components/AppointmentButton"
 import AppointmentsHistory from "components/AppointmentsHistory"
-import { Appointment } from "@prisma/client";
+import { extendedAppointment } from "types/DbEntitiesTypes";
 
 export default function Profile() {
   const [isOpen, setIsOpen] = useState(false);
   const { data: session } = useSession();
-  const [userAppointments, setUserAppointments] = useState<Appointment[]>();
-  const [spotlightAppointment, setSpotlightAppointment] = useState<Appointment>();
+  const [userAppointments, setUserAppointments] = useState<extendedAppointment[]>();
+  const [spotlightAppointment, setSpotlightAppointment] = useState<extendedAppointment>();
 
   const fetchAppointments = async () => {
     if (!session) {

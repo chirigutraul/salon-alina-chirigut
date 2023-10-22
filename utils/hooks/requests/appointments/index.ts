@@ -1,4 +1,5 @@
 import { Appointment, Service } from "@prisma/client";
+import { extendedAppointment } from "types/DbEntitiesTypes";
 import { RequestResponse } from "types/ResponseTypes";
 import { APPOINTMENTS_API_URL } from "utils/constants";
 
@@ -72,8 +73,8 @@ export async function getById(userId: string) {
 
   const appointmentsJson = await appointmentsResponse.json();
 
-  const sortedAppointments: Appointment[] = appointmentsJson.sort(
-    (a: Appointment, b: Appointment) => {
+  const sortedAppointments: extendedAppointment[] = appointmentsJson.sort(
+    (a: extendedAppointment, b: extendedAppointment) => {
       return new Date(a.date).getTime() - new Date(b.date).getTime();
     }
   );

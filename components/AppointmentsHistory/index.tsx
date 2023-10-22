@@ -3,7 +3,7 @@ import { extendedAppointment } from "types/DbEntitiesTypes";
 import { appointmentStatuses, servicesLabels } from "utils/constants";
 
 interface AppointmentsHistoryProps {
-  appointments: extendedAppointment[] | null;
+  appointments?: extendedAppointment[];
 }
 const AppointmentsHistory: FunctionComponent<AppointmentsHistoryProps> = ({
   appointments,

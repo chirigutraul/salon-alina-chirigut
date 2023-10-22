@@ -4,10 +4,10 @@ import { signIn } from "next-auth/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faGoogle } from "@fortawesome/free-brands-svg-icons";
 
- 
+
 const SignIn: FunctionComponent = () => {
-    return (
-        <section className={`bg-gradient sp-h grid place-items-center`}>
+  return (
+    <section className={`bg-gradient sp-h grid place-items-center`}>
       <div
         className={`text-white sp-4t sp-2h sp-2v text-center bg-black-75 w-full justify-between rounded-lg
         max-w-[500px]
@@ -22,7 +22,7 @@ const SignIn: FunctionComponent = () => {
           className={`w-full flex flex-col items-center justify-between gap-4 sp-t`}
         >
           <div
-            onClick={() => signIn("google")}
+            onClick={() => signIn("google", { callbackUrl: '/profile' })}
             className={`flex justify-between gap-4 cursor-pointer relative bg-white text-black px-4 py-2 rounded-md pr-10
             hover:bg-white-80
             `}
@@ -33,7 +33,7 @@ const SignIn: FunctionComponent = () => {
             <h6>Sign in with google</h6>
           </div>
           <div
-            onClick={() => signIn("facebook")}
+            onClick={() => signIn("facebook", { callbackUrl: '/profile' })}
             className={`flex justify-between gap-4 cursor-pointer relative bg-white text-black px-4 py-2 rounded-md
             hover:bg-white-80
             `}
@@ -46,7 +46,7 @@ const SignIn: FunctionComponent = () => {
         </div>
       </div>
     </section>
-    );
+  );
 }
- 
+
 export default SignIn;

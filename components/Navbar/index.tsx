@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect, useState } from "react";
+import React, { FunctionComponent, useState } from "react";
 
 import useWindowSize from "utils/hooks/BreakPointsHooks";
 import breakpoints from "utils/TailwindBreakPoints";
@@ -41,6 +41,7 @@ const Navbar = () => {
       <HamburgerMenu
         isHamburgerOpen={isHamburgerOpen}
         toggleNavbar={toggleNavbar}
+        navigateToProfile={navigateToProfile}
         navigateToSignIn={navigateToSignIn}
         session={session}
       />
@@ -69,9 +70,9 @@ const Navbar = () => {
           <Image src="/images/logo.png" alt="Logo-ul salonului" fill />
         </div>
         {isLarge ? (
-          <DesktopLinks navigateToSignIn={navigateToSignIn} 
-          navigateToProfile={navigateToProfile}
-          session={session} />
+          <DesktopLinks navigateToSignIn={navigateToSignIn}
+            navigateToProfile={navigateToProfile}
+            session={session} />
         ) : (
           <HamburgerButton toggleNavbar={toggleNavbar} />
         )}
@@ -102,7 +103,7 @@ const DesktopLinks: FunctionComponent<DesktopLinksProps> = ({
     {session ? (
       <div
         className={`h-12 w-12  xl:h-12 xl:w-12 relative cursor-pointer group`}
-        onClick={() => navigateToSignIn()}
+        onClick={() => navigateToProfile()}
       >
         <Image
           src={session.user.image}
@@ -128,7 +129,7 @@ const DesktopLinks: FunctionComponent<DesktopLinksProps> = ({
               </li>
               <li
                 className={`py-2 px-2 bg-black-75 hover:bg-black flex gap-2 items-center justify-center cursor-pointer`}
-                onClick={() => signOut()}
+                onClick={() => signOut({ callbackUrl: '/' })}
               >
                 <h6>Delogare</h6>
                 <h6>
@@ -175,20 +176,28 @@ const HamburgerButton: FunctionComponent<HamburgerButtonProps> = ({
 interface HamburgerMenuProps {
   isHamburgerOpen: boolean;
   toggleNavbar: () => void;
+  navigateToProfile: () => void;
   navigateToSignIn: () => void;
   session: Session | null;
 }
 
 const HamburgerMenu: FunctionComponent<HamburgerMenuProps> = ({
   navigateToSignIn,
+  navigateToProfile,
   isHamburgerOpen,
   toggleNavbar,
   session,
 }) => {
-  const navigateAndClose = () => {
+
+  const redirectToSignIn = () => {
     navigateToSignIn();
     toggleNavbar();
   };
+
+  const redirectToProfile = () => {
+    navigateToProfile();
+    toggleNavbar();
+  }
 
   return (
     <ReactModal
@@ -204,7 +213,7 @@ const HamburgerMenu: FunctionComponent<HamburgerMenuProps> = ({
         {session ? (
           <div
             className={`flex items-center gap-4 cursor-pointer`}
-            onClick={navigateAndClose}
+            onClick={redirectToProfile}
           >
             <div className={`relative h-16 w-16 rounded-full overflow-hidden`}>
               <Image
@@ -240,7 +249,7 @@ const HamburgerMenu: FunctionComponent<HamburgerMenuProps> = ({
         </ul>
       </nav>
       {session ? (
-        <div onClick={() => signOut()}>
+        <div onClick={() => signOut({ callbackUrl: '/' })}>
           <button className={`btn btn-border-light btn-icon`}>
             <h5>Delogare</h5>
             <h5>
@@ -249,7 +258,7 @@ const HamburgerMenu: FunctionComponent<HamburgerMenuProps> = ({
           </button>
         </div>
       ) : (
-        <div onClick={() => navigateAndClose()}>
+        <div onClick={() => redirectToSignIn()}>
           <button className={`btn btn-border-light btn-icon`}>
             <h5>Conectare</h5>
             <h5>
