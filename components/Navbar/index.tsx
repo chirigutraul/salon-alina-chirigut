@@ -30,7 +30,9 @@ const Navbar = () => {
 
   const toggleNavbar = () => setHamburgerOpen((currentValue) => !currentValue);
 
-  const navigateToSignIn = () => router.push("/profile");
+  const navigateToSignIn = () => router.push("/sign-in");
+
+  const navigateToProfile = () => router.push("/profile");
 
   const navigateHome = () => router.push("/");
 
@@ -67,7 +69,9 @@ const Navbar = () => {
           <Image src="/images/logo.png" alt="Logo-ul salonului" fill />
         </div>
         {isLarge ? (
-          <DesktopLinks navigateToSignIn={navigateToSignIn} session={session} />
+          <DesktopLinks navigateToSignIn={navigateToSignIn} 
+          navigateToProfile={navigateToProfile}
+          session={session} />
         ) : (
           <HamburgerButton toggleNavbar={toggleNavbar} />
         )}
@@ -78,11 +82,13 @@ const Navbar = () => {
 
 interface DesktopLinksProps {
   navigateToSignIn: () => void;
+  navigateToProfile: () => void;
   session: Session | null;
 }
 
 const DesktopLinks: FunctionComponent<DesktopLinksProps> = ({
   navigateToSignIn,
+  navigateToProfile,
   session,
 }) => (
   <div className={"flex items-center"}>
@@ -113,7 +119,7 @@ const DesktopLinks: FunctionComponent<DesktopLinksProps> = ({
             <ul>
               <li
                 className={`py-2 px-2 bg-black-75 hover:bg-black flex items-center justify-center gap-2 cursor-pointer`}
-                onClick={() => navigateToSignIn()}
+                onClick={() => navigateToProfile()}
               >
                 <h6>Profil</h6>
                 <h6>

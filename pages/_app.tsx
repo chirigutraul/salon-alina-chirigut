@@ -1,11 +1,11 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
-import Layout from "../components/Layout/layout";
+import Layout from "../components/Layout";
 import { SessionProvider } from "next-auth/react";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { Lato, Montserrat } from "@next/font/google";
 import { config } from "@fortawesome/fontawesome-svg-core";
-import Loader from "components/Loader/loader";
+import Loader from "components/Loader";
 
 const lato = Lato({
   weight: "900",
