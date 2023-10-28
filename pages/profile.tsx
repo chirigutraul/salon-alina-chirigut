@@ -1,36 +1,43 @@
 import AuthenticatedUserWithoutPhone from "components/AuthenticatedUserWithoutPhone";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import { useSession } from "next-auth/react";
 import { getById } from "utils/hooks/requests/appointments";
 import AppointmentModal from "components/AppointmentModal";
 import AppointmentSpotlight from "components/AppointmentSpotlight";
-import UserInfo from "components/UserInfo"
-import AppointmentButton from "components/AppointmentButton"
-import AppointmentsHistory from "components/AppointmentsHistory"
+import UserInfo from "components/UserInfo";
+import AppointmentButton from "components/AppointmentButton";
+import AppointmentsHistory from "components/AppointmentsHistory";
 import { extendedAppointment } from "types/DbEntitiesTypes";
+import { LoadingContext } from "components/Layout";
 
 export default function Profile() {
   const [isOpen, setIsOpen] = useState(false);
   const { data: session } = useSession();
-  const [userAppointments, setUserAppointments] = useState<extendedAppointment[]>();
-  const [spotlightAppointment, setSpotlightAppointment] = useState<extendedAppointment>();
+  const [userAppointments, setUserAppointments] =
+    useState<extendedAppointment[]>();
+  const [spotlightAppointment, setSpotlightAppointment] =
+    useState<extendedAppointment>();
+
+  const context = useContext(LoadingContext);
 
   const fetchAppointments = async () => {
     if (!session) {
       return setUserAppointments([]);
     }
 
+    context?.setLoading(true);
     const appointments = await getById(session.user.id);
     setSpotlightAppointment(appointments[appointments?.length - 1]);
     setUserAppointments(appointments);
-  }
+    context?.setLoading(false);
+  };
 
   useEffect(() => {
     fetchAppointments();
   }, [session]);
 
-  if (!session || !session.user) return console.log("No user")
+  if (!session || !session.user) return console.log("No user");
 
   if (!session.user.phone)
     return <AuthenticatedUserWithoutPhone session={session} />;
@@ -73,4 +80,3 @@ export default function Profile() {
     </section>
   );
 }
-

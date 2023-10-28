@@ -5,7 +5,6 @@ import { SessionProvider } from "next-auth/react";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { Lato, Montserrat } from "@next/font/google";
 import { config } from "@fortawesome/fontawesome-svg-core";
-import Loader from "components/Loader";
 
 const lato = Lato({
   weight: "900",
@@ -21,13 +20,11 @@ const montserrat = Montserrat({
 
 config.autoAddCss = false;
 
-
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <SessionProvider session={pageProps.session}>
       <Layout>
         <main className={`${lato.variable} ${montserrat.variable}`}>
-          <Loader/>
           <Component {...pageProps} />
         </main>
       </Layout>

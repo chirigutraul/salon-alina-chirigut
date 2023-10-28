@@ -1,13 +1,42 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, createContext, useState } from "react";
 import Navbar from "components/Navbar";
 import Footer from "components/Footer";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/router";
+import Loader from "components/Loader";
 
 const shouldBackgroundBeGradient = {
   "/profile": true,
+};
+
+type LoadingContextType = {
+  loading: boolean;
+  setLoading: (loading: boolean) => void;
+};
+
+export const LoadingContext = createContext<LoadingContextType | undefined>(
+  undefined
+);
+
+export const LoadingContextProvider = ({
+  children,
+}: {
+  children: ReactElement;
+}) => {
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const contextValue: LoadingContextType = {
+    loading,
+    setLoading,
+  };
+
+  return (
+    <LoadingContext.Provider value={contextValue}>
+      {children}
+    </LoadingContext.Provider>
+  );
 };
 
 export default function Layout({ children }: { children: ReactElement }) {
@@ -17,7 +46,13 @@ export default function Layout({ children }: { children: ReactElement }) {
   return (
     <div className={`${shouldBackgroundBeGradient[path] ? "bg-gradient" : ""}`}>
       <Navbar />
-      {children}
+
+      <LoadingContextProvider>
+        <>
+          <Loader />
+          {children}
+        </>
+      </LoadingContextProvider>
       <Footer />
 
       <ToastContainer

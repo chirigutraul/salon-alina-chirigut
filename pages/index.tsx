@@ -36,7 +36,7 @@ const HeroSection: FunctionComponent = () => {
           `}
         >
           <h2 className={`text-black-75`}>Bun venit la</h2>
-          <h1 className={`text-gradient sp-2t`}>Aly Nails</h1>
+          <h1 className={`text-gradient sp-2t`}>Ally Nails</h1>
           <h5 className={`text-black-75 sp-t`}>
             unde fiecare programare este o <br /> experienta
           </h5>
@@ -171,7 +171,7 @@ const AboutUsSection: FunctionComponent = () => {
         md:basis-1/2 md:sp-0h
         `}
         >
-          <h2>Aly Nails</h2>
+          <h2>Ally Nails</h2>
           <p className={"sp-t"}>
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est
             voluptas, dicta velit, explicabo libero exercitationem itaque quod
