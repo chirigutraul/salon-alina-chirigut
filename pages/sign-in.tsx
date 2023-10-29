@@ -1,11 +1,20 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useContext } from "react";
 import React from "react";
 import { signIn } from "next-auth/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faGoogle } from "@fortawesome/free-brands-svg-icons";
-
+import { LoadingContext } from "components/Layout";
 
 const SignIn: FunctionComponent = () => {
+  const { setLoading, setDebouncedLoading } = useContext(LoadingContext);
+
+  const signInWithLoading = (method: string) => {
+    setLoading(true);
+    signIn(method, { callbackUrl: "/profile" }).then(() => {
+      setDebouncedLoading(false);
+    });
+  };
+
   return (
     <section className={`bg-gradient sp-h grid place-items-center`}>
       <div
@@ -22,7 +31,7 @@ const SignIn: FunctionComponent = () => {
           className={`w-full flex flex-col items-center justify-between gap-4 sp-t`}
         >
           <div
-            onClick={() => signIn("google", { callbackUrl: '/profile' })}
+            onClick={() => signInWithLoading("google")}
             className={`flex justify-between gap-4 cursor-pointer relative bg-white text-black px-4 py-2 rounded-md pr-10
             hover:bg-white-80
             `}
@@ -33,7 +42,7 @@ const SignIn: FunctionComponent = () => {
             <h6>Sign in with google</h6>
           </div>
           <div
-            onClick={() => signIn("facebook", { callbackUrl: '/profile' })}
+            onClick={() => signInWithLoading("facebook")}
             className={`flex justify-between gap-4 cursor-pointer relative bg-white text-black px-4 py-2 rounded-md
             hover:bg-white-80
             `}
@@ -47,6 +56,6 @@ const SignIn: FunctionComponent = () => {
       </div>
     </section>
   );
-}
+};
 
 export default SignIn;
