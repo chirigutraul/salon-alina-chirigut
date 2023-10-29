@@ -9,7 +9,7 @@ const Loader: FunctionComponent = () => {
 
   return (
     <ReactModal
-      isOpen={true}
+      isOpen={loading}
       onRequestClose={() => {}}
       className={`absolute z-50 transform transition-all duration-1000
       w-full h-full`}
