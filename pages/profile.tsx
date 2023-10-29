@@ -19,18 +19,18 @@ export default function Profile() {
   const [spotlightAppointment, setSpotlightAppointment] =
     useState<extendedAppointment>();
 
-  const context = useContext(LoadingContext);
+  const { setLoading, setDebouncedLoading } = useContext(LoadingContext);
 
   const fetchAppointments = async () => {
     if (!session) {
       return setUserAppointments([]);
     }
 
-    context?.setLoading(true);
+    setLoading(true);
     const appointments = await getById(session.user.id);
     setSpotlightAppointment(appointments[appointments?.length - 1]);
     setUserAppointments(appointments);
-    context?.setLoading(false);
+    setDebouncedLoading(false);
   };
 
   useEffect(() => {

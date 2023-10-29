@@ -14,11 +14,14 @@ const shouldBackgroundBeGradient = {
 type LoadingContextType = {
   loading: boolean;
   setLoading: (loading: boolean) => void;
+  setDebouncedLoading: (loading: boolean) => void;
 };
 
-export const LoadingContext = createContext<LoadingContextType | undefined>(
-  undefined
-);
+export const LoadingContext = createContext<LoadingContextType>({
+  loading: false,
+  setLoading: () => {},
+  setDebouncedLoading: () => {},
+});
 
 export const LoadingContextProvider = ({
   children,
@@ -27,9 +30,16 @@ export const LoadingContextProvider = ({
 }) => {
   const [loading, setLoading] = useState<boolean>(false);
 
+  const setDebouncedLoading = (value: boolean) => {
+    setTimeout(() => {
+      setLoading(value);
+    }, 300);
+  };
+
   const contextValue: LoadingContextType = {
     loading,
     setLoading,
+    setDebouncedLoading,
   };
 
   return (
