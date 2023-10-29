@@ -9,15 +9,15 @@ const Loader: FunctionComponent = () => {
 
   return (
     <ReactModal
-      isOpen={loading}
+      isOpen={true}
       onRequestClose={() => {}}
       className={`absolute z-50 transform transition-all duration-1000
-      w-full h-full grid place-items-center`}
+      w-full h-full`}
       overlayClassName={`h-full w-full fixed z-10 top-0 backdrop-blur-md bg-white-30`}
     >
-      <div className="grid place-items-center">
-        <div className="absolute z-10 w-32 h-32 border-t-4 rounded-full place-items-center animate-spin border-primary"></div>
-        <div className="absolute w-32 h-32 border-4 rounded-full place-items-center border-secondary"></div>
+      <div className="absolute grid -translate-x-1/2 -translate-y-1/2 place-items-center top-1/2 left-1/2">
+        <div className="absolute z-10 w-32 h-32 border-t-4 rounded-full animate-spin border-primary"></div>
+        <div className="absolute w-32 h-32 border-4 rounded-full border-secondary"></div>
 
         <div className="grid place-items-center">
           <div className="w-8 h-16 border-primary border-[0.25rem] rounded-full fade-in-out z-10 bg-white grid place-content-center">
